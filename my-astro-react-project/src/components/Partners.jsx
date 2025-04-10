@@ -1,23 +1,28 @@
 import { useState } from "react";
+import par1 from "../assets/par1.png";
+import par2 from "../assets/par2.png";
+import par3 from "../assets/par3.png";
+import par4 from "../assets/par4.png";
+import par5 from "../assets/par5.png";
+import par6 from "../assets/par6.png";
+import parjoin from "../assets/parjoin.jpg";
 
 // src/components/Partners.jsx
 export default function Partners() {
   const [isAnimating, setIsAnimating] = useState(true);
 
-  // Partner data with placeholder links
+  // Partner data with image imports
   const partners = [
-    { name: "Partner 1", link: "https://partner1.com" },
-    { name: "Partner 2", link: "https://partner2.com" },
-    { name: "Partner 3", link: "https://partner3.com" },
-    { name: "Partner 4", link: "https://partner4.com" },
-    { name: "Partner 5", link: "https://partner5.com" },
-    { name: "Partner 6", link: "https://partner6.com" },
-    { name: "Partner 7", link: "https://partner7.com" },
-    { name: "Partner 8", link: "https://partner8.com" },
+    { img: par1.src, link: "https://partner1.com", name: "Partner 1" },
+    { img: par2.src, link: "https://partner2.com", name: "Partner 2" },
+    { img: par3.src, link: "https://partner3.com", name: "Partner 3" },
+    { img: par4.src, link: "https://partner4.com", name: "Partner 4" },
+    { img: par5.src, link: "https://partner5.com", name: "Partner 5" },
+    { img: par6.src, link: "https://partner6.com", name: "Partner 6" },
   ];
 
-  // Fixed radius for all partners - consistent wheel spoke length
-  const orbitRadius = 140;
+  // Increased orbit radius to create more space between logos
+  const orbitRadius = 180;
 
   return (
     <section className="py-16 overflow-hidden relative">
@@ -25,35 +30,24 @@ export default function Partners() {
         <div className="flex flex-col md:flex-row items-center">
           {/* Left half - Text content */}
           <div className="w-full md:w-1/2 pr-0 md:pr-8 mb-12 md:mb-0">
-            <h3 className="text-lg font-semibold text-orange-500 mb-2">
-              PARTNERSHIP
-            </h3>
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Become a Chili Piper Partner
-            </h2>
+            <h1 className="text-4xl font-bold text-gray-900 mb-6">
+              Our Partners
+            </h1>
             <p className="text-xl text-gray-600">
               Help your customers double their inbound conversion rates and grow
               your business with new revenue streams.
             </p>
-            <div className="mt-8">
-              <a
-                href="#contact"
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg transition duration-300"
-              >
-                LET'S CHAT
-              </a>
-            </div>
           </div>
 
           {/* Right half - Wheel of partners */}
           <div className="w-full md:w-1/2 relative h-96">
             {/* Center logo - the "screw" or hub of the wheel */}
-            <div className="absolute z-10 bg-white rounded-xl shadow-lg p-4 w-28 h-28 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-              {/* Replace with your actual logo path */}
+            <div className="absolute z-10 bg-white rounded-xl shadow-lg p-4 w-32 h-32 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+              {/* Use a logo or placeholder */}
               <img
-                src="/path-to-your-logo.png"
-                alt="Chili Piper"
-                className="w-20 h-20 object-contain"
+                src={parjoin.src}
+                alt="Partners"
+                className="w-24 h-24 object-contain"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src =
@@ -61,15 +55,6 @@ export default function Partners() {
                 }}
               />
             </div>
-
-            {/* Optional: Wheel rim visualization */}
-            <div
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border border-gray-200"
-              style={{
-                width: `${orbitRadius * 2}px`,
-                height: `${orbitRadius * 2}px`,
-              }}
-            ></div>
 
             {/* Wheel of partners */}
             <div
@@ -97,10 +82,10 @@ export default function Partners() {
                       transform: "translate(-50%, -50%)",
                     }}
                   >
-                    <div className="h-14 w-14 md:h-16 md:w-16 rounded-lg bg-blue-100 shadow-md flex items-center justify-center p-1 hover:scale-110 transition-transform duration-300">
-                      {/* Replace with your actual partner logo path */}
+                    <div className="h-20 w-20 md:h-24 md:w-24 rounded-lg bg-blue-100 shadow-md flex items-center justify-center p-2 hover:scale-110 transition-transform duration-300 partner-logo">
+                      {/* Use the imported partner image */}
                       <img
-                        src={`/path-to-partner-logos/${index + 1}.png`}
+                        src={partner.img}
                         alt={partner.name}
                         className="object-contain w-full h-full"
                         onError={(e) => {
@@ -120,7 +105,7 @@ export default function Partners() {
         </div>
       </div>
 
-      {/* CSS for the wheel animation */}
+      {/* CSS for the wheel animation and counter-rotation for logos */}
       <style jsx>{`
         .partner-wheel {
           position: absolute;
@@ -138,12 +123,30 @@ export default function Partners() {
           animation-play-state: paused;
         }
 
+        /* Make each logo counter-rotate to stay upright */
+        .partner-wheel.animate .partner-logo {
+          animation: counter-spin 30s linear infinite;
+        }
+
+        .partner-wheel.paused .partner-logo {
+          animation-play-state: paused;
+        }
+
         @keyframes spin {
           from {
             transform: rotate(0deg);
           }
           to {
             transform: rotate(360deg);
+          }
+        }
+
+        @keyframes counter-spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(-360deg);
           }
         }
       `}</style>

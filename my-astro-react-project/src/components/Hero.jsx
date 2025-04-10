@@ -190,7 +190,7 @@ export default function Hero() {
 
   return (
     <section
-      className="bg-gradient-to-l from-blue-500 via-blue-700 to-blue-900 text-white relative overflow-hidden"
+      className="bg-gradient-to-l from-blue-500 via-blue-700 to-blue-900 text-white relative overflow-hidden py-16"
       style={{
         borderRadius: "44rem 18rem 83rem 44rem",
         boxShadow: "inset 0 0 70px rgba(59, 130, 246, 0.6)",
@@ -408,7 +408,7 @@ export default function Hero() {
                           "transform 0.3s ease, text-shadow 0.3s ease",
                       }}
                     >
-                      HOME PAGE
+                      Get Start
                     </span>
                   </div>
 
