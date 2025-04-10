@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Placeholder blog posts
+const blogPosts = [
+  {
+    title: "Getting Started with Our Platform",
+    excerpt: "A step-by-step guide to setting up your workspace and maximizing productivity from day one.",
+    date: "April 1, 2025",
+    author: "John Doe",
+    category: "Tutorials",
+    image: "/placeholder1"
+  },
+  {
+    title: "5 Ways to Boost Your Team's Productivity",
+    excerpt: "Discover proven strategies that can help your team collaborate better and achieve more in less time.",
+    date: "March 25, 2025",
+    author: "Jane Smith",
+    category: "Best Practices",
+    image: "/placeholder2"
+  },
+  {
+    title: "The Future of Remote Work",
+    excerpt: "How technology is reshaping the workplace and what you can do to stay ahead of the curve.",
+    date: "March 15, 2025",
+    author: "Michael Brown",
+    category: "Industry Trends",
+    image: "/placeholder3"
+  },
+  {
+    title: "Customer Success Story: How XYZ Company Increased Revenue by 200%",
+    excerpt: "Learn how one of our clients transformed their business using our platform.",
+    date: "March 10, 2025",
+    author: "Sarah Johnson",
+    category: "Case Studies",
+    image: "/placeholder4"
+  },
+  {
+    title: "New Features: Q1 2025 Update",
+    excerpt: "Explore the latest additions to our platform and how they can benefit your workflow.",
+    date: "March 1, 2025",
+    author: "David Wilson",
+    category: "Product Updates",
+    image: "/placeholder5"
+  },
+  {
+    title: "Security Best Practices for Your Organization",
+    excerpt: "Essential tips to keep your data safe and your team productive in an increasingly digital world.",
+    date: "February 20, 2025",
+    author: "Emily Chen",
+    category: "Security",
+    image: "/placeholder6"
+  },
+];
+---
+
+<Layout title="Blog">
+  <div class="py-12 md:py-20 bg-blue-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-white">Our Blog</h1>
+        <p class="mt-4 text-xl text-blue-100 max-w-2xl mx-auto">
+          Insights, tips, and updates from our team.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {blogPosts.map((post) => (
+        <article class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="aspect-w-16 aspect-h-9 bg-gray-200">
+            <!-- Placeholder for blog post image -->
+            <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
+              <span class="text-gray-600">Featured Image</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span>{post.date}</span>
+              <span class="mx-2">•</span>
+              <span>{post.category}</span>
+            </div>
+            <a href="#" class="block mt-2">
+              <h3 class="text-xl font-semibold text-gray-900 hover:text-blue-600">{post.title}</h3>
+              <p class="mt-3 text-gray-600">{post.excerpt}</p>
+            </a>
+            <div class="mt-4 flex items-center">
+              <div class="flex-shrink-0">
+                <div class="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
+                  <span class="text-xs text-gray-600">{post.author[0]}</span>
+                </div>
+              </div>
+              <div class="ml-3">
+                <p class="text-sm font-medium text-gray-900">{post.author}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    <div class="mt-12 flex justify-center">
+      <nav class="inline-flex rounded-md shadow">
+        <a href="#" class="px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+          Previous
+        </a>
+        <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium text-blue-600 hover:bg-gray-50">
+          1
+        </a>
+        <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+          2
+        </a>
+        <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+          3
+        </a>
+        <a href="#" class="px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+          Next
+        </a>
+      </nav>
+    </div>
+  </div>
+</Layout>
