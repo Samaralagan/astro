@@ -51,9 +51,12 @@ export default function Navbar() {
     };
   }, [isSidebar]);
 
-  // Check if a link is active
+  // Check if a link is active - fixed to properly match paths
   const isActive = (href) => {
-    return activePath === href;
+    if (href === "/" && activePath === "/") {
+      return true;
+    }
+    return href !== "/" && activePath.startsWith(href);
   };
 
   // Icon components for sidebar
@@ -144,6 +147,23 @@ export default function Navbar() {
             />
           </svg>
         );
+      case "thunder":
+        return (
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
+          </svg>
+        );
       // Hat icon variants for top navbar
       case "hat-home":
         return (
@@ -230,6 +250,23 @@ export default function Navbar() {
             />
           </svg>
         );
+      case "hat-thunder":
+        return (
+          <svg
+            className="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
+          </svg>
+        );
       default:
         return null;
     }
@@ -277,7 +314,7 @@ export default function Navbar() {
                     href="/contact"
                     className="menu-item ml-2 px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors whitespace-nowrap flex items-center relative overflow-hidden font-bold"
                   >
-                    {getIcon("hat-mail")}
+                    {getIcon("hat-thunder")}
                     Get Started
                     <span className="menu-fill-effect-cta"></span>
                   </a>
@@ -342,7 +379,7 @@ export default function Navbar() {
                 href="/contact"
                 className="block px-3 py-2 text-base font-bold bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center relative overflow-hidden"
               >
-                {getIcon("hat-mail")}
+                {getIcon("hat-thunder")}
                 Get Started
                 <span className="mobile-menu-fill-effect-cta"></span>
               </a>
@@ -514,20 +551,7 @@ export default function Navbar() {
               onMouseEnter={() => setActiveIcon("getStarted")}
               onMouseLeave={() => setActiveIcon(null)}
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
+              {getIcon("thunder")}
 
               {/* Tooltip for Get Started */}
               {activeIcon === "getStarted" && (
