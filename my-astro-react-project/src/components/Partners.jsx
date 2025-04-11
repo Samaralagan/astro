@@ -25,7 +25,7 @@ export default function Partners() {
   const orbitRadius = 180;
 
   return (
-    <section className="py-16 overflow-hidden relative">
+    <section className="py-16 overflow-hidden relative ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center">
           {/* Left half - Text content */}
