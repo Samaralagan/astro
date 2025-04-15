@@ -190,10 +190,11 @@ export default function Hero() {
 
   return (
     <section
-      className="bg-gradient-to-l from-blue-500 via-blue-700 to-blue-900 text-white relative overflow-hidden py-16"
+      className="text-white relative overflow-hidden py-16"
       style={{
+        background: "linear-gradient(to left, #D80032, #A5001E, #3D0C11)",
         borderRadius: "44rem 18rem 83rem 44rem",
-        boxShadow: "inset 0 0 70px rgba(59, 130, 246, 0.6)",
+        boxShadow: "inset 0 0 70px rgba(216, 0, 50, 0.6)",
       }}
     >
       {/* Tech Particles Background */}
@@ -219,7 +220,7 @@ export default function Hero() {
                 </span>
               </span>
             </h1>
-            <p className="mt-4 text-lg text-blue-100">
+            <p className="mt-4 text-lg text-red-100">
               Boost productivity, streamline operations, and drive growth with
               our cutting-edge platform.
             </p>
@@ -236,7 +237,7 @@ export default function Hero() {
                       isHovered
                         ? `drop-shadow(0 0 ${
                             8 + glowIntensity * 8
-                          }px rgba(0, 120, 231, ${0.3 * glowIntensity}))`
+                          }px rgba(231, 0, 50, ${0.3 * glowIntensity}))`
                         : ""
                     }`,
                     transform: isHovered
@@ -262,7 +263,7 @@ export default function Hero() {
                         filter: `blur(${particle.size / 2}px)`,
                         boxShadow: `0 0 ${
                           particle.size * 2
-                        }px rgba(100, 200, 255, 0.8)`,
+                        }px rgba(255, 150, 150, 0.8)`,
                         zIndex: 30,
                       }}
                     />
@@ -276,18 +277,20 @@ export default function Hero() {
                       padding: "0 30px",
                       background: isHovered
                         ? `linear-gradient(to right, rgb(${
-                            0 + glowIntensity * 30
-                          }, ${120 + glowIntensity * 15}, ${231}), rgb(${
+                            216 + glowIntensity * 15
+                          }, ${0 + glowIntensity * 20}, ${
+                            32 + glowIntensity * 10
+                          }), rgb(${165 + glowIntensity * 10}, ${
                             0 + glowIntensity * 10
-                          }, ${80 + glowIntensity * 20}, ${180}))`
-                        : "linear-gradient(to bottom, #0066cc, #004080)",
+                          }, ${30 + glowIntensity * 10}))`
+                        : "linear-gradient(to bottom, #D80032, #A5001E)",
                       clipPath: "polygon(15% 0, 100% 0, 90% 100%, 0% 100%)",
                       zIndex: 20,
                       transition: "background 0.3s ease",
                       boxShadow: isHovered
                         ? `inset 0 0 ${
                             10 + glowIntensity * 15
-                          }px rgba(0, 160, 255, ${0.4 + glowIntensity * 0.6})`
+                          }px rgba(255, 0, 50, ${0.4 + glowIntensity * 0.6})`
                         : "none",
                     }}
                   >
@@ -422,17 +425,17 @@ export default function Hero() {
                       style={{
                         width: "12px",
                         background: isHovered
-                          ? `rgb(${0 + glowIntensity * 20}, ${
-                              76 + glowIntensity * 20
-                            }, ${153 + glowIntensity * 20})`
-                          : "#004080",
+                          ? `rgb(${165 + glowIntensity * 20}, ${
+                              0 + glowIntensity * 5
+                            }, ${30 + glowIntensity * 5})`
+                          : "#A5001E",
                         transform: "skewX(-20deg)",
                         zIndex: 11,
                         transition: "background 0.3s ease",
                         boxShadow: isHovered
                           ? `inset 0 0 ${
                               5 + glowIntensity * 10
-                            }px rgba(0, 160, 255, ${0.3 * glowIntensity})`
+                            }px rgba(255, 0, 50, ${0.3 * glowIntensity})`
                           : "none",
                       }}
                     >
@@ -459,10 +462,10 @@ export default function Hero() {
                       style={{
                         width: "12px",
                         background: isHovered
-                          ? `rgb(${0 + glowIntensity * 15}, ${
-                              55 + glowIntensity * 15
-                            }, ${122 + glowIntensity * 15})`
-                          : "#002850",
+                          ? `rgb(${61 + glowIntensity * 15}, ${
+                              12 + glowIntensity * 3
+                            }, ${17 + glowIntensity * 3})`
+                          : "#3D0C11",
                         transform: "skewX(-20deg)",
                         marginLeft: "3px",
                         zIndex: 10,
@@ -493,13 +496,33 @@ export default function Hero() {
             </div>
           </div>
           <div className="hidden md:block">
-            <div className="bg-white/10 p-6 rounded-lg shadow-xl backdrop-blur-sm">
-              <div className="aspect-video bg-blue-800/30 rounded flex items-center justify-center overflow-hidden">
-                <img
-                  src={heroimage.src}
-                  alt="Hero"
-                  className="rounded w-full h-auto object-cover"
-                />
+            {/* Modified image container with 45-degree rotation and square dimensions */}
+            <div
+              className="bg-white/10 p-5 rounded-lg shadow-xl backdrop-blur-sm"
+              style={{
+                transform: "rotate(45deg)",
+                width: "439px",
+                padding: "20px",
+              }}
+            >
+              {/* Image container with 20px padding */}
+              <div
+                className="rounded flex items-center justify-center overflow-hidden"
+                style={{
+                  width: "400px",
+                  height: "400px",
+                  padding: "20px",
+                  background: "rgba(61, 12, 17, 0.3)",
+                }}
+              >
+                {/* Square image */}
+                <div className="w-full h-full">
+                  <img
+                    src={heroimage.src}
+                    alt="Hero"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -509,7 +532,7 @@ export default function Hero() {
       {/* CSS for improved text animation and gradient text */}
       <style jsx>{`
         .gradient-text {
-          background: linear-gradient(135deg, #60a5fa, #c4b5fd, #93c5fd);
+          background: linear-gradient(135deg, #ff6b8b, #ffccd5, #ff8fab);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
@@ -539,7 +562,7 @@ export default function Hero() {
           position: absolute;
           left: 0;
           transition: all 0.5s ease-in-out;
-          background: linear-gradient(135deg, #93c5fd, #a78bfa);
+          background: linear-gradient(135deg, #ff8fab, #ff5c8a);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;

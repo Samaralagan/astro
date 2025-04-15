@@ -34,7 +34,7 @@ export default function Features() {
         "Elevate your brand with professional design that stands out from the competition.",
       icon: (
         <svg
-          className="w-10 h-10"
+          className="w-8 h-8 md:w-10 md:h-10"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -56,7 +56,7 @@ export default function Features() {
         "Capture stunning visuals that tell your story and engage your audience.",
       icon: (
         <svg
-          className="w-10 h-10"
+          className="w-8 h-8 md:w-10 md:h-10"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -84,7 +84,7 @@ export default function Features() {
         "Develop custom strategies tailored to meet your specific business objectives.",
       icon: (
         <svg
-          className="w-10 h-10"
+          className="w-8 h-8 md:w-10 md:h-10"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -106,7 +106,7 @@ export default function Features() {
         "Unleash innovative concepts that drive engagement and inspire your audience.",
       icon: (
         <svg
-          className="w-10 h-10"
+          className="w-8 h-8 md:w-10 md:h-10"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -127,24 +127,26 @@ export default function Features() {
   return (
     <section
       ref={sectionRef}
-      className={`py-16 bg-gray-50 text-gray-900 transition-all duration-500 ${
+      className={`py-12 md:py-16 bg-gray-50 text-gray-900 transition-all duration-500 overflow-hidden ${
         isVisible ? "opacity-100" : "opacity-0 translate-y-10"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-center h-full">
+        <div className="flex flex-col md:flex-row md:items-center">
           {/* Heading and description - shows first on mobile, last on desktop */}
           <div
             className={`
-            w-full md:w-3/10 md:order-last order-first text-center 
+            w-full md:w-2/5 md:order-last order-first text-center 
             flex flex-col justify-center items-center mb-12 md:mb-0 md:pl-8
             transition-all duration-1000 delay-300
             ${isVisible ? "opacity-100" : "opacity-0 translate-x-10"}
           `}
           >
             <div className="max-w-sm mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold">Our Services</h2>
-              <p className="mt-6 text-gray-600">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+                Our Services
+              </h2>
+              <p className="mt-4 md:mt-6 text-gray-600 text-sm md:text-base">
                 Dignissim suspendisse in est ante in nibh mauris. Varius quam
                 quisque id diam vel quam elementum pulvinar etiam. Nunc pulvinar
                 sapien et ligula ullamcorper malesuada proin.
@@ -155,16 +157,16 @@ export default function Features() {
           {/* Feature cards section - shows second on mobile, first on desktop */}
           <div
             className={`
-            w-full md:w-7/10 md:order-first order-last 
+            w-full md:w-3/5 md:order-first order-last 
             transition-all duration-1000 delay-500
             ${isVisible ? "opacity-100" : "opacity-0 -translate-x-10"}
           `}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className={`perspective-1000 ${
+                  className={`perspective ${
                     index % 2 === 0 ? "mt-0 md:mt-8" : "mt-0"
                   } transition-all duration-700 transform ${
                     isVisible
@@ -175,12 +177,12 @@ export default function Features() {
                     transitionDelay: `${isVisible ? 700 + index * 200 : 0}ms`,
                   }}
                 >
-                  <div className="flip-card h-64 w-full">
-                    <div className="flip-card-inner relative w-full h-full transition-transform duration-500 transform-style-preserve-3d">
+                  <div className="flip-card h-56 md:h-64 w-full">
+                    <div className="flip-card-inner relative w-full h-full transition-transform duration-500">
                       {/* Front of card */}
-                      <div className="flip-card-front absolute w-full h-full bg-white rounded-lg overflow-hidden flex flex-col items-center p-6 shadow-lg text-center">
+                      <div className="flip-card-front absolute w-full h-full bg-white rounded-lg overflow-hidden flex flex-col items-center p-4 md:p-6 shadow-lg text-center">
                         <div
-                          className={`${feature.iconBg} inline-flex items-center justify-center p-4 rounded-full text-white mx-auto`}
+                          className={`${feature.iconBg} inline-flex items-center justify-center p-3 md:p-4 rounded-full text-white mx-auto`}
                         >
                           {feature.icon}
                           <div
@@ -192,17 +194,17 @@ export default function Features() {
                             }}
                           ></div>
                         </div>
-                        <h3 className="mt-4 text-xl font-bold text-gray-900 absolute bottom-6 left-0 right-0">
+                        <h3 className="mt-4 text-lg md:text-xl font-bold text-gray-900 absolute bottom-4 md:bottom-6 left-0 right-0">
                           {feature.title}
                         </h3>
                       </div>
 
                       {/* Back of card */}
-                      <div className="flip-card-back absolute w-full h-full bg-white rounded-lg p-6 flex flex-col justify-center items-center shadow-lg backface-hidden">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">
+                      <div className="flip-card-back absolute w-full h-full bg-white rounded-lg p-4 md:p-6 flex flex-col justify-center items-center shadow-lg">
+                        <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-4">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-600 text-center">
+                        <p className="text-sm md:text-base text-gray-600 text-center">
                           {feature.description}
                         </p>
                       </div>
@@ -216,7 +218,7 @@ export default function Features() {
       </div>
 
       <style jsx>{`
-        .perspective-1000 {
+        .perspective {
           perspective: 1000px;
         }
 
@@ -239,15 +241,6 @@ export default function Features() {
           transform: rotateY(180deg);
         }
 
-        .transform-style-preserve-3d {
-          transform-style: preserve-3d;
-        }
-
-        .backface-hidden {
-          -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-        }
-
         @keyframes pulse {
           0% {
             box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
@@ -263,16 +256,6 @@ export default function Features() {
         .icon-pulse {
           animation: pulse 1.5s;
           animation-iteration-count: 1;
-        }
-
-        /* Custom width classes since Tailwind doesn't have 3/10 and 7/10 by default */
-        @media (min-width: 768px) {
-          .md\\:w-3\\/10 {
-            width: 40%;
-          }
-          .md\\:w-7\\/10 {
-            width: 60%;
-          }
         }
       `}</style>
     </section>
