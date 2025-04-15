@@ -89,7 +89,7 @@ export default function Testimonials() {
     for (let i = 0; i < 5; i++) {
       if (i < rating) {
         stars.push(
-          <span key={i} className="text-yellow-400">
+          <span key={i} className="text-maroon4">
             ★
           </span>
         );
@@ -200,10 +200,10 @@ export default function Testimonials() {
                     : "opacity-0 translate-y-4"
                 }`}
               >
-                <h3 className="text-lg font-bold">
+                <h3 className="text-lg font-bold text-maroon2">
                   {activeTestimonial.author}
                 </h3>
-                <p className="text-gray-600">{activeTestimonial.position}</p>
+                <p className="text-maroon3">{activeTestimonial.position}</p>
               </div>
             </div>
 
@@ -249,7 +249,10 @@ export default function Testimonials() {
                   isVisible
                     ? "opacity-100 transform-none"
                     : "opacity-0 -translate-y-4"
-                }`}
+                } bg-clip-text text-transparent`}
+                style={{
+                  backgroundImage: "linear-gradient(to left, #3D0C11, #D80032)",
+                }}
               >
                 What Our Clients Say
               </h2>

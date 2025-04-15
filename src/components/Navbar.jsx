@@ -284,7 +284,7 @@ export default function Navbar() {
             {/* Logo area */}
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <a href="/" className="text-2xl font-bold text-blue-600">
+                <a href="/" className="text-2xl font-bold text-[#D80032]">
                   <img src={logowhite.src} alt="logo" className="h-12" />
                 </a>
               </div>
@@ -301,8 +301,8 @@ export default function Navbar() {
                       href={link.href}
                       className={`menu-item px-3 py-2 text-sm transition-colors whitespace-nowrap flex items-center rounded-md relative overflow-hidden font-bold ${
                         isActive(link.href)
-                          ? "text-blue-600 font-bold"
-                          : "text-gray-700 hover:text-blue-600 font-bold"
+                          ? "text-[#D80032] font-bold"
+                          : "text-gray-700 hover:text-[#D80032] font-bold"
                       }`}
                     >
                       {getIcon(link.hatIcon)}
@@ -312,7 +312,7 @@ export default function Navbar() {
                   ))}
                   <a
                     href="/contact"
-                    className="menu-item ml-2 px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors whitespace-nowrap flex items-center relative overflow-hidden font-bold"
+                    className="menu-item ml-2 px-4 py-2 bg-[#D80032] text-white text-sm rounded-md hover:bg-[#c00029] transition-colors whitespace-nowrap flex items-center relative overflow-hidden font-bold"
                   >
                     {getIcon("hat-thunder")}
                     Get Started
@@ -325,7 +325,7 @@ export default function Navbar() {
               <div className="md:hidden">
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none"
+                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#D80032] focus:outline-none"
                   aria-expanded={isMenuOpen}
                 >
                   <svg
@@ -366,8 +366,8 @@ export default function Navbar() {
                   href={link.href}
                   className={`block px-3 py-2 text-base font-bold rounded-md flex items-center relative overflow-hidden ${
                     isActive(link.href)
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                      ? "text-[#D80032] bg-[#F78CA2]/20"
+                      : "text-gray-700 hover:text-[#D80032] hover:bg-maroon3"
                   }`}
                 >
                   {getIcon(link.hatIcon)}
@@ -377,7 +377,7 @@ export default function Navbar() {
               ))}
               <a
                 href="/contact"
-                className="block px-3 py-2 text-base font-bold bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center relative overflow-hidden"
+                className="block px-3 py-2 text-base font-bold bg-[#D80032] text-white rounded-md hover:bg-[#c00029] flex items-center relative overflow-hidden"
               >
                 {getIcon("hat-thunder")}
                 Get Started
@@ -401,11 +401,11 @@ export default function Navbar() {
             right: 0;
             height: 0;
             background-color: rgba(
-              219,
-              234,
-              254,
-              0.5
-            ); /* blue-100 with transparency */
+              247,
+              140,
+              162,
+              0.2
+            ); /* F78CA2 with transparency */
             transition: height 0.4s ease-out;
             pointer-events: none;
             z-index: -1;
@@ -418,11 +418,11 @@ export default function Navbar() {
             right: 0;
             height: 0;
             background-color: rgba(
-              30,
-              64,
-              175,
+              192,
+              0,
+              41,
               0.3
-            ); /* blue-800 with transparency */
+            ); /* Darker version of D80032 */
             transition: height 0.4s ease-out;
             pointer-events: none;
             z-index: -1;
@@ -439,7 +439,7 @@ export default function Navbar() {
             left: 0;
             right: 0;
             height: 0;
-            background-color: rgba(219, 234, 254, 0.5);
+            background-color: rgba(247, 140, 162, 0.2);
             transition: height 0.4s ease-out;
             pointer-events: none;
             z-index: -1;
@@ -451,7 +451,7 @@ export default function Navbar() {
             left: 0;
             right: 0;
             height: 0;
-            background-color: rgba(30, 64, 175, 0.3);
+            background-color: rgba(192, 0, 41, 0.3);
             transition: height 0.4s ease-out;
             pointer-events: none;
             z-index: -1;
@@ -472,7 +472,7 @@ export default function Navbar() {
 
     return (
       <div className="fixed z-[60] pointer-events-none">
-        <div className="bg-blue-600 w-3 h-3 rounded-full animate-navbar-transition"></div>
+        <div className="bg-[#D80032] w-3 h-3 rounded-full animate-navbar-transition"></div>
       </div>
     );
   };
@@ -493,7 +493,7 @@ export default function Navbar() {
         onMouseEnter={() => setIsExpanded(true)}
       >
         <button
-          className="bg-blue-900 text-white rounded-r-md shadow-md hover:bg-blue-800 transition-all duration-300 flex items-center justify-center"
+          className="bg-[#D80032] text-white rounded-r-md shadow-md hover:bg-[#c00029] transition-all duration-300 flex items-center justify-center"
           style={{ padding: "0.9rem 0.5rem" }}
           aria-label="Expand menu"
         >
@@ -522,8 +522,8 @@ export default function Navbar() {
                   href={link.href}
                   className={`flex items-center justify-center p-2 transition-colors rounded-md font-bold ${
                     isActive(link.href)
-                      ? "text-blue-600"
-                      : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                      ? "text-[#D80032]"
+                      : "text-gray-700 hover:text-[#D80032] hover:bg-[#F78CA2]/20"
                   }`}
                   title={link.name}
                   onMouseEnter={() => setActiveIcon(link.name)}
@@ -546,7 +546,7 @@ export default function Navbar() {
           <div className="mt-5 pt-2 flex justify-center">
             <a
               href="/contact"
-              className="p-2 text-blue-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors font-bold"
+              className="p-2 text-[#D80032] hover:text-[#D80032] hover:bg-[#F78CA2]/20 rounded-md transition-colors font-bold"
               title="Get Started"
               onMouseEnter={() => setActiveIcon("getStarted")}
               onMouseLeave={() => setActiveIcon(null)}

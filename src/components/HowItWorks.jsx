@@ -51,11 +51,16 @@ export default function HowItWorks() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2
-          className={`text-3xl md:text-4xl font-bold text-gray-900 mb-12 transform transition-all duration-700 ${
+          className={`text-3xl md:text-4xl font-bold mb-12 transform transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
+          } bg-clip-text text-transparent`}
+          style={{
+            backgroundImage: "linear-gradient(to left, #D80032, #3D0C11)", // Flip side here
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
         >
-          HOW IT WORKS
+          HOW WORKS
         </h2>
 
         <div className="flex flex-col xl:flex-row items-center">
@@ -74,7 +79,7 @@ export default function HowItWorks() {
                     transitionDelay: `${index * 200}ms`,
                   }}
                 >
-                  <div className="bg-gray-800 text-white w-8 h-8 flex items-center justify-center font-bold rounded-sm mr-4 flex-shrink-0">
+                  <div className="bg-maroon2 text-white w-8 h-8 flex items-center justify-center font-bold rounded-sm mr-4 flex-shrink-0">
                     {step.number}
                   </div>
                   <p className="text-gray-800">{step.title}</p>
@@ -121,7 +126,7 @@ export default function HowItWorks() {
                 style={{ transitionDelay: "200ms" }}
               >
                 <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md">
-                  <span className="text-2xl font-bold text-black">+</span>
+                  <span className="text-2xl font-bold text-maroon2">+</span>
                 </div>
               </div>
 
@@ -157,7 +162,7 @@ export default function HowItWorks() {
                 style={{ transitionDelay: "400ms" }}
               >
                 <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md">
-                  <span className="text-2xl font-bold text-black">=</span>
+                  <span className="text-2xl font-bold text-maroon2">=</span>
                 </div>
               </div>
 
@@ -170,7 +175,7 @@ export default function HowItWorks() {
                 }`}
                 style={{ transitionDelay: "500ms" }}
               >
-                <div className="bg-blue-100 shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
+                <div className="bg-maroon3 shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
                       src={parjoin.src}
@@ -222,7 +227,7 @@ export default function HowItWorks() {
                 style={{ transitionDelay: "200ms" }}
               >
                 <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md">
-                  <span className="text-2xl font-bold text-black">+</span>
+                  <span className="text-2xl font-bold text-maroon2">+</span>
                 </div>
               </div>
 
@@ -258,7 +263,7 @@ export default function HowItWorks() {
                 style={{ transitionDelay: "400ms" }}
               >
                 <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md">
-                  <span className="text-2xl font-bold text-black">=</span>
+                  <span className="text-2xl font-bold text-maroon2">=</span>
                 </div>
               </div>
 
@@ -271,7 +276,7 @@ export default function HowItWorks() {
                 }`}
                 style={{ transitionDelay: "500ms" }}
               >
-                <div className="bg-blue-100 shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
+                <div className="bg-maroon3 shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
                       src={parjoin.src}

@@ -67,15 +67,18 @@ export default function Partners() {
         <div className="flex flex-col md:flex-row items-center">
           {/* Left half - Text content with staggered fade-in animations */}
           <div className="w-full md:w-1/2 pr-0 md:pr-8 mb-12 md:mb-0">
-            <h1
-              className={`text-4xl font-bold text-gray-900 mb-6 transition-all duration-1500 transform ${
+            <h2
+              className={`text-4xl font-bold  mb-6 transition-all duration-1500 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
-              }`}
+              } bg-clip-text text-transparent`}
+              style={{
+                backgroundImage: "linear-gradient(to left, #3D0C11, #D80032)",
+              }}
             >
               Our Partners
-            </h1>
+            </h2>
             <p
               className={`text-xl text-gray-600 transition-all duration-1500 delay-500 transform ${
                 isVisible
@@ -139,7 +142,7 @@ export default function Partners() {
                     }}
                   >
                     <div
-                      className={`h-20 w-20 md:h-24 md:w-24 rounded-lg bg-blue-100 shadow-md flex items-center justify-center p-2 hover:scale-110 transition-all duration-700 partner-logo ${
+                      className={`h-20 w-20 md:h-24 md:w-24 rounded-lg bg-maroon3 shadow-md flex items-center justify-center p-2 hover:scale-110 transition-all duration-700 partner-logo ${
                         isVisible ? "partner-fade-in" : "opacity-0"
                       }`}
                       // Removed animationPlayState style

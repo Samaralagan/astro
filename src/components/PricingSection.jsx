@@ -1,9 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import testing from "../assets/testing.gif";
 
 export default function PricingSection() {
   // State to track which plan is being hovered
   const [hoveredPlan, setHoveredPlan] = useState(null);
+  // State for typing effect on compare button
+  const [isCompareHovered, setIsCompareHovered] = useState(false);
+  const [typingText, setTypingText] = useState("");
+
+  // Handle typing effect when Compare button is hovered
+  useEffect(() => {
+    if (isCompareHovered) {
+      const text = "???....";
+      let currentIndex = 0;
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= text.length) {
+          setTypingText(text.substring(0, currentIndex));
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 200);
+
+      return () => {
+        clearInterval(typingInterval);
+      };
+    } else {
+      setTypingText("");
+    }
+  }, [isCompareHovered]);
 
   // Function to generate random dust particles
   const generateDustParticles = (count) => {
@@ -34,22 +59,43 @@ export default function PricingSection() {
           {/* Left side - Header and description - Now centered */}
           <div className="lg:w-1/3 lg:pr-12 mb-10 lg:mb-0 flex items-center justify-center">
             <div className="sticky lg:top-8 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h2
+                className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to right, #3D0C11, #D80032)",
+                }}
+              >
                 Choose Your Perfect Plan
               </h2>
+
               <p className="text-lg text-gray-600">
                 We offer flexible pricing options to meet your needs. Whether
                 you're just starting out or looking for advanced features, we
                 have a plan that's right for you.
               </p>
               <div className="mt-6 hidden lg:block">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center">
+                <button
+                  className="text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center"
+                  style={{ backgroundColor: "#3D0C11" }}
+                  onMouseEnter={() => setIsCompareHovered(true)}
+                  onMouseLeave={() => setIsCompareHovered(false)}
+                >
                   <img
                     src={testing.src}
                     alt="Compare"
                     className="w-9 h-9 mr-2"
+                    style={{ filter: "brightness(0) invert(1)" }} // Makes icon white
                   />
-                  Compare All Features
+                  <span className="relative min-w-[180px] inline-block text-left">
+                    {isCompareHovered ? (
+                      <h1 className="typing-effect m-0 text-base font-medium">
+                        {typingText}
+                      </h1>
+                    ) : (
+                      "Compare All Features"
+                    )}
+                  </span>
                 </button>
               </div>
             </div>
@@ -66,14 +112,12 @@ export default function PricingSection() {
                     className="absolute inset-0 w-140 h-140 -top-20 -left-20"
                     style={{ transform: "rotate(45deg)" }}
                   >
-                    <div className="bg-gray-900 h-56 w-full"></div>
-                    <div className="h-8 w-full bg-orange-500 mt-1"></div>
+                    <div className="bg-maroondark h-56 w-full"></div>
+                    <div className="h-8 w-full bg-maroon2 mt-1"></div>
                   </div>
                   {/* Flat text overlay */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center">
-                    <h3 className="text-2xl font-bold text-orange-500">
-                      Basic
-                    </h3>
+                    <h3 className="text-2xl font-bold text-maroon2">Basic</h3>
                     <div className="text-white mt-2">
                       <span className="text-3xl font-bold">$2.99</span>
                       <span className="text-sm ml-1">per month</span>
@@ -102,7 +146,7 @@ export default function PricingSection() {
                     </li>
                     <li className="flex items-center">
                       <svg
-                        className="h-5 w-5 text-red-500 flex-shrink-0"
+                        className="h-5 w-5 text-maroon2 flex-shrink-0"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -118,7 +162,7 @@ export default function PricingSection() {
                     </li>
                     <li className="flex items-center">
                       <svg
-                        className="h-5 w-5 text-red-500 flex-shrink-0"
+                        className="h-5 w-5 text-maroon2 flex-shrink-0"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -134,7 +178,7 @@ export default function PricingSection() {
                     </li>
                     <li className="flex items-center">
                       <svg
-                        className="h-5 w-5 text-red-500 flex-shrink-0"
+                        className="h-5 w-5 text-maroon2 flex-shrink-0"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -150,7 +194,7 @@ export default function PricingSection() {
                     </li>
                     <li className="flex items-center">
                       <svg
-                        className="h-5 w-5 text-red-500 flex-shrink-0"
+                        className="h-5 w-5 text-maroon2 flex-shrink-0"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -168,7 +212,7 @@ export default function PricingSection() {
 
                   <div className="mt-8 relative">
                     <button
-                      className="w-full py-3 text-white font-medium rounded focus:outline-none uppercase bg-orange-500 hover:bg-orange-600 transition duration-300 relative overflow-hidden"
+                      className="w-full py-3 text-white font-medium rounded focus:outline-none uppercase bg-maroon2 hover:bg-maroon2-600 transition duration-300 relative overflow-hidden"
                       onMouseEnter={() => setHoveredPlan("basic")}
                       onMouseLeave={() => setHoveredPlan(null)}
                     >
@@ -186,7 +230,7 @@ export default function PricingSection() {
                         {basicParticles.map((particle) => (
                           <div
                             key={particle.id}
-                            className="absolute rounded-full bg-orange-300"
+                            className="absolute rounded-full bg-red-300"
                             style={{
                               left: `${particle.left}%`,
                               top: `${particle.top}%`,
@@ -211,12 +255,12 @@ export default function PricingSection() {
                     className="absolute inset-0 w-140 h-140 -top-20 -left-20"
                     style={{ transform: "rotate(45deg)" }}
                   >
-                    <div className="bg-gray-900 h-56 w-full"></div>
-                    <div className="h-8 w-full bg-blue-500 mt-1"></div>
+                    <div className="bg-maroondark h-56 w-full"></div>
+                    <div className="h-8 w-full bg-maroon3 mt-1"></div>
                   </div>
                   {/* Flat text overlay */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center">
-                    <h3 className="text-2xl font-bold text-blue-500">
+                    <h3 className="text-2xl font-bold text-maroon3">
                       Standard
                     </h3>
                     <div className="text-white mt-2">
@@ -279,7 +323,7 @@ export default function PricingSection() {
                     </li>
                     <li className="flex items-center">
                       <svg
-                        className="h-5 w-5 text-red-500 flex-shrink-0"
+                        className="h-5 w-5 text-maroon2 flex-shrink-0"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -295,7 +339,7 @@ export default function PricingSection() {
                     </li>
                     <li className="flex items-center">
                       <svg
-                        className="h-5 w-5 text-red-500 flex-shrink-0"
+                        className="h-5 w-5 text-maroon2 flex-shrink-0"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -313,7 +357,7 @@ export default function PricingSection() {
 
                   <div className="mt-8 relative">
                     <button
-                      className="w-full py-3 text-white font-medium rounded focus:outline-none uppercase bg-blue-500 hover:bg-blue-600 transition duration-300 relative overflow-hidden"
+                      className="w-full py-3 text-white font-medium rounded focus:outline-none uppercase bg-maroon3 hover:bg-maroon3 transition duration-300 relative overflow-hidden"
                       onMouseEnter={() => setHoveredPlan("standard")}
                       onMouseLeave={() => setHoveredPlan(null)}
                     >
@@ -331,7 +375,7 @@ export default function PricingSection() {
                         {standardParticles.map((particle) => (
                           <div
                             key={particle.id}
-                            className="absolute rounded-full bg-blue-300"
+                            className="absolute rounded-full bg-red-300"
                             style={{
                               left: `${particle.left}%`,
                               top: `${particle.top}%`,
@@ -356,14 +400,12 @@ export default function PricingSection() {
                     className="absolute inset-0 w-140 h-140 -top-20 -left-20"
                     style={{ transform: "rotate(45deg)" }}
                   >
-                    <div className="bg-gray-900 h-56 w-full"></div>
-                    <div className="h-8 w-full bg-purple-600 mt-1"></div>
+                    <div className="bg-maroondark h-56 w-full"></div>
+                    <div className="h-8 w-full bg-maroon4 mt-1"></div>
                   </div>
                   {/* Flat text overlay */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center">
-                    <h3 className="text-2xl font-bold text-purple-500">
-                      Premium
-                    </h3>
+                    <h3 className="text-2xl font-bold text-maroon4">Premium</h3>
                     <div className="text-white mt-2">
                       <span className="text-3xl font-bold">$9.99</span>
                       <span className="text-sm ml-1">per month</span>
@@ -458,7 +500,7 @@ export default function PricingSection() {
 
                   <div className="mt-8 relative">
                     <button
-                      className="w-full py-3 text-white font-medium rounded focus:outline-none uppercase bg-purple-500 hover:bg-purple-600 transition duration-300 relative overflow-hidden"
+                      className="w-full py-3 text-white font-medium rounded focus:outline-none uppercase bg-maroon4 hover:bg-red-600 transition duration-300 relative overflow-hidden"
                       onMouseEnter={() => setHoveredPlan("premium")}
                       onMouseLeave={() => setHoveredPlan(null)}
                     >
@@ -476,7 +518,7 @@ export default function PricingSection() {
                         {premiumParticles.map((particle) => (
                           <div
                             key={particle.id}
-                            className="absolute rounded-full bg-purple-300"
+                            className="absolute rounded-full bg-maroon4"
                             style={{
                               left: `${particle.left}%`,
                               top: `${particle.top}%`,
@@ -496,20 +538,33 @@ export default function PricingSection() {
 
             {/* Mobile CTA - only visible on smaller screens */}
             <div className="mt-8 text-center lg:hidden">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center mx-auto">
+              <button
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center mx-auto"
+                onMouseEnter={() => setIsCompareHovered(true)}
+                onMouseLeave={() => setIsCompareHovered(false)}
+              >
                 <img
                   src="/assets/testing.gif"
                   alt="Compare"
                   className="w-5 h-5 mr-2"
+                  style={{ filter: "brightness(0) invert(1)" }} // Makes icon white
                 />
-                Compare All Features
+                <span className="relative min-w-[180px] inline-block text-left">
+                  {isCompareHovered ? (
+                    <h1 className="typing-effect m-0 text-base font-medium">
+                      {typingText}
+                    </h1>
+                  ) : (
+                    "Compare All Features"
+                  )}
+                </span>
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* CSS Animation for dust particles */}
+      {/* CSS Animation for dust particles and typing effect */}
       <style jsx>{`
         @keyframes float {
           0% {
@@ -522,6 +577,25 @@ export default function PricingSection() {
           100% {
             transform: translateY(-100px) rotate(360deg);
             opacity: 0;
+          }
+        }
+
+        .typing-effect {
+          border-right: 2px solid white;
+          animation: blinkCursor 0.8s infinite;
+          padding-right: 2px;
+          display: inline-block;
+          min-width: 10px;
+          font-weight: bold;
+        }
+
+        @keyframes blinkCursor {
+          0%,
+          100% {
+            border-color: transparent;
+          }
+          50% {
+            border-color: white;
           }
         }
       `}</style>

@@ -91,7 +91,12 @@ export default function FAQ() {
               : "opacity-0 -translate-y-10"
           }`}
         >
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h2
+            className="text-3xl font-bold text-gray-900 bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(to left, #3D0C11, #D80032)",
+            }}
+          >
             Frequently Asked Questions
           </h2>
           <p className="mt-4 text-xl text-gray-600">

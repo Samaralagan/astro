@@ -143,7 +143,12 @@ export default function Features() {
           `}
           >
             <div className="max-w-sm mx-auto">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+              <h2
+                className="text-3xl md:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: "linear-gradient(to left, #3D0C11, #D80032)",
+                }}
+              >
                 Our Services
               </h2>
               <p className="mt-4 md:mt-6 text-gray-600 text-sm md:text-base">
@@ -200,8 +205,8 @@ export default function Features() {
                       </div>
 
                       {/* Back of card */}
-                      <div className="flip-card-back absolute w-full h-full bg-white rounded-lg p-4 md:p-6 flex flex-col justify-center items-center shadow-lg">
-                        <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-4">
+                      <div className="flip-card-back absolute w-full h-full bg-maroon3 rounded-lg p-4 md:p-6 flex flex-col justify-center items-center shadow-lg">
+                        <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-4">
                           {feature.title}
                         </h3>
                         <p className="text-sm md:text-base text-gray-600 text-center">
