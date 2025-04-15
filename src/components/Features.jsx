@@ -1,7 +1,32 @@
-// src/components/Features.jsx
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Features() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Toggle visibility state based on intersection
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the section is visible
+        rootMargin: "-50px", // Small margin to make trigger slightly before fully visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const features = [
     {
       title: "Premium Design",
@@ -100,11 +125,23 @@ export default function Features() {
   ];
 
   return (
-    <section className="py-16 bg-gray-50 text-gray-900">
+    <section
+      ref={sectionRef}
+      className={`py-16 bg-gray-50 text-gray-900 transition-all duration-500 ${
+        isVisible ? "opacity-100" : "opacity-0 translate-y-10"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-center h-full">
           {/* Heading and description - shows first on mobile, last on desktop */}
-          <div className="w-full md:w-3/10 md:order-last order-first text-center flex flex-col justify-center items-center mb-12 md:mb-0 md:pl-8">
+          <div
+            className={`
+            w-full md:w-3/10 md:order-last order-first text-center 
+            flex flex-col justify-center items-center mb-12 md:mb-0 md:pl-8
+            transition-all duration-1000 delay-300
+            ${isVisible ? "opacity-100" : "opacity-0 translate-x-10"}
+          `}
+          >
             <div className="max-w-sm mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold">Our Services</h2>
               <p className="mt-6 text-gray-600">
@@ -116,23 +153,44 @@ export default function Features() {
           </div>
 
           {/* Feature cards section - shows second on mobile, first on desktop */}
-          <div className="w-full md:w-7/10 md:order-first order-last">
+          <div
+            className={`
+            w-full md:w-7/10 md:order-first order-last 
+            transition-all duration-1000 delay-500
+            ${isVisible ? "opacity-100" : "opacity-0 -translate-x-10"}
+          `}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
               {features.map((feature, index) => (
                 <div
                   key={index}
                   className={`perspective-1000 ${
                     index % 2 === 0 ? "mt-0 md:mt-8" : "mt-0"
+                  } transition-all duration-700 transform ${
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-20"
                   }`}
+                  style={{
+                    transitionDelay: `${isVisible ? 700 + index * 200 : 0}ms`,
+                  }}
                 >
                   <div className="flip-card h-64 w-full">
                     <div className="flip-card-inner relative w-full h-full transition-transform duration-500 transform-style-preserve-3d">
                       {/* Front of card */}
-                      <div className="flip-card-front absolute w-full h-full bg-white rounded-lg overflow-hidden flex items-center p-6 shadow-lg text-center">
+                      <div className="flip-card-front absolute w-full h-full bg-white rounded-lg overflow-hidden flex flex-col items-center p-6 shadow-lg text-center">
                         <div
                           className={`${feature.iconBg} inline-flex items-center justify-center p-4 rounded-full text-white mx-auto`}
                         >
                           {feature.icon}
+                          <div
+                            className={`absolute inset-0 rounded-full ${
+                              isVisible ? "icon-pulse" : ""
+                            }`}
+                            style={{
+                              animationDelay: `${1000 + index * 200}ms`,
+                            }}
+                          ></div>
                         </div>
                         <h3 className="mt-4 text-xl font-bold text-gray-900 absolute bottom-6 left-0 right-0">
                           {feature.title}
@@ -188,6 +246,23 @@ export default function Features() {
         .backface-hidden {
           -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+        }
+
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+          }
+          70% {
+            box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+          }
+        }
+
+        .icon-pulse {
+          animation: pulse 1.5s;
+          animation-iteration-count: 1;
         }
 
         /* Custom width classes since Tailwind doesn't have 3/10 and 7/10 by default */

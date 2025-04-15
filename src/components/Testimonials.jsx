@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 // Import images - keep as is
 import testi1 from "../assets/testi1.png";
 import testi2 from "../assets/testi2.png";
@@ -11,13 +11,12 @@ export default function Testimonials() {
   // Create testimonials data
   const testimonials = [
     {
-      id: 1, // Added unique ID for each testimonial
+      id: 1,
       content:
         "This platform has transformed how we operate. The efficiency gains have been tremendous.",
       author: "Jane Smith",
       position: "CEO, TechCorp",
       rating: 5,
-      // Use dynamic reference based on your framework
       image: testi1,
     },
     {
@@ -70,6 +69,12 @@ export default function Testimonials() {
   // State for tracking active testimonial index
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // State for animation visibility
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Ref for the section element
+  const sectionRef = useRef(null);
+
   // Function to handle testimonial selection
   const handleTestimonialSelect = (index) => {
     setActiveIndex(index);
@@ -111,19 +116,63 @@ export default function Testimonials() {
     return "/api/placeholder/100/100";
   };
 
+  // Effect to set up Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // When the section enters the viewport
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        } else {
+          // Reset animation when section leaves viewport
+          setIsVisible(false);
+        }
+      },
+      {
+        // Adjust threshold as needed (0.1 means when 10% of the element is visible)
+        threshold: 0.1,
+        // Optional: margin around the root
+        rootMargin: "0px",
+      }
+    );
+
+    // Start observing the section
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    // Clean up the observer on component unmount
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="py-12 bg-gray-50">
+    <section
+      ref={sectionRef}
+      className={`py-12 bg-gray-50 transition-opacity duration-1000 ease-in-out ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row">
           {/* Left Side - Active Testimonial */}
-          <div className="lg:w-2/3 mb-8 lg:mb-0">
+          <div
+            className={`lg:w-2/3 mb-8 lg:mb-0 transition-all duration-1000 ${
+              isVisible ? "translate-x-0" : "-translate-x-10 opacity-0"
+            }`}
+          >
             <div className="bg-white p-8 rounded-lg shadow-lg h-96 flex flex-col">
               {/* Profile image centered at top */}
               <div className="flex justify-center mb-4">
                 <img
                   src={getImageSrc(activeTestimonial.image)}
                   alt={activeTestimonial.author}
-                  className="w-24 h-24 rounded-full object-cover"
+                  className={`w-24 h-24 rounded-full object-cover transition-all duration-500 ${
+                    isVisible ? "scale-100" : "scale-0"
+                  }`}
                 />
               </div>
 
@@ -133,12 +182,24 @@ export default function Testimonials() {
               </div>
 
               {/* Testimonial content */}
-              <blockquote className="text-lg italic text-gray-800 text-center mb-auto">
+              <blockquote
+                className={`text-lg italic text-gray-800 text-center mb-auto transition-all duration-700 delay-300 ${
+                  isVisible
+                    ? "opacity-100 transform-none"
+                    : "opacity-0 translate-y-4"
+                }`}
+              >
                 "{activeTestimonial.content}"
               </blockquote>
 
               {/* Name and position at bottom */}
-              <div className="text-center mt-4">
+              <div
+                className={`text-center mt-4 transition-all duration-700 delay-500 ${
+                  isVisible
+                    ? "opacity-100 transform-none"
+                    : "opacity-0 translate-y-4"
+                }`}
+              >
                 <h3 className="text-lg font-bold">
                   {activeTestimonial.author}
                 </h3>
@@ -147,7 +208,13 @@ export default function Testimonials() {
             </div>
 
             {/* Profile Images for Selection */}
-            <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
+            <div
+              className={`mt-8 flex flex-wrap gap-4 justify-center lg:justify-start transition-all duration-1000 delay-700 ${
+                isVisible
+                  ? "opacity-100 transform-none"
+                  : "opacity-0 translate-y-6"
+              }`}
+            >
               {testimonials.map((testimonial, index) => (
                 <button
                   key={testimonial.id}
@@ -169,12 +236,30 @@ export default function Testimonials() {
           </div>
 
           {/* Right Side - Heading (centered vertically and horizontally) */}
-          <div className="lg:w-1/3 lg:pl-12 flex items-center justify-center">
+          <div
+            className={`lg:w-1/3 lg:pl-12 flex items-center justify-center transition-all duration-1000 delay-200 ${
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-10 opacity-0"
+            }`}
+          >
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2
+                className={`text-3xl font-bold text-gray-900 mb-4 transition-all duration-700 ${
+                  isVisible
+                    ? "opacity-100 transform-none"
+                    : "opacity-0 -translate-y-4"
+                }`}
+              >
                 What Our Clients Say
               </h2>
-              <p className="text-lg text-gray-600">
+              <p
+                className={`text-lg text-gray-600 transition-all duration-700 delay-300 ${
+                  isVisible
+                    ? "opacity-100 transform-none"
+                    : "opacity-0 translate-y-4"
+                }`}
+              >
                 Don't just take our word for it - hear from some of our
                 satisfied customers who have experienced the difference
                 firsthand.

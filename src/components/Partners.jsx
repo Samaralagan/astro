@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import par1 from "../assets/par1.png";
 import par2 from "../assets/par2.png";
 import par3 from "../assets/par3.png";
@@ -9,7 +9,9 @@ import parjoin from "../assets/parjoin.jpg";
 
 // src/components/Partners.jsx
 export default function Partners() {
-  const [isAnimating, setIsAnimating] = useState(true);
+  // Removed isAnimating state since we don't need it anymore
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   // Partner data with image imports
   const partners = [
@@ -24,25 +26,76 @@ export default function Partners() {
   // Increased orbit radius to create more space between logos
   const orbitRadius = 180;
 
+  // Set up intersection observer to detect when section is visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // When section becomes visible, trigger animations
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          // Reset animations when section is out of view
+          setIsVisible(false);
+        }
+      },
+      {
+        // Adjust threshold to control when animation triggers (0.2 = 20% visible)
+        threshold: 0.2,
+        // Add rootMargin to trigger slightly before the section comes into view
+        rootMargin: "0px 0px -100px 0px",
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    // Clean up observer on component unmount
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="py-16 overflow-hidden relative bg-white">
+    <section
+      ref={sectionRef}
+      className="py-16 overflow-hidden relative bg-white"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center">
-          {/* Left half - Text content */}
+          {/* Left half - Text content with staggered fade-in animations */}
           <div className="w-full md:w-1/2 pr-0 md:pr-8 mb-12 md:mb-0">
-            <h1 className="text-4xl font-bold text-gray-900 mb-6">
+            <h1
+              className={`text-4xl font-bold text-gray-900 mb-6 transition-all duration-1500 transform ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
               Our Partners
             </h1>
-            <p className="text-xl text-gray-600">
+            <p
+              className={`text-xl text-gray-600 transition-all duration-1500 delay-500 transform ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
               Help your customers double their inbound conversion rates and grow
               your business with new revenue streams.
             </p>
           </div>
 
-          {/* Right half - Wheel of partners */}
+          {/* Right half - Wheel of partners with fade-in effect */}
           <div className="w-full md:w-1/2 relative h-96">
             {/* Center logo - the "screw" or hub of the wheel */}
-            <div className="absolute z-10 bg-white rounded-xl shadow-lg p-4 w-32 h-32 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+            <div
+              className={`absolute z-10 bg-white rounded-xl shadow-lg p-4 w-32 h-32 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center transition-opacity duration-2000 ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
+            >
               {/* Use a logo or placeholder */}
               <img
                 src={parjoin.src}
@@ -56,11 +109,10 @@ export default function Partners() {
               />
             </div>
 
-            {/* Wheel of partners */}
+            {/* Wheel of partners with fade-in animation from 0.1 to 1 */}
             <div
-              className={`partner-wheel ${isAnimating ? "animate" : "paused"}`}
-              onMouseEnter={() => setIsAnimating(false)}
-              onMouseLeave={() => setIsAnimating(true)}
+              className={`partner-wheel ${isVisible ? "wheel-fade-in" : ""}`}
+              // Removed onMouseEnter and onMouseLeave event handlers
             >
               {partners.map((partner, index) => {
                 // Calculate position on the wheel
@@ -68,6 +120,9 @@ export default function Partners() {
                 const radians = (angle * Math.PI) / 180;
                 const x = Math.cos(radians) * orbitRadius;
                 const y = Math.sin(radians) * orbitRadius;
+
+                // Calculate delay for staggered appearance
+                const staggerDelay = 200 * index;
 
                 return (
                   <a
@@ -80,9 +135,15 @@ export default function Partners() {
                       top: `calc(50% + ${y}px)`,
                       left: `calc(50% + ${x}px)`,
                       transform: "translate(-50%, -50%)",
+                      transitionDelay: `${800 + staggerDelay}ms`,
                     }}
                   >
-                    <div className="h-20 w-20 md:h-24 md:w-24 rounded-lg bg-blue-100 shadow-md flex items-center justify-center p-2 hover:scale-110 transition-transform duration-300 partner-logo">
+                    <div
+                      className={`h-20 w-20 md:h-24 md:w-24 rounded-lg bg-blue-100 shadow-md flex items-center justify-center p-2 hover:scale-110 transition-all duration-700 partner-logo ${
+                        isVisible ? "partner-fade-in" : "opacity-0"
+                      }`}
+                      // Removed animationPlayState style
+                    >
                       {/* Use the imported partner image */}
                       <img
                         src={partner.img}
@@ -105,7 +166,7 @@ export default function Partners() {
         </div>
       </div>
 
-      {/* CSS for the wheel animation and counter-rotation for logos */}
+      {/* CSS for the animations */}
       <style jsx>{`
         .partner-wheel {
           position: absolute;
@@ -113,23 +174,24 @@ export default function Partners() {
           height: 100%;
           top: 0;
           left: 0;
-        }
-
-        .partner-wheel.animate {
+          opacity: 0.1;
+          transition: opacity 4s ease-in-out;
           animation: spin 30s linear infinite;
         }
 
-        .partner-wheel.paused {
-          animation-play-state: paused;
+        .wheel-fade-in {
+          opacity: 1;
         }
 
-        /* Make each logo counter-rotate to stay upright */
-        .partner-wheel.animate .partner-logo {
+        .partner-logo {
+          opacity: 0;
+          transform: scale(0.8);
           animation: counter-spin 30s linear infinite;
         }
 
-        .partner-wheel.paused .partner-logo {
-          animation-play-state: paused;
+        .partner-fade-in {
+          opacity: 1;
+          transform: scale(1);
         }
 
         @keyframes spin {

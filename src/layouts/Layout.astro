@@ -13,218 +13,233 @@ const { title = "Default Title" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | Your Company</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <style>
-      #particles-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background-color: white; /* Light background color */
-        overflow: hidden;
-      }
-    </style>
+    <!-- Font Awesome for social icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
-  <body class="min-h-screen flex flex-col">
-    <div id="particles-container"></div>
+  <body class="min-h-screen flex flex-col bg-white">
     <Navbar client:load />
     <main class="flex-grow">
       <slot />
     </main>
     <Footer />
 
-    <script is:inline>
-      document.addEventListener("DOMContentLoaded", function () {
-        const container = document.getElementById("particles-container");
-        const containerWidth = container.offsetWidth;
-        const containerHeight = container.offsetHeight;
+    <!-- Social Media Floating Button -->
+    <div class="social-float-container">
+      <button
+        id="socialToggle"
+        class="social-toggle-btn"
+        aria-label="Toggle social media links"
+      >
+        <i class="fas fa-share-alt"></i>
+      </button>
 
-        // Create canvas
-        const canvas = document.createElement("canvas");
-        canvas.width = containerWidth;
-        canvas.height = containerHeight;
-        canvas.style.position = "absolute";
-        container.appendChild(canvas);
+      <div id="socialIcons" class="social-icons">
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          class="social-icon facebook"
+          data-angle="0"
+          aria-label="Facebook"
+        >
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          class="social-icon instagram"
+          data-angle="22.5"
+          aria-label="Instagram"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a
+          href="https://youtube.com"
+          target="_blank"
+          class="social-icon youtube"
+          data-angle="45"
+          aria-label="YouTube"
+        >
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a
+          href="https://twitter.com"
+          target="_blank"
+          class="social-icon twitter"
+          data-angle="67.5"
+          aria-label="Twitter/X"
+        >
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          class="social-icon linkedin"
+          data-angle="90"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
 
-        const ctx = canvas.getContext("2d");
+    <style>
+      .social-float-container {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        z-index: 999;
+      }
 
-        // Center point
-        let centerX = containerWidth / 2;
-        let centerY = containerHeight / 2;
+      .social-toggle-btn {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        background-color: #3b82f6; /* Blue color */
+        color: white;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition:
+          transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+          background-color 0.3s ease;
+        z-index: 1000;
+      }
 
-        // Orbital points
-        const orbitalPoints = [];
-        const numberOfPoints = 12; // Reduced to 12 outer points
-        const baseRadius = Math.min(containerWidth, containerHeight) * 0.45; // Base radius increased to 45%
+      .social-toggle-btn:hover {
+        background-color: #2563eb;
+      }
 
-        // Create orbital points with varying radiuses
-        for (let i = 0; i < numberOfPoints; i++) {
-          const angle = (i / numberOfPoints) * Math.PI * 2;
-          // Vary the radius by ±20% to create more coverage
-          const radiusVariation = 0.8 + Math.random() * 0.4; // Between 80% and 120% of base radius
-          const thisRadius = baseRadius * radiusVariation;
+      .social-toggle-btn.active {
+        transform: rotate(135deg);
+        background-color: #ef4444; /* Red when active */
+      }
 
-          orbitalPoints.push({
-            x: centerX + Math.cos(angle) * thisRadius,
-            y: centerY + Math.sin(angle) * thisRadius,
-            angle: angle,
-            radius: thisRadius, // Store the radius for this point
-            opacity: Math.random() * 0.5 + 0.1, // Random initial opacity between 0.1 and 0.6
-            opacityDirection: Math.random() > 0.5 ? 1 : -1, // Random initial direction
-            size: Math.random() * 2 + 2, // Random size between 2 and 4
-            speed: 0.0001 + Math.random() * 0.0001, // Very slow speed
-            // Add secondary orbital points
-            satellites: [],
-          });
-        }
+      .social-icons {
+        position: absolute;
+        bottom: 1.75rem;
+        left: 1.75rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
 
-        // Add secondary orbital points to increase coverage
-        orbitalPoints.forEach((point, i) => {
-          // Add 2 satellite points for each main orbital point
-          for (let j = 0; j < 2; j++) {
-            const satelliteAngle = point.angle + (Math.random() * 0.4 - 0.2); // Slightly offset angle
-            const satelliteRadius = point.radius * (0.7 + Math.random() * 0.6); // 70% to 130% of parent radius
+      .social-icons.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
 
-            point.satellites.push({
-              x: centerX + Math.cos(satelliteAngle) * satelliteRadius,
-              y: centerY + Math.sin(satelliteAngle) * satelliteRadius,
-              angle: satelliteAngle,
-              radius: satelliteRadius,
-              opacity: Math.random() * 0.4 + 0.1, // Slightly lower opacity
-              opacityDirection: Math.random() > 0.5 ? 1 : -1,
-              size: Math.random() * 1.5 + 1, // Smaller size
-              speed: 0.00015 + Math.random() * 0.0001, // Slightly faster
+      .social-icon {
+        position: absolute;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transform: scale(0) translate(0, 0);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        /* Position all icons initially on top of the main button */
+        bottom: 0.5rem;
+        left: 0.5rem;
+      }
+
+      .social-icons.active .social-icon {
+        transform: scale(1) translate(var(--translateX), var(--translateY));
+        opacity: 1;
+      }
+
+      /* Social media brand colors */
+      .facebook {
+        background-color: #1877f2;
+      }
+      .instagram {
+        background: linear-gradient(
+          45deg,
+          #f09433,
+          #e6683c,
+          #dc2743,
+          #cc2366,
+          #bc1888
+        );
+      }
+      .youtube {
+        background-color: #ff0000;
+      }
+      .twitter {
+        background-color: #000000;
+      }
+      .linkedin {
+        background-color: #0077b5;
+      }
+
+      .social-icon:hover {
+        transform: scale(1.15) translate(var(--translateX), var(--translateY));
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+
+    <script>
+      // Wait for the DOM to be fully loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        const socialToggle = document.getElementById("socialToggle");
+        const socialIcons = document.getElementById("socialIcons");
+        const icons = document.querySelectorAll(".social-icon");
+
+        // Set up the quarter-circle distribution with increased radius
+        const radius = 120; // Increased radius for more spacing between icons
+
+        // Add a slight offset to each icon to prevent overlap
+        icons.forEach((icon) => {
+          const angle =
+            parseInt(icon.getAttribute("data-angle")) * (Math.PI / 180);
+
+          // Calculate x and y coordinates on a quarter-circle (0 to 90 degrees)
+          const x = Math.cos(angle) * radius;
+          const y = -Math.sin(angle) * radius; // Negative because y increases downward in CSS
+
+          // Set CSS variables for the position
+          icon.style.setProperty("--translateX", `${x}px`);
+          icon.style.setProperty("--translateY", `${y}px`);
+
+          // Add staggered delay for smoother animation
+          const delay =
+            (parseFloat(icon.getAttribute("data-angle")) / 90) * 0.2;
+          icon.style.transitionDelay = `${delay}s`;
+        });
+
+        socialToggle.addEventListener("click", () => {
+          socialToggle.classList.toggle("active");
+          socialIcons.classList.toggle("active");
+        });
+
+        // Close social icons when clicking outside
+        document.addEventListener("click", (event) => {
+          const isClickInside =
+            socialToggle.contains(event.target) ||
+            socialIcons.contains(event.target);
+
+          if (!isClickInside && socialIcons.classList.contains("active")) {
+            socialToggle.classList.remove("active");
+            socialIcons.classList.remove("active");
+
+            // Reset transition delay when closing
+            icons.forEach((icon) => {
+              icon.style.transitionDelay = "0s";
             });
           }
         });
-
-        function draw() {
-          // Clear canvas
-          ctx.clearRect(0, 0, containerWidth, containerHeight);
-
-          // Draw center point
-          ctx.beginPath();
-          ctx.arc(centerX, centerY, 5, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(0, 102, 204, 0.8)"; // Blue center point
-          ctx.fill();
-
-          // Draw orbital points and connections
-          orbitalPoints.forEach((point, index) => {
-            // Update point position (very slowly)
-            point.angle += point.speed;
-            point.x = centerX + Math.cos(point.angle) * point.radius;
-            point.y = centerY + Math.sin(point.angle) * point.radius;
-
-            // Update opacity (fade in/out)
-            point.opacity += 0.003 * point.opacityDirection;
-            if (point.opacity > 0.6) {
-              point.opacity = 0.6;
-              point.opacityDirection = -1;
-            } else if (point.opacity < 0.1) {
-              point.opacity = 0.1;
-              point.opacityDirection = 1;
-            }
-
-            // Draw connection line to center
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            ctx.lineTo(point.x, point.y);
-            ctx.strokeStyle = `rgba(0, 102, 204, ${point.opacity * 0.7})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-
-            // Draw orbital point
-            ctx.beginPath();
-            ctx.arc(point.x, point.y, point.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0, 102, 204, ${point.opacity})`;
-            ctx.fill();
-
-            // Draw connections between main orbital points (not all to keep it clean)
-            if (index % 2 === 0) {
-              const connectToIndex = (index + 3) % numberOfPoints;
-              const connectToPoint = orbitalPoints[connectToIndex];
-
-              ctx.beginPath();
-              ctx.moveTo(point.x, point.y);
-              ctx.lineTo(connectToPoint.x, connectToPoint.y);
-              ctx.strokeStyle = `rgba(0, 102, 204, ${Math.min(point.opacity, connectToPoint.opacity) * 0.3})`;
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-
-            // Update and draw satellite points
-            point.satellites.forEach((satellite) => {
-              // Update satellite position
-              satellite.angle += satellite.speed;
-              satellite.x =
-                centerX + Math.cos(satellite.angle) * satellite.radius;
-              satellite.y =
-                centerY + Math.sin(satellite.angle) * satellite.radius;
-
-              // Update opacity (fade in/out)
-              satellite.opacity += 0.004 * satellite.opacityDirection;
-              if (satellite.opacity > 0.5) {
-                satellite.opacity = 0.5;
-                satellite.opacityDirection = -1;
-              } else if (satellite.opacity < 0.05) {
-                satellite.opacity = 0.05;
-                satellite.opacityDirection = 1;
-              }
-
-              // Draw connection to parent orbital point
-              ctx.beginPath();
-              ctx.moveTo(point.x, point.y);
-              ctx.lineTo(satellite.x, satellite.y);
-              ctx.strokeStyle = `rgba(0, 102, 204, ${Math.min(point.opacity, satellite.opacity) * 0.5})`;
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-
-              // Draw satellite point
-              ctx.beginPath();
-              ctx.arc(satellite.x, satellite.y, satellite.size, 0, Math.PI * 2);
-              ctx.fillStyle = `rgba(0, 102, 204, ${satellite.opacity})`;
-              ctx.fill();
-            });
-          });
-
-          requestAnimationFrame(draw);
-        }
-
-        // Handle window resize
-        window.addEventListener("resize", function () {
-          canvas.width = container.offsetWidth;
-          canvas.height = container.offsetHeight;
-          const newCenterX = canvas.width / 2;
-          const newCenterY = canvas.height / 2;
-          const newBaseRadius = Math.min(canvas.width, canvas.height) * 0.45;
-
-          // Update center point
-          centerX = newCenterX;
-          centerY = newCenterY;
-
-          // Update orbital points and their satellites
-          orbitalPoints.forEach((point, i) => {
-            const angle = (i / numberOfPoints) * Math.PI * 2;
-            const radiusRatio = point.radius / baseRadius; // Preserve the original variation
-            point.radius = newBaseRadius * radiusRatio;
-            point.x = newCenterX + Math.cos(point.angle) * point.radius;
-            point.y = newCenterY + Math.sin(point.angle) * point.radius;
-
-            // Update satellites
-            point.satellites.forEach((satellite) => {
-              const satelliteRadiusRatio = satellite.radius / point.radius;
-              satellite.radius = point.radius * satelliteRadiusRatio;
-              satellite.x =
-                newCenterX + Math.cos(satellite.angle) * satellite.radius;
-              satellite.y =
-                newCenterY + Math.sin(satellite.angle) * satellite.radius;
-            });
-          });
-        });
-
-        // Start animation
-        draw();
       });
     </script>
   </body>
