@@ -1,43 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import vision from "../assets/vision.png";
+import testi1 from "../assets/testi1.png";
+import testi2 from "../assets/testi2.png";
+import testi3 from "../assets/testi3.png";
+import testi4 from "../assets/testi4.png";
 ---
 
 <Layout title="About Us">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl font-bold text-gray-900">Our Story</h2>
-        <p class="mt-4 text-lg text-gray-700">
-          Founded in 2020, YourCompany was created with a simple mission: to
-          help businesses grow through innovative technology solutions.
-        </p>
-        <p class="mt-4 text-lg text-gray-700">
-          What started as a small team of passionate entrepreneurs has grown
-          into a global company serving thousands of customers across multiple
-          industries.
-        </p>
-        <p class="mt-4 text-lg text-gray-700">
-          Our commitment to quality, innovation, and customer satisfaction
-          drives everything we do. We believe in creating products that not only
-          solve problems but also delight users.
-        </p>
-      </div>
-      <div class="bg-gray-100 p-6 rounded-lg">
-        <!-- Placeholder for team image -->
-        <div
-          class="aspect-video bg-gray-300 rounded flex items-center justify-center"
-        >
-          <span class="text-xl text-gray-600">Team Image</span>
-        </div>
-      </div>
-    </div>
-
     <!-- Mission and Vision Section with Central Triangles -->
     <div class="mt-24 mb-24">
-      <div class="flex flex-col md:flex-row items-stretch justify-between">
-        <!-- Left Box (Mission) -->
+      <div
+        class="flex flex-col md:flex-row items-stretch justify-between relative"
+      >
+        <!-- Left Box (Mission) - Added higher z-index -->
         <div
-          class="w-full md:w-5/12 bg-white p-8 rounded-xl shadow-lg mb-16 md:mb-0 flex flex-col justify-center relative hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+          class="w-full md:w-5/12 bg-white p-8 rounded-xl shadow-lg mb-16 md:mb-0 flex flex-col justify-center relative hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group z-10"
         >
           <!-- Red border accent on the right -->
           <div
@@ -59,41 +38,65 @@ import Layout from "../layouts/Layout.astro";
           </p>
         </div>
 
-        <!-- Center Triangles -->
+        <!-- Center Triangles with Images - Lower z-index -->
         <div
-          class="w-full md:w-2/12 flex justify-center items-center mb-16 md:mb-0"
+          class="w-full md:w-2/12 flex justify-center items-center mb-16 md:mb-0 z-0"
         >
           <div class="flex justify-center items-center">
-            <!-- Left triangle (pointing left) -->
+            <!-- Left triangle (pointing left) with image -->
             <div
-              class="w-16 h-32 md:w-24 md:h-48 transform transition-transform duration-300 hover:scale-110"
+              class="w-20 h-32 md:w-32 md:h-48 transform transition-transform duration-300 hover:scale-110 relative overflow-hidden"
             >
               <div
-                class="w-full h-full bg-[#D80032]"
+                class="w-full h-full bg-[#D80032] relative"
                 style="clip-path: polygon(100% 0, 0 50%, 100% 100%);"
               >
+                <!-- Image inside left triangle - centered on vertical line -->
+                <div
+                  class="absolute inset-0 flex items-center justify-end overflow-hidden"
+                >
+                  <div class="w-[50px] h-[50px] mr-1 overflow-hidden">
+                    <img
+                      src={vision.src || "/api/placeholder/50/50"}
+                      alt="Innovation"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Small gap between triangles -->
-            <div class="w-4 md:w-8"></div>
+            <!-- Smaller gap between triangles -->
+            <div class="w-1 md:w-2"></div>
 
-            <!-- Right triangle (pointing right) -->
+            <!-- Right triangle (pointing right) with image -->
             <div
-              class="w-16 h-32 md:w-24 md:h-48 transform transition-transform duration-300 hover:scale-110"
+              class="w-20 h-32 md:w-32 md:h-48 transform transition-transform duration-300 hover:scale-110 relative overflow-hidden"
             >
               <div
-                class="w-full h-full bg-[#D80032]"
+                class="w-full h-full bg-[#D80032] relative"
                 style="clip-path: polygon(0 0, 100% 50%, 0 100%);"
               >
+                <!-- Image inside right triangle - centered on vertical line -->
+                <div
+                  class="absolute inset-0 flex items-center justify-start overflow-hidden"
+                >
+                  <div class="w-[50px] h-[50px] ml-1 overflow-hidden">
+                    <img
+                      src={vision.src || "/api/placeholder/50/50"}
+                      alt="Growth"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Right Box (Vision) -->
+        <!-- Right Box (Vision) - Added higher z-index -->
         <div
-          class="w-full md:w-5/12 bg-white p-8 rounded-xl shadow-lg flex flex-col justify-center relative hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+          class="w-full md:w-5/12 bg-white p-8 rounded-xl shadow-lg flex flex-col justify-center relative hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group z-10"
         >
           <!-- Red border accent on the left -->
           <div
@@ -117,123 +120,186 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
 
-    <div class="mt-16">
-      <h2 class="text-3xl font-bold text-gray-900 text-center">Our Values</h2>
-      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div
-          class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-        >
-          <div
-            class="inline-flex items-center justify-center p-2 bg-red-100 rounded-md text-[#D80032]"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-              ></path>
-            </svg>
-          </div>
-          <h3 class="mt-4 text-xl font-medium text-gray-900">Integrity</h3>
-          <p class="mt-2 text-gray-600">
-            We believe in honesty, transparency, and doing what's right, even
-            when it's difficult.
-          </p>
-        </div>
+    <!-- Our Story Section with Image Slider -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900">Our Story</h2>
+        <p class="mt-4 text-lg text-gray-700">
+          Founded in 2020, YourCompany was created with a simple mission: to
+          help businesses grow through innovative technology solutions.
+        </p>
+        <p class="mt-4 text-lg text-gray-700">
+          What started as a small team of passionate entrepreneurs has grown
+          into a global company serving thousands of customers across multiple
+          industries.
+        </p>
+        <p class="mt-4 text-lg text-gray-700">
+          Our commitment to quality, innovation, and customer satisfaction
+          drives everything we do. We believe in creating products that not only
+          solve problems but also delight users.
+        </p>
+      </div>
 
-        <div
-          class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-        >
-          <div
-            class="inline-flex items-center justify-center p-2 bg-red-100 rounded-md text-[#D80032]"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+      <!-- Image Slider Section -->
+      <div class="bg-gray-100 p-4 sm:p-6 rounded-lg">
+        <!-- Auto-changing image slider -->
+        <div class="image-slider relative w-full h-full">
+          <!-- Images container -->
+          <div class="image-slider-container w-full h-full relative">
+            <!-- Images row - Always visible -->
+            <div
+              class="flex flex-wrap justify-center sm:justify-between items-center w-full gap-2 sm:gap-4 mb-6"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3 class="mt-4 text-xl font-medium text-gray-900">Innovation</h3>
-          <p class="mt-2 text-gray-600">
-            We continuously seek new ideas and approaches to solve complex
-            problems.
-          </p>
-        </div>
+              <div
+                class="image-button active cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#D80032] rounded-lg overflow-hidden"
+                data-index="0"
+              >
+                <img
+                  src={testi1.src || "/api/placeholder/100/100"}
+                  alt="Company History"
+                  class="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] object-cover"
+                />
+              </div>
+              <div
+                class="image-button cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#D80032] rounded-lg overflow-hidden"
+                data-index="1"
+              >
+                <img
+                  src={testi2.src || "/api/placeholder/100/100"}
+                  alt="Growth Phase"
+                  class="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] object-cover"
+                />
+              </div>
+              <div
+                class="image-button cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#D80032] rounded-lg overflow-hidden"
+                data-index="2"
+              >
+                <img
+                  src={testi3.src || "/api/placeholder/100/100"}
+                  alt="Innovation Hub"
+                  class="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] object-cover"
+                />
+              </div>
+              <div
+                class="image-button cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-[#D80032] rounded-lg overflow-hidden"
+                data-index="3"
+              >
+                <img
+                  src={testi4.src || "/api/placeholder/100/100"}
+                  alt="Global Presence"
+                  class="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] object-cover"
+                />
+              </div>
+            </div>
 
-        <div
-          class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-        >
-          <div
-            class="inline-flex items-center justify-center p-2 bg-red-100 rounded-md text-[#D80032]"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-              ></path>
-            </svg>
-          </div>
-          <h3 class="mt-4 text-xl font-medium text-gray-900">Customer Focus</h3>
-          <p class="mt-2 text-gray-600">
-            We prioritize our customers' needs and strive to exceed their
-            expectations.
-          </p>
-        </div>
+            <!-- Content sections that change based on active image -->
+            <div class="content-slides">
+              <div class="content-slide active bg-white p-4 rounded">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="font-bold text-lg text-gray-900">Our Beginning</h3>
+                  <span class="text-[#D80032] font-semibold">2020</span>
+                </div>
+                <p class="text-gray-700">
+                  The founding team working on our first product launch in 2020.
+                </p>
+              </div>
 
-        <div
-          class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-        >
-          <div
-            class="inline-flex items-center justify-center p-2 bg-red-100 rounded-md text-[#D80032]"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-              ></path>
-            </svg>
+              <div class="content-slide hidden bg-white p-4 rounded">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="font-bold text-lg text-gray-900">Growth Phase</h3>
+                  <span class="text-[#D80032] font-semibold">2022</span>
+                </div>
+                <p class="text-gray-700">
+                  Expanding our team and moving to a larger office in 2022.
+                </p>
+              </div>
+
+              <div class="content-slide hidden bg-white p-4 rounded">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="font-bold text-lg text-gray-900">
+                    Innovation Hub
+                  </h3>
+                  <span class="text-[#D80032] font-semibold">2023</span>
+                </div>
+                <p class="text-gray-700">
+                  Our R&D department developing cutting-edge solutions in 2023.
+                </p>
+              </div>
+
+              <div class="content-slide hidden bg-white p-4 rounded">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="font-bold text-lg text-gray-900">
+                    Global Presence
+                  </h3>
+                  <span class="text-[#D80032] font-semibold">2024</span>
+                </div>
+                <p class="text-gray-700">
+                  Our international team serving clients across six continents
+                  in 2024.
+                </p>
+              </div>
+            </div>
           </div>
-          <h3 class="mt-4 text-xl font-medium text-gray-900">Teamwork</h3>
-          <p class="mt-2 text-gray-600">
-            We collaborate effectively, drawing on diverse perspectives to
-            achieve common goals.
-          </p>
         </div>
       </div>
     </div>
   </div>
 </Layout>
+
+<script>
+  // Image slider functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const imageButtons = document.querySelectorAll(".image-button");
+    const contentSlides = document.querySelectorAll(".content-slide");
+    let currentSlide = 0;
+    const slideCount = contentSlides.length;
+
+    // Function to change slide
+    function changeSlide(index) {
+      // Update active image button
+      imageButtons.forEach((button) => {
+        button.classList.remove("active", "border-[#D80032]");
+        button.classList.add("border-transparent");
+      });
+      imageButtons[index].classList.add("active", "border-[#D80032]");
+
+      // Update content slides
+      contentSlides.forEach((slide) => {
+        slide.classList.add("hidden");
+        slide.classList.remove("active");
+      });
+      contentSlides[index].classList.remove("hidden");
+      contentSlides[index].classList.add("active");
+
+      // Update current slide index
+      currentSlide = index;
+    }
+
+    // Auto-change slides every 3 seconds
+    let slideInterval = setInterval(() => {
+      let nextSlide = (currentSlide + 1) % slideCount;
+      changeSlide(nextSlide);
+    }, 3000);
+
+    // Add click event listeners to image buttons
+    imageButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        // Clear the auto-slide interval
+        clearInterval(slideInterval);
+
+        // Change to the clicked slide
+        const slideIndex = parseInt(this.getAttribute("data-index"));
+        changeSlide(slideIndex);
+
+        // Restart auto-slide
+        slideInterval = setInterval(() => {
+          let nextSlide = (currentSlide + 1) % slideCount;
+          changeSlide(nextSlide);
+        }, 3000);
+      });
+    });
+  });
+</script>
 
 <style>
   /* Add some custom animation effects that might not be possible with just Tailwind classes */
@@ -244,6 +310,51 @@ import Layout from "../layouts/Layout.astro";
     }
     50% {
       opacity: 0.8;
+    }
+  }
+
+  /* Set a minimum height for the image slider */
+  .image-slider {
+    min-height: 180px;
+  }
+
+  /* Active image styling */
+  .image-button.active {
+    transform: scale(1.05);
+    border-color: #d80032;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Content slide transitions */
+  .content-slide {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .content-slide.active {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .image-button {
+      margin-bottom: 8px;
+    }
+
+    .content-slide h3 {
+      font-size: 16px;
     }
   }
 </style>

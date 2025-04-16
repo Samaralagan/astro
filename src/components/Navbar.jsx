@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import logowhite from "../assets/logowhite.png";
+import logowhite from "../assets/logo.svg";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
