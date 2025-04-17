@@ -8,6 +8,7 @@ export default {
         maroon2: "#D80032",
         maroon3: "#F78CA2",
         maroon4: "#F9DEC9",
+        maroon5: "#f5e4e8",
       },
     },
   },

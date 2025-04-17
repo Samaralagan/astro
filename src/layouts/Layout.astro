@@ -24,7 +24,7 @@ const { title = "Default Title" } = Astro.props;
     <main class="flex-grow">
       <slot />
     </main>
-    <Footer />
+    <Footer client:load />
 
     <!-- Social Media Floating Button -->
     <div class="social-float-container">

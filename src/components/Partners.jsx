@@ -142,7 +142,7 @@ export default function Partners() {
                     }}
                   >
                     <div
-                      className={`h-20 w-20 md:h-24 md:w-24 rounded-lg bg-maroon3 shadow-md flex items-center justify-center p-2 hover:scale-110 transition-all duration-700 partner-logo ${
+                      className={`h-20 w-20 md:h-24 md:w-24 rounded-lg bg-maroon5 shadow-md flex items-center justify-center p-2 hover:scale-110 transition-all duration-700 partner-logo ${
                         isVisible ? "partner-fade-in" : "opacity-0"
                       }`}
                       // Removed animationPlayState style
