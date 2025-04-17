@@ -227,7 +227,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
             <div className="mb-6 md:mb-0">
               <h2 className="text-3xl md:text-4xl font-bold mb-0">
-                Get updates
+                Get update
               </h2>
             </div>
             <div className="w-full md:w-1/2 mt-6 md:mt-0">
