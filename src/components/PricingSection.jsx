@@ -539,12 +539,12 @@ export default function PricingSection() {
             {/* Mobile CTA - only visible on smaller screens */}
             <div className="mt-8 text-center lg:hidden">
               <button
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center mx-auto"
+                className="bg-maroondark hover:bg-maroondark text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center mx-auto"
                 onMouseEnter={() => setIsCompareHovered(true)}
                 onMouseLeave={() => setIsCompareHovered(false)}
               >
                 <img
-                  src="/assets/testing.gif"
+                  src={testing.src}
                   alt="Compare"
                   className="w-5 h-5 mr-2"
                   style={{ filter: "brightness(0) invert(1)" }} // Makes icon white

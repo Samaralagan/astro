@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import logodark from "../assets/logodark.svg";
+
 export default function Footer() {
   const [activePath, setActivePath] = useState("/");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   // Use the same links as in the navbar
   const links = [
@@ -11,6 +15,42 @@ export default function Footer() {
     { name: "Blog", href: "/blog", icon: "document" },
     { name: "Contact", href: "/contact", icon: "mail" },
   ];
+
+  // Email validation function
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  // Handle email submission
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      setEmailError("Please enter your email address");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+
+    // Clear any previous errors
+    setEmailError("");
+
+    // Here you would typically send the email to your server
+    // For now, we'll just show the success popup
+    setShowSuccessPopup(true);
+
+    // Clear the email input
+    setEmail("");
+
+    // Hide the popup after 5 seconds
+    setTimeout(() => {
+      setShowSuccessPopup(false);
+    }, 5000);
+  };
 
   // Set active path based on current location and update when it changes
   useEffect(() => {
@@ -150,6 +190,23 @@ export default function Footer() {
             />
           </svg>
         );
+      case "phone":
+        return (
+          <svg
+            className="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            />
+          </svg>
+        );
       default:
         return null;
     }
@@ -174,13 +231,23 @@ export default function Footer() {
               </h2>
             </div>
             <div className="w-full md:w-1/2 mt-6 md:mt-0">
-              <div className="relative">
+              <form onSubmit={handleSubscribe} className="relative">
                 <input
                   type="email"
                   placeholder="Your Email"
-                  className="w-full py-3 px-4 bg-transparent border-b border-gray-600 text-white focus:outline-none focus:border-[#f04da1]"
+                  className={`w-full py-3 px-4 bg-transparent border-b ${
+                    emailError ? "border-red-500" : "border-gray-600"
+                  } text-white focus:outline-none focus:border-[#f04da1]`}
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (emailError) setEmailError("");
+                  }}
                 />
-                <button className="absolute right-2 top-3 text-[#f04da1]">
+                <button
+                  type="submit"
+                  className="absolute right-2 top-3 text-[#f04da1] focus:outline-none hover:text-[#ff6db8] transition duration-150"
+                >
                   <svg
                     width="24"
                     height="24"
@@ -211,7 +278,12 @@ export default function Footer() {
                     />
                   </svg>
                 </button>
-              </div>
+                {emailError && (
+                  <p className="absolute text-red-400 text-xs mt-1">
+                    {emailError}
+                  </p>
+                )}
+              </form>
             </div>
           </div>
         </div>
@@ -283,10 +355,27 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact section */}
+          {/* Contact section with added phone number */}
           <div>
             <h3 className="text-gray-200 font-medium mb-4">Let's chat!</h3>
-            <p className="text-gray-300 mb-4">hi@avo.app</p>
+            <div className="flex items-center mb-3">
+              <div className="mr-2">{getIcon("mail")}</div>
+              <a
+                href="mailto:hi@avo.app"
+                className="text-gray-300 hover:text-white transition duration-150"
+              >
+                hi@avo.app
+              </a>
+            </div>
+            <div className="flex items-center mb-3">
+              <div className="mr-2">{getIcon("phone")}</div>
+              <a
+                href="tel:+1234567890"
+                className="text-gray-300 hover:text-white transition duration-150"
+              >
+                +1 (234) 567-890
+              </a>
+            </div>
           </div>
         </div>
 
@@ -298,6 +387,70 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      {/* Success Popup Message */}
+      {showSuccessPopup && (
+        <div className="fixed bottom-8 right-8 bg-gradient-to-r from-[#3D0C11] to-[#f04da1] text-white p-4 rounded-lg shadow-lg z-50 max-w-sm animate-fade-in">
+          <div className="flex items-start">
+            <div className="flex-shrink-0 pt-0.5">
+              <svg
+                className="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <p className="text-sm font-medium">Thanks for subscribing!</p>
+              <p className="mt-1 text-xs opacity-90">
+                We'll keep you updated with new trends and insights.
+              </p>
+            </div>
+            <div className="ml-4 flex-shrink-0 flex">
+              <button
+                className="inline-flex text-white focus:outline-none"
+                onClick={() => setShowSuccessPopup(false)}
+              >
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add this CSS for the fade-in animation */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+      `}</style>
     </footer>
   );
 }

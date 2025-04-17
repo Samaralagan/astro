@@ -149,6 +149,30 @@ export default function Testimonials() {
     };
   }, []);
 
+  // The heading and description section that will be positioned differently based on screen size
+  const HeadingSection = () => (
+    <div className="text-center lg:text-left">
+      <h2
+        className={`text-3xl font-bold text-gray-900 mb-4 transition-all duration-700 ${
+          isVisible ? "opacity-100 transform-none" : "opacity-0 -translate-y-4"
+        } bg-clip-text text-transparent`}
+        style={{
+          backgroundImage: "linear-gradient(to left, #3D0C11, #D80032)",
+        }}
+      >
+        What Our Clients Say
+      </h2>
+      <p
+        className={`text-lg text-gray-600 transition-all duration-700 delay-300 ${
+          isVisible ? "opacity-100 transform-none" : "opacity-0 translate-y-4"
+        }`}
+      >
+        Don't just take our word for it - hear from some of our satisfied
+        customers who have experienced the difference firsthand.
+      </p>
+    </div>
+  );
+
   return (
     <section
       ref={sectionRef}
@@ -157,6 +181,20 @@ export default function Testimonials() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Mobile and tablet heading - only visible on smaller screens */}
+        <div className="lg:hidden mb-8">
+          <div
+            className={`transition-all duration-1000 delay-200 ${
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-10 opacity-0"
+            }`}
+          >
+            <HeadingSection />
+          </div>
+        </div>
+
+        {/* Main flex container - row on desktop, column on mobile/tablet */}
         <div className="flex flex-col lg:flex-row">
           {/* Left Side - Active Testimonial */}
           <div
@@ -235,39 +273,15 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* Right Side - Heading (centered vertically and horizontally) */}
+          {/* Right Side - Heading (only visible on desktop) */}
           <div
-            className={`lg:w-1/3 lg:pl-12 flex items-center justify-center transition-all duration-1000 delay-200 ${
+            className={`hidden lg:flex lg:w-1/3 lg:pl-12 items-center justify-center transition-all duration-1000 delay-200 ${
               isVisible
                 ? "translate-x-0 opacity-100"
                 : "translate-x-10 opacity-0"
             }`}
           >
-            <div className="text-center">
-              <h2
-                className={`text-3xl font-bold text-gray-900 mb-4 transition-all duration-700 ${
-                  isVisible
-                    ? "opacity-100 transform-none"
-                    : "opacity-0 -translate-y-4"
-                } bg-clip-text text-transparent`}
-                style={{
-                  backgroundImage: "linear-gradient(to left, #3D0C11, #D80032)",
-                }}
-              >
-                What Our Clients Say
-              </h2>
-              <p
-                className={`text-lg text-gray-600 transition-all duration-700 delay-300 ${
-                  isVisible
-                    ? "opacity-100 transform-none"
-                    : "opacity-0 translate-y-4"
-                }`}
-              >
-                Don't just take our word for it - hear from some of our
-                satisfied customers who have experienced the difference
-                firsthand.
-              </p>
-            </div>
+            <HeadingSection />
           </div>
         </div>
       </div>

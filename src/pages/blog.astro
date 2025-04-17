@@ -3,26 +3,8 @@ import Layout from "../layouts/Layout.astro";
 
 // Modified blog posts to include HTML content with hyperlinks
 const blogPosts = [
-  {
-    title: "Getting Started with Our Platform",
-    excerpt:
-      "A step-by-step guide to setting up your <a href='/workspace' class='text-[#D80032] hover:underline'>workspace</a> and maximizing productivity from day one.",
-    date: "April 1, 2025",
-    author: "John Doe",
-    category: "Tutorials",
-    image: "/placeholder1",
-    content: "This is the full content of the blog post. It would be much longer in a real implementation. Check out our <a href='/documentation' class='text-[#D80032] hover:underline'>documentation</a> for more details about setting up your <a href='/workspace' class='text-[#D80032] hover:underline'>workspace</a>.<br> hello test 12344 <a href='https://www.copy.ai/' class='text-[#D80032] hover:underline'>workspace</a>",
-  },
-  {
-    title: "5 Ways to Boost Your Team's Productivity",
-    excerpt:
-      "Discover proven <a href='/strategies' class='text-[#D80032] hover:underline'>strategies</a> that can help your team collaborate better and achieve more in less time.",
-    date: "March 25, 2025",
-    author: "Jane Smith",
-    category: "Tutorials",
-    image: "/placeholder2",
-    content: "This is the full content of the blog post. It would be much longer in a real implementation. Learn more about team <a href='/collaboration' class='text-[#D80032] hover:underline'>collaboration</a> and <a href='/strategies' class='text-[#D80032] hover:underline'>strategies</a> for better productivity.",
-  },
+  
+  
   {
     title: "The Future of Remote Work",
     excerpt:
@@ -53,16 +35,7 @@ const blogPosts = [
     image: "/placeholder5",
     content: "This is the full content of the blog post. It would be much longer in a real implementation. Check out our newest <a href='/features' class='text-[#D80032] hover:underline'>features</a> and <a href='/updates' class='text-[#D80032] hover:underline'>updates</a> to improve your workflow.",
   },
-  {
-    title: "Security Best Practices for Your Organization",
-    excerpt:
-      "Essential tips to keep your <a href='/data-security' class='text-[#D80032] hover:underline'>data safe</a> and your team productive in an increasingly digital world.",
-    date: "February 20, 2025",
-    author: "Emily Chen",
-    category: "Industry Trends",
-    image: "/placeholder6",
-    content: "This is the full content of the blog post. It would be much longer in a real implementation. Learn more about <a href='/data-security' class='text-[#D80032] hover:underline'>data security</a> and <a href='/cybersecurity' class='text-[#D80032] hover:underline'>cybersecurity</a> best practices.",
-  },
+  
   {
     title: "Advanced Platform Configuration Techniques",
     excerpt:
@@ -111,13 +84,13 @@ const postCounts = topics.reduce((acc, topic) => {
         <!-- Main blog posts grid area - 70% width -->
         <div class="lg:w-3/4">
           <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
             id="blog-grid"
           >
             {
               blogPosts.map((post, index) => (
                 <article
-                  class={`bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 hover:translate-y-[-4px] border border-gray-200 ${index >= 6 ? "hidden" : ""}`}
+                  class={`bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 hover:translate-y-[-4px] border border-gray-200 ${index >= 4 ? "hidden" : ""}`}
                   data-category={post.category}
                   data-index={index}
                   data-title={post.title}
@@ -277,7 +250,7 @@ const postCounts = topics.reduce((acc, topic) => {
     const loadMoreButton = document.getElementById("load-more");
 
     // Track current visible count for load more functionality
-    let visibleCount = 6;
+    let visibleCount = 4;
     const totalPosts = blogPosts.length;
 
     // Modal elements
@@ -362,22 +335,15 @@ const postCounts = topics.reduce((acc, topic) => {
         );
       }
 
-      // Show hidden posts
-      let shown = 0;
+      // Show all hidden posts that match the current filter
       matchingPosts.forEach((post) => {
-        if (post.classList.contains("hidden") && shown < 2) {
+        if (post.classList.contains("hidden")) {
           post.classList.remove("hidden");
-          shown++;
         }
       });
 
-      // Hide the load more button if all matching posts are visible
-      if (
-        matchingPosts.filter((post) => post.classList.contains("hidden"))
-          .length === 0
-      ) {
-        loadMoreButton.style.display = "none";
-      }
+      // Hide the load more button since all posts are now visible
+      loadMoreButton.style.display = "none";
     });
 
     // Add click event listeners to all filter buttons
@@ -394,7 +360,7 @@ const postCounts = topics.reduce((acc, topic) => {
         this.classList.add("active");
 
         // Reset the visible count
-        visibleCount = 6;
+        visibleCount = 4;
 
         // Filter posts
         let visiblePosts = 0;
@@ -403,9 +369,9 @@ const postCounts = topics.reduce((acc, topic) => {
         loadMoreButton.style.display = "block";
 
         if (category === "all") {
-          // Show only the first 6 posts
+          // Show only the first 4 posts
           blogPosts.forEach((post, index) => {
-            if (index < 6) {
+            if (index < 4) {
               post.classList.remove("hidden");
               visiblePosts++;
             } else {
@@ -413,8 +379,8 @@ const postCounts = topics.reduce((acc, topic) => {
             }
           });
 
-          // Hide load more if there are 6 or fewer total posts
-          if (totalPosts <= 6) {
+          // Hide load more if there are 4 or fewer total posts
+          if (totalPosts <= 4) {
             loadMoreButton.style.display = "none";
           }
         } else {
@@ -423,10 +389,10 @@ const postCounts = topics.reduce((acc, topic) => {
             (post) => post.getAttribute("data-category") === category
           );
 
-          // Show only the first 6 matching posts
+          // Show only the first 4 matching posts
           blogPosts.forEach((post) => {
             if (post.getAttribute("data-category") === category) {
-              if (visiblePosts < 6) {
+              if (visiblePosts < 4) {
                 post.classList.remove("hidden");
                 visiblePosts++;
               } else {
@@ -437,27 +403,27 @@ const postCounts = topics.reduce((acc, topic) => {
             }
           });
 
-          // Hide load more if there are 6 or fewer matching posts
-          if (matchingPosts.length <= 6) {
+          // Hide load more if there are 4 or fewer matching posts
+          if (matchingPosts.length <= 4) {
             loadMoreButton.style.display = "none";
           }
         }
       });
     });
 
-    // Initialize with all button active and only first 6 posts visible
+    // Initialize with all button active and only first 4 posts visible
     if (allButton) {
       allButton.classList.add("active");
 
-      // Hide posts beyond the first 6
+      // Hide posts beyond the first 4
       blogPosts.forEach((post, index) => {
-        if (index >= 6) {
+        if (index >= 4) {
           post.classList.add("hidden");
         }
       });
 
-      // Hide load more if there are 6 or fewer total posts
-      if (totalPosts <= 6) {
+      // Hide load more if there are 4 or fewer total posts
+      if (totalPosts <= 4) {
         loadMoreButton.style.display = "none";
       }
     }

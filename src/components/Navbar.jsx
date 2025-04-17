@@ -292,8 +292,8 @@ export default function Navbar() {
 
             {/* Navigation elements */}
             <div className="flex items-center justify-end">
-              {/* Desktop menu */}
-              <div className="hidden md:flex items-center">
+              {/* Desktop menu - Changed from md: to lg: for iPad Pro support */}
+              <div className="hidden lg:flex items-center">
                 <div className="flex space-x-3">
                   {links.map((link) => (
                     <a
@@ -311,7 +311,7 @@ export default function Navbar() {
                     </a>
                   ))}
                   <a
-                    href="/contact"
+                    href="/dashboard"
                     className="menu-item ml-2 px-4 py-2 bg-[#D80032] text-white text-sm rounded-md hover:bg-[#c00029] transition-colors whitespace-nowrap flex items-center relative overflow-hidden font-bold"
                   >
                     {getIcon("hat-thunder")}
@@ -321,8 +321,8 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Mobile menu button */}
-              <div className="md:hidden">
+              {/* Mobile menu button - Changed from md: to lg: for iPad Pro support */}
+              <div className="lg:hidden">
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#D80032] focus:outline-none"
@@ -356,9 +356,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu - Changed from md: to lg: for iPad Pro support */}
         {isMenuOpen && (
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div className="pt-2 pb-3 space-y-1 px-2">
               {links.map((link) => (
                 <a
@@ -376,7 +376,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="/contact"
+                href="/dashboard"
                 className="block px-3 py-2 text-base font-bold bg-[#D80032] text-white rounded-md hover:bg-[#c00029] flex items-center relative overflow-hidden"
               >
                 {getIcon("hat-thunder")}
@@ -545,7 +545,7 @@ export default function Navbar() {
           </ul>
           <div className="mt-5 pt-2 flex justify-center">
             <a
-              href="/contact"
+              href="/dashboard"
               className="p-2 text-[#D80032] hover:text-[#D80032] hover:bg-[#F78CA2]/20 rounded-md transition-colors font-bold"
               title="Get Started"
               onMouseEnter={() => setActiveIcon("getStarted")}
