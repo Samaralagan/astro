@@ -85,6 +85,15 @@ const { title = "Default Title" } = Astro.props;
       </div>
     </div>
 
+    <!-- Scroll to Top Button -->
+    <button
+      id="scrollToTop"
+      class="scroll-to-top-btn hidden"
+      aria-label="Scroll to top"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
     <style>
       .social-float-container {
         position: fixed;
@@ -188,6 +197,39 @@ const { title = "Default Title" } = Astro.props;
         transform: scale(1.15) translate(var(--translateX), var(--translateY));
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
       }
+
+      /* Scroll to Top Button Styles */
+      .scroll-to-top-btn {
+        position: fixed;
+        bottom: 200px; /* 200px from bottom as requested */
+        right: 2rem;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: #d80032; /* Blue color */
+        color: white;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        z-index: 999;
+        opacity: 1;
+        transition: all 0.3s ease;
+      }
+
+      .scroll-to-top-btn:hover {
+        background-color: #d80032;
+        transform: translateY(-5px);
+      }
+
+      .scroll-to-top-btn.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     </style>
 
     <script>
@@ -196,6 +238,8 @@ const { title = "Default Title" } = Astro.props;
         const socialToggle = document.getElementById("socialToggle");
         const socialIcons = document.getElementById("socialIcons");
         const icons = document.querySelectorAll(".social-icon");
+        const scrollToTopBtn = document.getElementById("scrollToTop");
+        let scrollTimeout;
 
         // Set up the quarter-circle distribution with increased radius
         const radius = 120; // Increased radius for more spacing between icons
@@ -240,6 +284,37 @@ const { title = "Default Title" } = Astro.props;
             });
           }
         });
+
+        // Scroll to top functionality
+        scrollToTopBtn.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+
+        // Show button when scrolling down and hide after 2 seconds of inactivity
+        function handleScroll() {
+          if (window.scrollY > 300) {
+            scrollToTopBtn.classList.remove("hidden");
+
+            // Clear any existing timeout
+            clearTimeout(scrollTimeout);
+
+            // Set timeout to hide button after 2 seconds of inactivity
+            scrollTimeout = setTimeout(() => {
+              scrollToTopBtn.classList.add("hidden");
+            }, 2000);
+          } else {
+            scrollToTopBtn.classList.add("hidden");
+          }
+        }
+
+        // Initial check in case page is loaded scrolled down
+        handleScroll();
+
+        // Add scroll event listener
+        window.addEventListener("scroll", handleScroll);
       });
     </script>
   </body>
