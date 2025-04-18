@@ -311,7 +311,7 @@ export default function Navbar() {
                     </a>
                   ))}
                   <a
-                    href="/dashboardredirect"
+                    href="/dashboard"
                     className="menu-item ml-2 px-4 py-2 bg-[#D80032] text-white text-sm rounded-md hover:bg-[#c00029] transition-colors whitespace-nowrap flex items-center relative overflow-hidden font-bold"
                   >
                     {getIcon("hat-thunder")}

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import heroimage from "../assets/heroimage.jpg";
+// import heroimage from "../assets/heroimage.jpg";
+import heroimage from "../assets/heroimage.svg";
 
 export default function Hero() {
   const words = ["Solutions", "Services"];
@@ -204,7 +205,7 @@ export default function Hero() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-40 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight gradient-text">
               Transform Your Business with Our{" "}
