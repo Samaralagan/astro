@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import parjoin from "../assets/parjoin.jpg";
+import how1 from "../assets/how1.svg";
+import how2 from "../assets/how2.svg";
+import how3 from "../assets/how3.svg";
 
 export default function HowItWorks() {
   const sectionRef = useRef(null);
@@ -104,10 +107,10 @@ export default function HowItWorks() {
                 <div className="bg-white shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={parjoin.src}
+                      src={how1.src}
                       alt="Video conference screen"
                       className="mx-auto"
-                      style={{ width: "100px" }}
+                      style={{ width: "130px" }}
                     />
                     <p className="mt-4 font-medium">
                       Your video conferencing tool
@@ -142,10 +145,10 @@ export default function HowItWorks() {
                 <div className="bg-white shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={parjoin.src}
+                      src={how2.src}
                       alt="Phone with game interface"
                       className="mx-auto"
-                      style={{ width: "100px" }}
+                      style={{ width: "130px" }}
                     />
                     <p className="mt-4 font-medium">Brightful Meeting Games</p>
                   </div>
@@ -178,10 +181,10 @@ export default function HowItWorks() {
                 <div className="bg-maroon3 shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={parjoin.src}
+                      src={how3.src}
                       alt="People collaborating"
                       className="mx-auto"
-                      style={{ width: "100px" }}
+                      style={{ width: "130px" }}
                     />
                     <p className="mt-4 font-medium">
                       Everyone's having a great time!
@@ -205,10 +208,10 @@ export default function HowItWorks() {
                 <div className="bg-white shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={parjoin.src}
+                      src={how1.src}
                       alt="Video conference screen"
                       className="mx-auto"
-                      style={{ width: "100px" }}
+                      style={{ width: "130px" }}
                     />
                     <p className="mt-4 font-medium">
                       Your video conferencing tool
@@ -243,10 +246,10 @@ export default function HowItWorks() {
                 <div className="bg-white shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={parjoin.src}
+                      src={how2.src}
                       alt="Phone with game interface"
                       className="mx-auto"
-                      style={{ width: "100px" }}
+                      style={{ width: "130px" }}
                     />
                     <p className="mt-4 font-medium">Brightful Meeting Games</p>
                   </div>
@@ -279,10 +282,10 @@ export default function HowItWorks() {
                 <div className="bg-maroon3 shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={parjoin.src}
+                      src={how3.src}
                       alt="People collaborating"
                       className="mx-auto"
-                      style={{ width: "100px" }}
+                      style={{ width: "130px" }}
                     />
                     <p className="mt-4 font-medium">
                       Everyone's having a great time!

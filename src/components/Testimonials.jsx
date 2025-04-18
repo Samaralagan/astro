@@ -259,7 +259,7 @@ export default function Testimonials() {
                   onClick={() => handleTestimonialSelect(index)}
                   className={`relative w-16 h-16 rounded-full overflow-hidden transition-all ${
                     activeIndex === index
-                      ? "ring-4 ring-blue-500"
+                      ? "ring-4 ring-maroondark"
                       : "opacity-70 hover:opacity-100"
                   }`}
                 >
