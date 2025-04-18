@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 // Import images - keep as is
-import testi1 from "../assets/testi1.png";
-import testi2 from "../assets/testi2.png";
-import testi3 from "../assets/testi3.png";
-import testi4 from "../assets/testi4.png";
-import testi5 from "../assets/testi5.png";
-import testi6 from "../assets/testi6.png";
+import testi1 from "../assets/testi1.svg";
+import testi2 from "../assets/testi2.svg";
+import testi3 from "../assets/testi3.svg";
+import testi4 from "../assets/testi4.svg";
+import testi5 from "../assets/testi5.svg";
+import testi6 from "../assets/testi6.svg";
 
 export default function Testimonials() {
   // Create testimonials data
@@ -208,7 +208,7 @@ export default function Testimonials() {
                 <img
                   src={getImageSrc(activeTestimonial.image)}
                   alt={activeTestimonial.author}
-                  className={`w-24 h-24 rounded-full object-cover transition-all duration-500 ${
+                  className={`w-24 h-24 object-cover transition-all duration-500 ${
                     isVisible ? "scale-100" : "scale-0"
                   }`}
                 />

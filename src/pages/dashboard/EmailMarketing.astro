@@ -1,0 +1,775 @@
+---
+import DashboardLayout from "../../layouts/DashboardLayout.astro";
+import { useState } from "react";
+---
+
+<DashboardLayout title="Email Marketing" currentPage="EmailMarketing">
+  <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+    <h2 class="text-lg font-semibold mb-4">Active Email Campaigns</h2>
+
+    <table class="w-full">
+      <thead>
+        <tr class="border-b border-gray-200">
+          <th class="text-left p-4 text-sm font-medium text-gray-500"
+            >Campaign Name</th
+          >
+          <th class="text-left p-4 text-sm font-medium text-gray-500">Status</th
+          >
+          <th class="text-left p-4 text-sm font-medium text-gray-500">Sent</th>
+          <th class="text-left p-4 text-sm font-medium text-gray-500"
+            >Open Rate</th
+          >
+          <th class="text-left p-4 text-sm font-medium text-gray-500"
+            >Click Rate</th
+          >
+          <th class="text-left p-4 text-sm font-medium text-gray-500"
+            >Conversions</th
+          >
+          <th class="text-left p-4 text-sm font-medium text-gray-500"
+            >Actions</th
+          >
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-200">
+          <td class="p-4">Monthly Newsletter</td>
+          <td class="p-4">
+            <span class="flex items-center">
+              <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+              <span class="text-green-600">Active</span>
+            </span>
+          </td>
+          <td class="p-4">8,452</td>
+          <td class="p-4">24.6%</td>
+          <td class="p-4">3.8%</td>
+          <td class="p-4">127</td>
+          <td class="p-4">
+            <button
+              class="text-blue-600 hover:text-blue-800 mr-2"
+              data-campaign-id="1"
+              data-action="view"
+              id="view-campaign-1">View</button
+            >
+            <button
+              class="text-blue-600 hover:text-blue-800"
+              data-campaign-id="1"
+              data-action="edit"
+              id="edit-campaign-1">Edit</button
+            >
+          </td>
+        </tr>
+        <tr class="border-b border-gray-200">
+          <td class="p-4">Spring Sale Promotion</td>
+          <td class="p-4">
+            <span class="flex items-center">
+              <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+              <span class="text-green-600">Active</span>
+            </span>
+          </td>
+          <td class="p-4">5,218</td>
+          <td class="p-4">32.1%</td>
+          <td class="p-4">7.2%</td>
+          <td class="p-4">243</td>
+          <td class="p-4">
+            <button
+              class="text-blue-600 hover:text-blue-800 mr-2"
+              data-campaign-id="2"
+              data-action="view"
+              id="view-campaign-2">View</button
+            >
+            <button
+              class="text-blue-600 hover:text-blue-800"
+              data-campaign-id="2"
+              data-action="edit"
+              id="edit-campaign-2">Edit</button
+            >
+          </td>
+        </tr>
+        <tr class="border-b border-gray-200">
+          <td class="p-4">Product Launch</td>
+          <td class="p-4">
+            <span class="flex items-center">
+              <span class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+              <span class="text-yellow-600">Scheduled</span>
+            </span>
+          </td>
+          <td class="p-4">0</td>
+          <td class="p-4">-</td>
+          <td class="p-4">-</td>
+          <td class="p-4">-</td>
+          <td class="p-4">
+            <button
+              class="text-blue-600 hover:text-blue-800 mr-2"
+              data-campaign-id="3"
+              data-action="view"
+              id="view-campaign-3">View</button
+            >
+            <button
+              class="text-blue-600 hover:text-blue-800"
+              data-campaign-id="3"
+              data-action="edit"
+              id="edit-campaign-3">Edit</button
+            >
+          </td>
+        </tr>
+        <tr class="border-b border-gray-200">
+          <td class="p-4">Welcome Series</td>
+          <td class="p-4">
+            <span class="flex items-center">
+              <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+              <span class="text-green-600">Active</span>
+            </span>
+          </td>
+          <td class="p-4">3,127</td>
+          <td class="p-4">42.8%</td>
+          <td class="p-4">12.3%</td>
+          <td class="p-4">186</td>
+          <td class="p-4">
+            <button
+              class="text-blue-600 hover:text-blue-800 mr-2"
+              data-campaign-id="4"
+              data-action="view"
+              id="view-campaign-4">View</button
+            >
+            <button
+              class="text-blue-600 hover:text-blue-800"
+              data-campaign-id="4"
+              data-action="edit"
+              id="edit-campaign-4">Edit</button
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="bg-white rounded-lg shadow-sm p-6">
+      <h3 class="text-md font-semibold mb-3">Subscriber Growth</h3>
+      <div class="flex items-center">
+        <div class="text-2xl font-bold">12,486</div>
+        <div class="ml-2 text-green-500 text-sm">+2.4%</div>
+      </div>
+      <div class="text-sm text-gray-500 mt-1">Total subscribers</div>
+      <div class="h-16 mt-4 flex items-end">
+        <div class="w-1/7 h-6 bg-blue-100 rounded-sm mx-1"></div>
+        <div class="w-1/7 h-8 bg-blue-200 rounded-sm mx-1"></div>
+        <div class="w-1/7 h-10 bg-blue-300 rounded-sm mx-1"></div>
+        <div class="w-1/7 h-12 bg-blue-400 rounded-sm mx-1"></div>
+        <div class="w-1/7 h-14 bg-blue-500 rounded-sm mx-1"></div>
+        <div class="w-1/7 h-16 bg-blue-600 rounded-sm mx-1"></div>
+        <div class="w-1/7 h-12 bg-blue-700 rounded-sm mx-1"></div>
+      </div>
+      <div class="text-xs text-gray-400 mt-2">Last 7 days</div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-sm p-6">
+      <h3 class="text-md font-semibold mb-3">Average Open Rate</h3>
+      <div class="flex items-center">
+        <div class="text-2xl font-bold">28.5%</div>
+        <div class="ml-2 text-green-500 text-sm">+1.2%</div>
+      </div>
+      <div class="text-sm text-gray-500 mt-1">Industry avg: 21.3%</div>
+      <div class="relative pt-4 mt-4">
+        <div class="flex mb-2 items-center justify-between">
+          <div>
+            <span
+              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200"
+            >
+              Above Average
+            </span>
+          </div>
+        </div>
+        <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+          <div
+            style="width:73%"
+            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-sm p-6">
+      <h3 class="text-md font-semibold mb-3">Click-Through Rate</h3>
+      <div class="flex items-center">
+        <div class="text-2xl font-bold">6.7%</div>
+        <div class="ml-2 text-yellow-500 text-sm">-0.3%</div>
+      </div>
+      <div class="text-sm text-gray-500 mt-1">Industry avg: 6.5%</div>
+      <div class="relative pt-4 mt-4">
+        <div class="flex mb-2 items-center justify-between">
+          <div>
+            <span
+              class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200"
+            >
+              Meets Target
+            </span>
+          </div>
+        </div>
+        <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+          <div
+            style="width:52%"
+            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+    <h2 class="text-lg font-semibold mb-4">Recent Subscribers</h2>
+
+    <table class="w-full">
+      <thead>
+        <tr class="border-b border-gray-200">
+          <th class="text-left p-4 text-sm font-medium text-gray-500">Email</th>
+          <th class="text-left p-4 text-sm font-medium text-gray-500"
+            >Subscribed Date</th
+          >
+          <th class="text-left p-4 text-sm font-medium text-gray-500">Source</th
+          >
+          <th class="text-left p-4 text-sm font-medium text-gray-500">Status</th
+          >
+          <th class="text-left p-4 text-sm font-medium text-gray-500"
+            >Actions</th
+          >
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-200">
+          <td class="p-4">sarahjohnson@example.com</td>
+          <td class="p-4">Apr 17, 2025</td>
+          <td class="p-4">Website Form</td>
+          <td class="p-4">
+            <span class="text-green-600">Active</span>
+          </td>
+          <td class="p-4">
+            <button
+              class="text-blue-600 hover:text-blue-800"
+              data-subscriber-id="1"
+              id="view-subscriber-1">View Details</button
+            >
+          </td>
+        </tr>
+        <tr class="border-b border-gray-200">
+          <td class="p-4">michaelsmith@example.com</td>
+          <td class="p-4">Apr 16, 2025</td>
+          <td class="p-4">Landing Page</td>
+          <td class="p-4">
+            <span class="text-green-600">Active</span>
+          </td>
+          <td class="p-4">
+            <button
+              class="text-blue-600 hover:text-blue-800"
+              data-subscriber-id="2"
+              id="view-subscriber-2">View Details</button
+            >
+          </td>
+        </tr>
+        <tr class="border-b border-gray-200">
+          <td class="p-4">davidwilliams@example.com</td>
+          <td class="p-4">Apr 16, 2025</td>
+          <td class="p-4">Social Media</td>
+          <td class="p-4">
+            <span class="text-green-600">Active</span>
+          </td>
+          <td class="p-4">
+            <button
+              class="text-blue-600 hover:text-blue-800"
+              data-subscriber-id="3"
+              id="view-subscriber-3">View Details</button
+            >
+          </td>
+        </tr>
+        <tr class="border-b border-gray-200">
+          <td class="p-4">laurabrown@example.com</td>
+          <td class="p-4">Apr 15, 2025</td>
+          <td class="p-4">Import</td>
+          <td class="p-4">
+            <span class="text-yellow-600">Pending</span>
+          </td>
+          <td class="p-4">
+            <button
+              class="text-blue-600 hover:text-blue-800"
+              data-subscriber-id="4"
+              id="view-subscriber-4">View Details</button
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex justify-end">
+    <button
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+      id="create-campaign-btn"
+    >
+      Create New Campaign
+    </button>
+  </div>
+
+  <!-- Campaign Modal -->
+  <div
+    id="campaign-modal"
+    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden"
+  >
+    <div class="bg-white rounded-lg p-6 w-full max-w-2xl">
+      <div class="flex justify-between items-center mb-4">
+        <h3 id="modal-title" class="text-lg font-semibold"></h3>
+        <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="modal-content"></div>
+      <div class="flex justify-end mt-6">
+        <button
+          id="modal-cancel"
+          class="px-4 py-2 border border-gray-300 rounded text-gray-700 mr-2 hover:bg-gray-100"
+          >Cancel</button
+        >
+        <button
+          id="modal-save"
+          class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >Save Changes</button
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Subscriber Modal -->
+  <div
+    id="subscriber-modal"
+    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden"
+  >
+    <div class="bg-white rounded-lg p-6 w-full max-w-lg">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold">Subscriber Details</h3>
+        <button
+          id="close-subscriber-modal"
+          class="text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="subscriber-content"></div>
+      <div class="flex justify-end mt-6">
+        <button
+          id="close-subscriber-btn"
+          class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-100"
+          >Close</button
+        >
+      </div>
+    </div>
+  </div>
+</DashboardLayout>
+
+<script>
+  // Campaign data
+  const campaigns = {
+    "1": {
+      id: "1",
+      name: "Monthly Newsletter",
+      status: "Active",
+      sent: "8,452",
+      openRate: "24.6%",
+      clickRate: "3.8%",
+      conversions: "127",
+      subject: "Monthly Newsletter - April 2025",
+      content: "Hi [FIRST_NAME],\n\nHere's what's new this month...",
+      audience: "All Subscribers",
+      scheduledDate: "April 10, 2025",
+    },
+    "2": {
+      id: "2",
+      name: "Spring Sale Promotion",
+      status: "Active",
+      sent: "5,218",
+      openRate: "32.1%",
+      clickRate: "7.2%",
+      conversions: "243",
+      subject: "Spring SALE - 30% Off Everything!",
+      content: "Hi [FIRST_NAME],\n\nDon't miss our biggest spring sale ever...",
+      audience: "Engaged Customers",
+      scheduledDate: "April 5, 2025",
+    },
+    "3": {
+      id: "3",
+      name: "Product Launch",
+      status: "Scheduled",
+      sent: "0",
+      openRate: "-",
+      clickRate: "-",
+      conversions: "-",
+      subject: "Introducing our NEW Product Line",
+      content:
+        "Hi [FIRST_NAME],\n\nWe're excited to announce our latest innovation...",
+      audience: "All Subscribers",
+      scheduledDate: "April 25, 2025",
+    },
+    "4": {
+      id: "4",
+      name: "Welcome Series",
+      status: "Active",
+      sent: "3,127",
+      openRate: "42.8%",
+      clickRate: "12.3%",
+      conversions: "186",
+      subject: "Welcome to Our Community!",
+      content: "Hi [FIRST_NAME],\n\nThank you for joining us...",
+      audience: "New Subscribers",
+      scheduledDate: "Automated",
+    },
+  };
+
+  // Subscriber data
+  const subscribers = {
+    "1": {
+      id: "1",
+      email: "sarahjohnson@example.com",
+      firstName: "Sarah",
+      lastName: "Johnson",
+      dateSubscribed: "Apr 17, 2025",
+      source: "Website Form",
+      status: "Active",
+      tags: ["New Customer", "Newsletter"],
+      campaigns: ["Monthly Newsletter"],
+    },
+    "2": {
+      id: "2",
+      email: "michaelsmith@example.com",
+      firstName: "Michael",
+      lastName: "Smith",
+      dateSubscribed: "Apr 16, 2025",
+      source: "Landing Page",
+      status: "Active",
+      tags: ["Lead", "Webinar Attendee"],
+      campaigns: ["Spring Sale Promotion"],
+    },
+    "3": {
+      id: "3",
+      email: "davidwilliams@example.com",
+      firstName: "David",
+      lastName: "Williams",
+      dateSubscribed: "Apr 16, 2025",
+      source: "Social Media",
+      status: "Active",
+      tags: ["Lead", "Social Media"],
+      campaigns: ["Monthly Newsletter", "Spring Sale Promotion"],
+    },
+    "4": {
+      id: "4",
+      email: "laurabrown@example.com",
+      firstName: "Laura",
+      lastName: "Brown",
+      dateSubscribed: "Apr 15, 2025",
+      source: "Import",
+      status: "Pending",
+      tags: ["Imported"],
+      campaigns: [],
+    },
+  };
+
+  // Get all elements
+  const campaignModal = document.getElementById("campaign-modal");
+  const modalTitle = document.getElementById("modal-title");
+  const modalContent = document.getElementById("modal-content");
+  const closeModal = document.getElementById("close-modal");
+  const modalCancel = document.getElementById("modal-cancel");
+  const modalSave = document.getElementById("modal-save");
+  const createCampaignBtn = document.getElementById("create-campaign-btn");
+
+  const subscriberModal = document.getElementById("subscriber-modal");
+  const subscriberContent = document.getElementById("subscriber-content");
+  const closeSubscriberModal = document.getElementById(
+    "close-subscriber-modal"
+  );
+  const closeSubscriberBtn = document.getElementById("close-subscriber-btn");
+
+  let currentCampaignId = null;
+  let currentAction = null;
+
+  // Handle campaign view/edit button clicks
+  document.querySelectorAll("[data-action]").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const action = e.target.dataset.action;
+      const campaignId = e.target.dataset.campaignId;
+
+      currentCampaignId = campaignId;
+      currentAction = action;
+
+      const campaign = campaigns[campaignId];
+
+      // Set modal title based on action
+      if (action === "view") {
+        modalTitle.textContent = `View Campaign: ${campaign.name}`;
+        modalSave.style.display = "none";
+        showCampaignDetails(campaign, false);
+      } else if (action === "edit") {
+        modalTitle.textContent = `Edit Campaign: ${campaign.name}`;
+        modalSave.style.display = "block";
+        showCampaignDetails(campaign, true);
+      }
+
+      // Show modal
+      campaignModal.classList.remove("hidden");
+    });
+  });
+
+  // Handle create new campaign button
+  createCampaignBtn.addEventListener("click", () => {
+    currentCampaignId = null;
+    currentAction = "create";
+
+    modalTitle.textContent = "Create New Campaign";
+    modalSave.style.display = "block";
+
+    // Show empty campaign form
+    showEmptyCampaignForm();
+
+    // Show modal
+    campaignModal.classList.remove("hidden");
+  });
+
+  // Handle subscriber view details button clicks
+  document.querySelectorAll("[data-subscriber-id]").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const subscriberId = e.target.dataset.subscriberId;
+      const subscriber = subscribers[subscriberId];
+
+      // Show subscriber details
+      showSubscriberDetails(subscriber);
+
+      // Show modal
+      subscriberModal.classList.remove("hidden");
+    });
+  });
+
+  // Close modals
+  closeModal.addEventListener("click", () => {
+    campaignModal.classList.add("hidden");
+  });
+
+  modalCancel.addEventListener("click", () => {
+    campaignModal.classList.add("hidden");
+  });
+
+  closeSubscriberModal.addEventListener("click", () => {
+    subscriberModal.classList.add("hidden");
+  });
+
+  closeSubscriberBtn.addEventListener("click", () => {
+    subscriberModal.classList.add("hidden");
+  });
+
+  // Save button click handler
+  modalSave.addEventListener("click", () => {
+    if (currentAction === "edit") {
+      // In a real app, you would save the changes to the server here
+      alert(
+        `Changes to "${campaigns[currentCampaignId].name}" saved successfully!`
+      );
+    } else if (currentAction === "create") {
+      // In a real app, you would create a new campaign on the server here
+      alert("New campaign created successfully!");
+    }
+
+    campaignModal.classList.add("hidden");
+  });
+
+  // Function to show campaign details (view mode or edit mode)
+  function showCampaignDetails(campaign, isEditable) {
+    const readonly = isEditable ? "" : "readonly";
+    const formClass = isEditable ? "" : "pointer-events-none opacity-75";
+
+    modalContent.innerHTML = `
+      <form class="${formClass}">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Campaign Name</label>
+          <input type="text" ${readonly} class="w-full p-2 border border-gray-300 rounded" value="${campaign.name}">
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Subject Line</label>
+          <input type="text" ${readonly} class="w-full p-2 border border-gray-300 rounded" value="${campaign.subject}">
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Content</label>
+          <textarea ${readonly} class="w-full p-2 border border-gray-300 rounded h-32">${campaign.content}</textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Audience</label>
+            <input type="text" ${readonly} class="w-full p-2 border border-gray-300 rounded" value="${campaign.audience}">
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Schedule</label>
+            <input type="text" ${readonly} class="w-full p-2 border border-gray-300 rounded" value="${campaign.scheduledDate}">
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+          <select ${readonly} class="w-full p-2 border border-gray-300 rounded">
+            <option ${campaign.status === "Active" ? "selected" : ""}>Active</option>
+            <option ${campaign.status === "Scheduled" ? "selected" : ""}>Scheduled</option>
+            <option ${campaign.status === "Draft" ? "selected" : ""}>Draft</option>
+            <option ${campaign.status === "Paused" ? "selected" : ""}>Paused</option>
+          </select>
+        </div>
+      </form>
+    `;
+  }
+
+  // Function to show empty campaign form
+  function showEmptyCampaignForm() {
+    modalContent.innerHTML = `
+      <form>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Campaign Name</label>
+          <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Enter campaign name">
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Subject Line</label>
+          <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Enter subject line">
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Content</label>
+          <textarea class="w-full p-2 border border-gray-300 rounded h-32" placeholder="Enter email content"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Audience</label>
+            <select class="w-full p-2 border border-gray-300 rounded">
+              <option>All Subscribers</option>
+              <option>New Subscribers</option>
+              <option>Engaged Customers</option>
+              <option>Inactive Subscribers</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Schedule</label>
+            <input type="date" class="w-full p-2 border border-gray-300 rounded">
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+          <select class="w-full p-2 border border-gray-300 rounded">
+            <option>Draft</option>
+            <option>Scheduled</option>
+            <option>Active</option>
+          </select>
+        </div>
+      </form>
+    `;
+  }
+
+  // Function to show subscriber details
+  function showSubscriberDetails(subscriber) {
+    subscriberContent.innerHTML = `
+      <div class="grid grid-cols-2 gap-4">
+        <div class="mb-3">
+          <p class="text-sm font-medium text-gray-500">Email</p>
+          <p>${subscriber.email}</p>
+        </div>
+        <div class="mb-3">
+          <p class="text-sm font-medium text-gray-500">Name</p>
+          <p>${subscriber.firstName} ${subscriber.lastName}</p>
+        </div>
+        <div class="mb-3">
+          <p class="text-sm font-medium text-gray-500">Date Subscribed</p>
+          <p>${subscriber.dateSubscribed}</p>
+        </div>
+        <div class="mb-3">
+          <p class="text-sm font-medium text-gray-500">Source</p>
+          <p>${subscriber.source}</p>
+        </div>
+        <div class="mb-3">
+          <p class="text-sm font-medium text-gray-500">Status</p>
+          <p class="${subscriber.status === "Active" ? "text-green-600" : "text-yellow-600"}">${subscriber.status}</p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <p class="text-sm font-medium text-gray-500">Tags</p>
+        <div class="flex flex-wrap gap-2 mt-1">
+          ${subscriber.tags
+            .map(
+              (tag) => `
+          <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">${tag}</span>
+        `
+            )
+            .join("")}
+        </div>
+      </div>
+      <div class="mb-3">
+        <p class="text-sm font-medium text-gray-500">Campaigns</p>
+        <div class="mt-1">
+          ${
+            subscriber.campaigns.length > 0
+              ? subscriber.campaigns
+                  .map(
+                    (campaign) => `
+              <p class="text-sm">${campaign}</p>
+            `
+                  )
+                  .join("")
+              : '<p class="text-sm text-gray-500">No campaigns</p>'
+          }
+        </div>
+      </div>
+      <div class="border-t border-gray-200 pt-4 mt-4">
+        <h4 class="text-md font-medium mb-2">Activity</h4>
+        <div class="text-sm">
+          <p class="mb-1 flex items-center">
+            <span class="w-3 h-3 rounded-full bg-green-500 mr-2"></span>
+            <span>Email opened: Monthly Newsletter (Apr 15, 2025)</span>
+          </p>
+          <p class="mb-1 flex items-center">
+            <span class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span>
+            <span>Link clicked: Product Page (Apr 15, 2025)</span>
+          </p>
+          <p class="mb-1 flex items-center">
+            <span class="w-3 h-3 rounded-full bg-gray-300 mr-2"></span>
+            <span>Email received: Spring Sale Promotion (Apr 12, 2025)</span>
+          </p>
+        </div>
+      </div>
+    `;
+  }
+
+  // Event delegation for future elements
+  document.addEventListener("click", (e) => {
+    // Close the modal when clicking outside of it
+    if (e.target === campaignModal) {
+      campaignModal.classList.add("hidden");
+    }
+
+    if (e.target === subscriberModal) {
+      subscriberModal.classList.add("hidden");
+    }
+  });
+</script>

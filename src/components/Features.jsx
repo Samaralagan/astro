@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-
+import ser1 from "../assets/ser1.svg";
+import ser2 from "../assets/ser2.svg";
+import ser3 from "../assets/ser3.svg";
+import ser4 from "../assets/ser4.svg";
 export default function Features() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -29,98 +32,32 @@ export default function Features() {
 
   const features = [
     {
-      title: "Premium Design",
+      title: "Social Media Management",
       description:
-        "Elevate your brand with professional design that stands out from the competition.",
-      icon: (
-        <svg
-          className="w-8 h-8 md:w-10 md:h-10"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-          ></path>
-        </svg>
-      ),
-      iconBg: "bg-orange-500",
+        "EAutomate posts, track trends, and engage your audience in real-time with AI precision.",
+      icon: <img src={ser1.src} alt="" />,
+      iconBg: "bg-ser1",
     },
     {
-      title: "Amazing Photography",
+      title: "Personalized Email Marketing",
       description:
-        "Capture stunning visuals that tell your story and engage your audience.",
-      icon: (
-        <svg
-          className="w-8 h-8 md:w-10 md:h-10"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-          ></path>
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-          ></path>
-        </svg>
-      ),
-      iconBg: "bg-blue-600",
+        "Deliver customized emails that drive higher open rates and conversions with AI-driven insights.",
+      icon: <img src={ser2.src} alt="" />,
+      iconBg: "bg-ser2",
     },
     {
-      title: "Unique Strategy",
+      title: "Chatbot Automation",
       description:
-        "Develop custom strategies tailored to meet your specific business objectives.",
-      icon: (
-        <svg
-          className="w-8 h-8 md:w-10 md:h-10"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-          ></path>
-        </svg>
-      ),
-      iconBg: "bg-purple-600",
+        "Provide 24/7 customer support with AI chatbots that efficiently resolve queries and boost satisfaction.",
+      icon: <img src={ser3.src} alt="" />,
+      iconBg: "bg-ser3",
     },
     {
-      title: "Creative Ideas",
+      title: "Competitor Analysis",
       description:
-        "Unleash innovative concepts that drive engagement and inspire your audience.",
-      icon: (
-        <svg
-          className="w-8 h-8 md:w-10 md:h-10"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-          ></path>
-        </svg>
-      ),
-      iconBg: "bg-amber-500",
+        "Strength AI to monitor competitors, identify market trends, and uncover strategic opportunities.",
+      icon: <img src={ser4.src} alt="" />,
+      iconBg: "bg-ser4",
     },
   ];
 

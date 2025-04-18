@@ -311,11 +311,11 @@ export default function Navbar() {
                     </a>
                   ))}
                   <a
-                    href="/dashboard"
+                    href="/Signin"
                     className="menu-item ml-2 px-4 py-2 bg-[#D80032] text-white text-sm rounded-md hover:bg-[#c00029] transition-colors whitespace-nowrap flex items-center relative overflow-hidden font-bold"
                   >
                     {getIcon("hat-thunder")}
-                    Get Started
+                    Signin
                     <span className="menu-fill-effect-cta"></span>
                   </a>
                 </div>
@@ -376,11 +376,11 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="/dashboard"
+                href="/Signin"
                 className="block px-3 py-2 text-base font-bold bg-[#D80032] text-white rounded-md hover:bg-[#c00029] flex items-center relative overflow-hidden"
               >
                 {getIcon("hat-thunder")}
-                Get Started
+                Signin
                 <span className="mobile-menu-fill-effect-cta"></span>
               </a>
             </div>
@@ -547,7 +547,7 @@ export default function Navbar() {
             <a
               href="/dashboard"
               className="p-2 text-[#D80032] hover:text-[#D80032] hover:bg-[#F78CA2]/20 rounded-md transition-colors font-bold"
-              title="Get Started"
+              title="Signin"
               onMouseEnter={() => setActiveIcon("getStarted")}
               onMouseLeave={() => setActiveIcon(null)}
             >
@@ -556,7 +556,7 @@ export default function Navbar() {
               {/* Tooltip for Get Started */}
               {activeIcon === "getStarted" && (
                 <div className="absolute left-full ml-2 bg-gray-800 text-white text-sm px-3 py-1 rounded whitespace-nowrap font-bold">
-                  Get Started
+                  Signin
                 </div>
               )}
             </a>

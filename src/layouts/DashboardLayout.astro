@@ -1,6 +1,7 @@
 ---
 // src/layouts/DashboardLayout.astro
 import "../styles/global.css"; // Make sure this exists for Tailwind to work
+import logo from "../assets/logo.svg";
 import favicon from "../assets/favicon.png";
 interface Props {
   title: string;
@@ -18,48 +19,30 @@ const { title, currentPage = "overview" } = Astro.props;
     <link rel="icon" type="image/svg+xml" href={favicon.src} />
   </head>
   <body class="bg-gray-50">
-    <div class="flex min-h-screen">
+    <div class="flex min-h-screen relative">
+      <!-- Mobile menu overlay -->
+      <div
+        id="mobile-overlay"
+        class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 hidden lg:hidden"
+      >
+      </div>
+
       <!-- Sidebar -->
       <aside
         id="sidebar"
-        class="bg-white border-r border-gray-200 fixed h-full overflow-y-auto transition-all duration-300 w-16"
+        class="bg-white border-r border-gray-200 fixed h-full overflow-y-auto transition-all duration-300 w-16 z-30 transform lg:transform-none lg:translate-x-0"
+        style={{ overflowX: "clip" }}
       >
         <div class="p-4 flex items-center justify-center">
-          <!-- Small logo (visible when collapsed) -->
-          <div id="small-logo" class="text-blue-600 text-2xl block">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-8 w-8"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
+          <!-- Small logo (visible when collapsed) - Using favicon -->
+          <div id="small-logo" class="text-[#D80032] text-2xl block">
+            <img src={favicon.src} alt="Logo" class="h-8 w-8" />
           </div>
 
-          <!-- Full logo (visible when expanded) -->
+          <!-- Full logo (visible when expanded) - Using the imported logo -->
           <div id="full-logo" class="hidden">
             <div class="flex items-center space-x-3">
-              <div class="text-blue-600 text-2xl flex-shrink-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-              </div>
+              <img src={logo.src} alt="Company Logo" class="h-8" />
             </div>
           </div>
         </div>
@@ -67,7 +50,7 @@ const { title, currentPage = "overview" } = Astro.props;
         <nav class="mt-4">
           <a
             href="/dashboard"
-            class={`flex items-center py-3 ${currentPage === "overview" ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
+            class={`flex items-center py-3 ${currentPage === "overview" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
             <div class="w-16 flex items-center justify-center">
               <svg
@@ -91,8 +74,8 @@ const { title, currentPage = "overview" } = Astro.props;
           </a>
 
           <a
-            href="/dashboard/campaigns"
-            class={`flex items-center py-3 ${currentPage === "campaigns" ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
+            href="/dashboard/EmailMarketing"
+            class={`flex items-center py-3 ${currentPage === "EmailMarketing" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
             <div class="w-16 flex items-center justify-center">
               <svg
@@ -115,13 +98,13 @@ const { title, currentPage = "overview" } = Astro.props;
               </svg>
             </div>
             <span class="sidebar-text opacity-0 whitespace-nowrap"
-              >Campaigns</span
+              >Email Marketing</span
             >
           </a>
 
           <a
-            href="/dashboard/audiences"
-            class={`flex items-center py-3 ${currentPage === "audiences" ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
+            href="/dashboard/SocialMedia"
+            class={`flex items-center py-3 ${currentPage === "SocialMedia" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
             <div class="w-16 flex items-center justify-center">
               <svg
@@ -140,13 +123,13 @@ const { title, currentPage = "overview" } = Astro.props;
               </svg>
             </div>
             <span class="sidebar-text opacity-0 whitespace-nowrap"
-              >Audiences</span
+              >Social Media</span
             >
           </a>
 
           <a
             href="/dashboard/chatbot"
-            class={`flex items-center py-3 ${currentPage === "chatbot" ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
+            class={`flex items-center py-3 ${currentPage === "chatbot" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
             <div class="w-16 flex items-center justify-center">
               <svg
@@ -170,7 +153,7 @@ const { title, currentPage = "overview" } = Astro.props;
 
           <a
             href="/dashboard/settings"
-            class={`flex items-center py-3 ${currentPage === "settings" ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
+            class={`flex items-center py-3 ${currentPage === "settings" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
             <div class="w-16 flex items-center justify-center">
               <svg
@@ -197,13 +180,37 @@ const { title, currentPage = "overview" } = Astro.props;
               >Settings</span
             >
           </a>
+
+          <!-- Logout option (added) -->
+          <a
+            href="/"
+            class="flex items-center py-3 text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032] mt-auto"
+          >
+            <div class="w-16 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                ></path>
+              </svg>
+            </div>
+            <span class="sidebar-text opacity-0 whitespace-nowrap">Logout</span>
+          </a>
         </nav>
 
         <!-- Toggle button at bottom of sidebar -->
         <div class="absolute bottom-4 left-0 right-0 flex justify-center">
           <button
             id="toggle-sidebar"
-            class="bg-white rounded-full p-1 border border-gray-200 text-gray-500 hover:text-blue-600 shadow-sm transition-all duration-300"
+            class="bg-white rounded-full p-1 border border-gray-200 text-[#3D0C11] hover:text-[#D80032] shadow-sm transition-all duration-300 hidden lg:block"
           >
             <svg
               id="expand-icon"
@@ -238,16 +245,38 @@ const { title, currentPage = "overview" } = Astro.props;
       </aside>
 
       <!-- Main Content -->
-      <main id="main-content" class="ml-16 flex-1 transition-all duration-300">
+      <main
+        id="main-content"
+        class="ml-0 lg:ml-16 flex-1 transition-all duration-300 w-full"
+      >
         <header
-          class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-6"
+          class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-4 lg:px-6 sticky top-0 z-10"
         >
-          <h1 class="text-xl font-semibold">{title}</h1>
-          <div class="flex items-center space-x-4">
-            <button class="text-gray-500 hover:text-gray-700">
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-button" class="text-[#3D0C11] mr-2 lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+
+          <h1 class="text-lg lg:text-xl font-semibold text-[#3D0C11] truncate">
+            {title}
+          </h1>
+          <div class="flex items-center space-x-2 lg:space-x-4">
+            <button class="text-[#3D0C11] hover:text-[#D80032]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="h-5 w-5 lg:h-6 lg:w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -260,10 +289,10 @@ const { title, currentPage = "overview" } = Astro.props;
                 ></path>
               </svg>
             </button>
-            <button class="text-gray-500 hover:text-gray-700">
+            <button class="text-[#3D0C11] hover:text-[#D80032]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="h-5 w-5 lg:h-6 lg:w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -276,10 +305,10 @@ const { title, currentPage = "overview" } = Astro.props;
                 ></path>
               </svg>
             </button>
-            <button class="text-gray-500 hover:text-gray-700">
+            <button class="text-[#3D0C11] hover:text-[#D80032]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="h-5 w-5 lg:h-6 lg:w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -295,7 +324,7 @@ const { title, currentPage = "overview" } = Astro.props;
           </div>
         </header>
 
-        <div class="p-6">
+        <div class="p-4 lg:p-6">
           <slot />
         </div>
       </main>
@@ -312,9 +341,31 @@ const { title, currentPage = "overview" } = Astro.props;
         const smallLogo = document.getElementById("small-logo");
         const fullLogo = document.getElementById("full-logo");
         const sidebarTexts = document.querySelectorAll(".sidebar-text");
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileOverlay = document.getElementById("mobile-overlay");
 
         let sidebarExpanded = false;
+        let sidebarVisible = window.innerWidth >= 1024; // lg breakpoint
 
+        // Function to handle sidebar visibility on mobile
+        const toggleMobileSidebar = () => {
+          if (sidebar.classList.contains("-translate-x-full")) {
+            // Show sidebar
+            sidebar.classList.remove("-translate-x-full");
+            mobileOverlay.classList.remove("hidden");
+          } else {
+            // Hide sidebar
+            sidebar.classList.add("-translate-x-full");
+            mobileOverlay.classList.add("hidden");
+          }
+        };
+
+        // Initialize mobile sidebar position
+        if (window.innerWidth < 1024) {
+          sidebar.classList.add("-translate-x-full");
+        }
+
+        // Toggle sidebar expansion (desktop)
         toggleButton.addEventListener("click", () => {
           sidebarExpanded = !sidebarExpanded;
 
@@ -322,8 +373,8 @@ const { title, currentPage = "overview" } = Astro.props;
             // Expand sidebar
             sidebar.classList.remove("w-16");
             sidebar.classList.add("w-64");
-            mainContent.classList.remove("ml-16");
-            mainContent.classList.add("ml-64");
+            mainContent.classList.remove("lg:ml-16");
+            mainContent.classList.add("lg:ml-64");
             expandIcon.classList.add("hidden");
             collapseIcon.classList.remove("hidden");
             smallLogo.classList.add("hidden");
@@ -339,8 +390,8 @@ const { title, currentPage = "overview" } = Astro.props;
             // Collapse sidebar
             sidebar.classList.remove("w-64");
             sidebar.classList.add("w-16");
-            mainContent.classList.remove("ml-64");
-            mainContent.classList.add("ml-16");
+            mainContent.classList.remove("lg:ml-64");
+            mainContent.classList.add("lg:ml-16");
             expandIcon.classList.remove("hidden");
             collapseIcon.classList.add("hidden");
             smallLogo.classList.remove("hidden");
@@ -350,6 +401,27 @@ const { title, currentPage = "overview" } = Astro.props;
             sidebarTexts.forEach((text) => {
               text.classList.add("opacity-0");
             });
+          }
+        });
+
+        // Mobile menu button event
+        mobileMenuButton.addEventListener("click", toggleMobileSidebar);
+
+        // Close sidebar when clicking overlay
+        mobileOverlay.addEventListener("click", toggleMobileSidebar);
+
+        // Handle window resize
+        window.addEventListener("resize", () => {
+          const isDesktop = window.innerWidth >= 1024;
+
+          // Toggle between mobile and desktop layouts
+          if (isDesktop && !sidebarVisible) {
+            sidebar.classList.remove("-translate-x-full");
+            mobileOverlay.classList.add("hidden");
+            sidebarVisible = true;
+          } else if (!isDesktop && sidebarVisible) {
+            sidebar.classList.add("-translate-x-full");
+            sidebarVisible = false;
           }
         });
       });
