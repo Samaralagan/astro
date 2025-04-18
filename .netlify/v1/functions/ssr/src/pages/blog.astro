@@ -1,0 +1,478 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Modified blog posts to include HTML content with hyperlinks
+const blogPosts = [
+  
+  
+  {
+    title: "The Future of Remote Work",
+    excerpt:
+      "How <a href='/technology' class='text-[#D80032] hover:underline'>technology</a> is reshaping the workplace and what you can do to stay ahead of the curve.",
+    date: "March 15, 2025",
+    author: "Michael Brown",
+    category: "Industry Trends",
+    image: "/placeholder3",
+    content: "This is the full content of the blog post about <a href='/remote-work' class='text-[#D80032] hover:underline'>remote work</a>. It would be much longer in a real implementation. Learn about the latest <a href='/technology' class='text-[#D80032] hover:underline'>technology</a> trends.",
+  },
+  {
+    title: "Customer Success Story: How XYZ Company Increased Revenue by 200%",
+    excerpt:
+      "Learn how one of our <a href='/clients' class='text-[#D80032] hover:underline'>clients</a> transformed their business using our platform.",
+    date: "March 10, 2025",
+    author: "Sarah Johnson",
+    category: "Case Studies",
+    image: "/placeholder4",
+    content: "This is the full content of the blog post. It would be much longer in a real implementation. Read more about our <a href='/clients' class='text-[#D80032] hover:underline'>clients</a> and their success stories with our <a href='/platform' class='text-[#D80032] hover:underline'>platform</a>.",
+  },
+  {
+    title: "New Features: Q1 2025 Update",
+    excerpt:
+      "Explore the latest <a href='/features' class='text-[#D80032] hover:underline'>additions</a> to our platform and how they can benefit your workflow.",
+    date: "March 1, 2025",
+    author: "David Wilson",
+    category: "Product Updates",
+    image: "/placeholder5",
+    content: "This is the full content of the blog post. It would be much longer in a real implementation. Check out our newest <a href='/features' class='text-[#D80032] hover:underline'>features</a> and <a href='/updates' class='text-[#D80032] hover:underline'>updates</a> to improve your workflow.",
+  },
+  
+  {
+    title: "Advanced Platform Configuration Techniques",
+    excerpt:
+      "Take your usage to the next level with these <a href='/expert-tips' class='text-[#D80032] hover:underline'>expert configuration tips</a> and tricks.",
+    date: "February 15, 2025",
+    author: "Robert Lee",
+    category: "Tutorials",
+    image: "/placeholder7",
+    content: "This is the full content of the blog post. It would be much longer in a real implementation. Dive deeper into <a href='/expert-tips' class='text-[#D80032] hover:underline'>expert tips</a> and <a href='/configuration' class='text-[#D80032] hover:underline'>configuration</a> options.",
+  },
+  {
+    title: "How to Integrate with Popular Third-Party Tools",
+    excerpt:
+      "A comprehensive guide to connecting our platform with the <a href='/integrations' class='text-[#D80032] hover:underline'>tools</a> your team already uses.",
+    date: "February 10, 2025",
+    author: "Lisa Wong",
+    category: "Product Updates",
+    image: "/placeholder8",
+    content: "This is the full content of the blog post. It would be much longer in a real implementation. Learn more about our <a href='/integrations' class='text-[#D80032] hover:underline'>integrations</a> with popular <a href='/third-party-tools' class='text-[#D80032] hover:underline'>third-party tools</a>.",
+  },
+];
+
+// Reduced to 4 topic categories
+const topics = [
+  "Tutorials",
+  "Industry Trends",
+  "Case Studies",
+  "Product Updates",
+];
+
+// Count posts by category
+const postCounts = topics.reduce((acc, topic) => {
+  acc[topic] = blogPosts.filter((post) => post.category === topic).length;
+  return acc;
+}, {});
+---
+
+<Layout title="Blog">
+  <!-- Main container with white background and margin-top -->
+  <div class="bg-white text-gray-800 min-h-screen pt-16">
+    <!-- Added pt-16 for margin top -->
+    <!-- Main content area -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Main content with sidebar layout -->
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Main blog posts grid area - 70% width -->
+        <div class="lg:w-3/4">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+            id="blog-grid"
+          >
+            {
+              blogPosts.map((post, index) => (
+                <article
+                  class={`bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 hover:translate-y-[-4px] border border-gray-200 ${index >= 4 ? "hidden" : ""}`}
+                  data-category={post.category}
+                  data-index={index}
+                  data-title={post.title}
+                  data-author={post.author}
+                  data-date={post.date}
+                  data-content={post.content}
+                  data-excerpt={post.excerpt}
+                >
+                  <div class="aspect-w-16 aspect-h-9">
+                    <div class="w-full h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={`/api/placeholder/400/250`}
+                        alt={post.title}
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-2">
+                      <span>{post.date}</span>
+                      <span class="mx-2">•</span>
+                      <span class="category-tag">{post.category}</span>
+                    </div>
+                    <!-- Using div with innerHTML to properly render HTML content with links -->
+                    <div class="block mt-2 cursor-pointer blog-link">
+                      <h3 class="text-xl font-semibold text-gray-800 hover:text-[#D80032] transition blog-title">
+                        {post.title}
+                      </h3>
+                      <p class="mt-3 text-gray-600 blog-excerpt" set:html={post.excerpt} />
+                    </div>
+                    <div class="mt-4 flex items-center">
+                      <div class="flex-shrink-0">
+                        <div class="h-8 w-8 rounded-full bg-[#F78CA2] flex items-center justify-center text-white">
+                          <span class="text-xs">{post.author[0]}</span>
+                        </div>
+                      </div>
+                      <div class="ml-3">
+                        <p class="text-sm font-medium text-[#3D0C11]">
+                          {post.author}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+
+          <!-- Load More Button -->
+          <div class="mt-12 flex justify-center">
+            <button
+              class="px-8 py-3 bg-[#D80032] hover:bg-[#3D0C11] text-white font-medium rounded-md transition"
+              id="load-more"
+            >
+              Load More
+            </button>
+          </div>
+        </div>
+
+        <!-- Right sidebar for filters - 30% width -->
+        <div class="lg:w-1/4">
+          <div
+            class="bg-gray-50 rounded-xl p-6 sticky top-24 border border-gray-200"
+          >
+            <!-- Adjusted top value -->
+            <h2
+              class="text-xl font-bold mb-6 border-b border-gray-200 pb-3 text-[#3D0C11]"
+            >
+              Topics
+            </h2>
+
+            <div class="flex flex-col gap-3">
+              <button
+                class="bg-gray-200 text-[#3D0C11] px-4 py-2 rounded-md hover:bg-gray-300 transition flex justify-between items-center active topic-filter"
+                data-category="all"
+                id="filter-all"
+              >
+                <span>All Topics</span>
+                <span class="text-xs bg-gray-100 px-2 py-1 rounded-full">
+                  {blogPosts.length}
+                </span>
+              </button>
+
+              {
+                topics.map((topic) => {
+                  let bgColor = "";
+
+                  if (topic === "Tutorials")
+                    bgColor = "bg-[#F78CA2] text-white";
+                  if (topic === "Industry Trends")
+                    bgColor = "bg-[#D80032] text-white";
+                  if (topic === "Case Studies")
+                    bgColor = "bg-[#3D0C11] text-white";
+                  if (topic === "Product Updates")
+                    bgColor = "bg-[#F78CA2] bg-opacity-50 text-[#3D0C11]";
+
+                  return (
+                    <button
+                      class={`${bgColor} px-4 py-2 rounded-md hover:opacity-90 transition flex justify-between items-center topic-filter`}
+                      data-category={topic}
+                    >
+                      <span>{topic}</span>
+                      <span class="text-xs bg-white bg-opacity-50 px-2 py-1 rounded-full text-[#3D0C11]">
+                        {postCounts[topic] || 0}
+                      </span>
+                    </button>
+                  );
+                })
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for displaying full blog content -->
+  <div id="blog-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 id="modal-title" class="text-2xl font-bold text-[#3D0C11]"></h2>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="flex items-center text-sm text-gray-500 mb-6">
+          <span id="modal-date"></span>
+          <span class="mx-2">•</span>
+          <span id="modal-category" class="category-tag"></span>
+          <span class="mx-2">•</span>
+          <span id="modal-author"></span>
+        </div>
+        <div class="prose max-w-none">
+          <div id="modal-content" class="text-gray-700"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Get all filter buttons
+    const filterButtons = document.querySelectorAll(".topic-filter");
+    const allButton = document.getElementById("filter-all");
+
+    // Get all blog posts
+    const blogPosts = document.querySelectorAll("#blog-grid article");
+    
+    // Get all blog links
+    const blogLinks = document.querySelectorAll(".blog-link");
+
+    // Get the load more button
+    const loadMoreButton = document.getElementById("load-more");
+
+    // Track current visible count for load more functionality
+    let visibleCount = 4;
+    const totalPosts = blogPosts.length;
+
+    // Modal elements
+    const modal = document.getElementById("blog-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDate = document.getElementById("modal-date");
+    const modalCategory = document.getElementById("modal-category");
+    const modalAuthor = document.getElementById("modal-author");
+    const modalContent = document.getElementById("modal-content");
+    const closeModal = document.getElementById("close-modal");
+    
+    // Prevent links in blog excerpts from triggering modal
+    document.querySelectorAll(".blog-excerpt a").forEach(link => {
+      link.addEventListener("click", function(e) {
+        e.stopPropagation();
+      });
+    });
+    
+    // Make entire article clickable to open modal
+    blogPosts.forEach((post) => {
+      post.addEventListener("click", function(e) {
+        // Don't open modal if clicking on a link
+        if (e.target.tagName === 'A') {
+          e.stopPropagation();
+          return;
+        }
+        
+        // Exclude clicks on topic filter buttons
+        if (e.target.closest('.topic-filter')) {
+          return;
+        }
+        
+        // Get data attributes
+        const title = this.getAttribute("data-title");
+        const date = this.getAttribute("data-date");
+        const category = this.getAttribute("data-category");
+        const author = this.getAttribute("data-author");
+        const content = this.getAttribute("data-content");
+        
+        // Populate modal with content
+        modalTitle.textContent = title;
+        modalDate.textContent = date;
+        modalCategory.textContent = category;
+        modalAuthor.textContent = author;
+        
+        // Set HTML content instead of text content to render links
+        modalContent.innerHTML = content;
+        
+        // Show modal
+        modal.classList.remove("hidden");
+        
+        // Prevent body scrolling when modal is open
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    // Close modal when clicking the close button
+    closeModal.addEventListener("click", function() {
+      modal.classList.add("hidden");
+      document.body.style.overflow = "auto";
+    });
+
+    // Close modal when clicking outside the modal content
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
+    });
+
+    // Add click event listener to the load more button
+    loadMoreButton.addEventListener("click", function () {
+      // Get all posts that match the current filter
+      const currentFilter = document
+        .querySelector(".active")
+        .getAttribute("data-category");
+      let matchingPosts = Array.from(blogPosts);
+
+      if (currentFilter !== "all") {
+        matchingPosts = Array.from(blogPosts).filter(
+          (post) => post.getAttribute("data-category") === currentFilter
+        );
+      }
+
+      // Show all hidden posts that match the current filter
+      matchingPosts.forEach((post) => {
+        if (post.classList.contains("hidden")) {
+          post.classList.remove("hidden");
+        }
+      });
+
+      // Hide the load more button since all posts are now visible
+      loadMoreButton.style.display = "none";
+    });
+
+    // Add click event listeners to all filter buttons
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const category = this.getAttribute("data-category");
+
+        // Remove 'active' class from all buttons
+        filterButtons.forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        // Add 'active' class to the clicked button
+        this.classList.add("active");
+
+        // Reset the visible count
+        visibleCount = 4;
+
+        // Filter posts
+        let visiblePosts = 0;
+
+        // Show the load more button again
+        loadMoreButton.style.display = "block";
+
+        if (category === "all") {
+          // Show only the first 4 posts
+          blogPosts.forEach((post, index) => {
+            if (index < 4) {
+              post.classList.remove("hidden");
+              visiblePosts++;
+            } else {
+              post.classList.add("hidden");
+            }
+          });
+
+          // Hide load more if there are 4 or fewer total posts
+          if (totalPosts <= 4) {
+            loadMoreButton.style.display = "none";
+          }
+        } else {
+          // Count matching posts for the selected category
+          const matchingPosts = Array.from(blogPosts).filter(
+            (post) => post.getAttribute("data-category") === category
+          );
+
+          // Show only the first 4 matching posts
+          blogPosts.forEach((post) => {
+            if (post.getAttribute("data-category") === category) {
+              if (visiblePosts < 4) {
+                post.classList.remove("hidden");
+                visiblePosts++;
+              } else {
+                post.classList.add("hidden");
+              }
+            } else {
+              post.classList.add("hidden");
+            }
+          });
+
+          // Hide load more if there are 4 or fewer matching posts
+          if (matchingPosts.length <= 4) {
+            loadMoreButton.style.display = "none";
+          }
+        }
+      });
+    });
+
+    // Initialize with all button active and only first 4 posts visible
+    if (allButton) {
+      allButton.classList.add("active");
+
+      // Hide posts beyond the first 4
+      blogPosts.forEach((post, index) => {
+        if (index >= 4) {
+          post.classList.add("hidden");
+        }
+      });
+
+      // Hide load more if there are 4 or fewer total posts
+      if (totalPosts <= 4) {
+        loadMoreButton.style.display = "none";
+      }
+    }
+  });
+</script>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .category-tag {
+    font-weight: 500;
+    color: #d80032;
+  }
+
+  /* Styling for active filter button */
+  .active {
+    font-weight: bold;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+
+  /* Apply custom theme colors */
+  :root {
+    --primary-light: #f78ca2;
+    --primary: #d80032;
+    --primary-dark: #3d0c11;
+  }
+  
+  /* Make blog articles clickable */
+  #blog-grid article {
+    cursor: pointer;
+  }
+  
+  /* Style for links in blog content */
+  .blog-excerpt a,
+  #modal-content a {
+    color: #D80032;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .blog-excerpt a:hover,
+  #modal-content a:hover {
+    text-decoration: underline;
+  }
+</style>

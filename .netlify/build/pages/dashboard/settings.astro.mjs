@@ -1,0 +1,30 @@
+import { e as createComponent, i as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_CijfHuAN.mjs';
+import 'kleur/colors';
+import { $ as $$DashboardLayout } from '../../chunks/DashboardLayout_DRKAV-Ay.mjs';
+export { renderers } from '../../renderers.mjs';
+
+const $$Settings = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "DashboardLayout", $$DashboardLayout, { "title": "Settings", "currentPage": "settings" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="bg-white rounded-lg shadow-sm p-6 mb-6"> <h2 class="text-lg font-semibold mb-4">Account Settings</h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <div> <h3 class="text-md font-medium mb-2">Profile Information</h3> <div class="space-y-4"> <div> <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label> <input type="text" value="Jane Smith" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"> </div> <div> <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label> <input type="email" value="jane@example.com" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"> </div> <div> <label class="block text-sm font-medium text-gray-700 mb-1">Company</label> <input type="text" value="Acme Marketing" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"> </div> </div> </div> <div> <h3 class="text-md font-medium mb-2">API Connections</h3> <div class="space-y-4"> <div> <div class="flex justify-between items-center mb-1"> <label class="text-sm font-medium text-gray-700">Google Ads</label> <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Connected</span> </div> <button class="text-sm text-blue-600 hover:text-blue-800">Disconnect</button> </div> <div> <div class="flex justify-between items-center mb-1"> <label class="text-sm font-medium text-gray-700">Facebook Ads</label> <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Connected</span> </div> <button class="text-sm text-blue-600 hover:text-blue-800">Disconnect</button> </div> <div> <div class="flex justify-between items-center mb-1"> <label class="text-sm font-medium text-gray-700">LinkedIn Ads</label> <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Not Connected</span> </div> <button class="text-sm text-blue-600 hover:text-blue-800">Connect</button> </div> </div> </div> </div> </div> <div class="bg-white rounded-lg shadow-sm p-6 mb-6"> <h2 class="text-lg font-semibold mb-4">Preferences</h2> <div class="space-y-4"> <div class="flex items-center justify-between"> <div> <h3 class="text-md font-medium">Email Notifications</h3> <p class="text-sm text-gray-500">
+Receive email updates about campaign performance
+</p> </div> <label class="relative inline-flex items-center cursor-pointer"> <input type="checkbox" value="" class="sr-only peer" checked> <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div> </label> </div> <div class="flex items-center justify-between"> <div> <h3 class="text-md font-medium">Dark Mode</h3> <p class="text-sm text-gray-500">
+Switch between light and dark theme
+</p> </div> <label class="relative inline-flex items-center cursor-pointer"> <input type="checkbox" value="" class="sr-only peer"> <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div> </label> </div> <div class="flex items-center justify-between"> <div> <h3 class="text-md font-medium">AI Suggestions</h3> <p class="text-sm text-gray-500">
+Show AI-powered marketing suggestions
+</p> </div> <label class="relative inline-flex items-center cursor-pointer"> <input type="checkbox" value="" class="sr-only peer" checked> <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div> </label> </div> </div> </div> <div class="flex justify-end"> <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+Save Changes
+</button> </div> ` })}`;
+}, "D:/try/astro/src/pages/dashboard/settings.astro", void 0);
+
+const $$file = "D:/try/astro/src/pages/dashboard/settings.astro";
+const $$url = "/dashboard/settings";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Settings,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
