@@ -34,7 +34,7 @@ export default function Features() {
     {
       title: "Social Media Management",
       description:
-        "EAutomate posts, track trends, and engage your audience in real-time with AI precision.",
+        "Automate posts, track trends, and engage your audience in real-time with AI precision.",
       icon: <img src={ser1.src} alt="" />,
       iconBg: "bg-ser1",
     },

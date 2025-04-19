@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import heroimage from "../assets/heroimage.svg";
 
 export default function Hero() {
-  const words = ["Solutions", "Services"];
+  const words = ["Solutions", "Campaigns"];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const currentWord = words[currentIndex];
@@ -208,7 +208,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-40 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight gradient-text">
-              Transform Your Business with Our{" "}
+              All-in-One AI Marketing Platform for{" "}
               <span className="word-animation-wrapper">
                 <span className="word-animation-container">
                   <span
@@ -222,8 +222,8 @@ export default function Hero() {
               </span>
             </h1>
             <p className="mt-4 text-lg text-red-100">
-              Boost productivity, streamline operations, and drive growth with
-              our cutting-edge platform.
+              AI simplifies campaigns, targets customers, and automates tasks
+              for amazing ROI with TodayMarketings.
             </p>
             <div className="mt-8">
               {/* Integrated HomeButton */}

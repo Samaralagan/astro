@@ -94,8 +94,8 @@ export default function Partners() {
                   : "opacity-0 translate-y-4"
               }`}
             >
-              Help your customers double their inbound conversion rates and grow
-              your business with new revenue streams.
+              We team up with trusted partners who share our vision to deliver
+              smarter, AI-driven marketing success.
             </p>
           </div>
 

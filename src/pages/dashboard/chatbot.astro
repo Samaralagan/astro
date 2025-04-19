@@ -1,92 +1,121 @@
 ---
-// src/pages/dashboard/chatbot.astro
 import DashboardLayout from "../../layouts/DashboardLayout.astro";
 ---
 
-<DashboardLayout title="Chatbot" currentPage="chatbot">
+<DashboardLayout title="Chatbot Automation" currentPage="chatbot">
   <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-    <h2 class="text-lg font-semibold mb-4">Chatbot Configuration</h2>
+    <h2 class="text-xl font-semibold mb-4 text-[#3D0C11]">
+      Chatbot Automation
+    </h2>
+
+    <div class="bg-[#F9DEC9] p-4 rounded-lg mb-6">
+      <p class="text-[#3D0C11]">
+        <span class="font-medium">Status:</span>
+        <span class="text-[#D80032] font-semibold">Active</span> - Your AI chatbot
+        is currently providing 24/7 customer support
+      </p>
+    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <h3 class="text-md font-medium mb-2">Chat Settings</h3>
+        <h3 class="text-md font-medium mb-2 text-[#D80032]">
+          Chatbot Configuration
+        </h3>
         <div class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"
+            <label class="block text-sm font-medium text-[#3D0C11] mb-1"
               >Chatbot Name</label
             >
             <input
               type="text"
-              value="Marketing Assistant"
-              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value="Customer Support Assistant"
+              class="w-full p-2 border border-[#F78CA2] rounded focus:outline-none focus:ring-2 focus:ring-[#D80032] focus:border-transparent"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"
+            <label class="block text-sm font-medium text-[#3D0C11] mb-1"
               >Welcome Message</label
             >
             <textarea
-              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              class="w-full p-2 border border-[#F78CA2] rounded focus:outline-none focus:ring-2 focus:ring-[#D80032] focus:border-transparent"
               rows="3"
-              >Hi there! I'm your marketing assistant. How can I help you today?</textarea
+              >Hello! I'm your 24/7 customer support assistant. How can I help
+              you today?</textarea
             >
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"
-              >Chat Appearance</label
+            <label class="block text-sm font-medium text-[#3D0C11] mb-1"
+              >Offline Message</label
             >
-            <select
-              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            <textarea
+              class="w-full p-2 border border-[#F78CA2] rounded focus:outline-none focus:ring-2 focus:ring-[#D80032] focus:border-transparent"
+              rows="3"
+              >Thanks for your message. Our AI assistant has collected your
+              inquiry and a human agent will respond during business hours.</textarea
             >
-              <option>Light Theme</option>
-              <option>Dark Theme</option>
-              <option>Brand Colors</option>
-            </select>
           </div>
         </div>
       </div>
 
       <div>
-        <h3 class="text-md font-medium mb-2">AI Settings</h3>
+        <h3 class="text-md font-medium mb-2 text-[#D80032]">
+          AI Intelligence Settings
+        </h3>
         <div class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"
+            <label class="block text-sm font-medium text-[#3D0C11] mb-1"
               >Knowledge Base</label
             >
-            <select
-              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option>Marketing Knowledge</option>
-              <option>Product Information</option>
-              <option>Custom Knowledge</option>
-            </select>
+            <div class="flex items-center gap-2">
+              <select
+                class="w-full p-2 border border-[#F78CA2] rounded focus:outline-none focus:ring-2 focus:ring-[#D80032] focus:border-transparent"
+              >
+                <option>Product Information</option>
+                <option>Support Documentation</option>
+                <option>FAQs</option>
+                <option>Pricing</option>
+                <option>All Knowledge Bases</option>
+              </select>
+              <button
+                class="bg-[#F9DEC9] text-[#3D0C11] p-2 rounded hover:bg-[#F78CA2] transition-colors"
+              >
+                +
+              </button>
+            </div>
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"
+            <label class="block text-sm font-medium text-[#3D0C11] mb-1"
               >Response Tone</label
             >
             <select
-              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              class="w-full p-2 border border-[#F78CA2] rounded focus:outline-none focus:ring-2 focus:ring-[#D80032] focus:border-transparent"
             >
               <option>Professional</option>
               <option>Friendly</option>
+              <option>Technical</option>
               <option>Casual</option>
             </select>
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"
-              >AI Response Length</label
+            <label class="block text-sm font-medium text-[#3D0C11] mb-1"
+              >Human Handoff Threshold</label
             >
             <div class="flex items-center">
-              <input type="range" min="1" max="5" value="3" class="w-full" />
+              <input
+                type="range"
+                min="1"
+                max="5"
+                value="3"
+                class="w-full accent-[#D80032]"
+              />
             </div>
-            <div class="flex justify-between text-xs text-gray-500 mt-1">
-              <span>Brief</span>
-              <span>Detailed</span>
+            <div class="flex justify-between text-xs text-[#3D0C11] mt-1">
+              <span>Low Complexity</span>
+              <span>High Complexity</span>
             </div>
           </div>
         </div>
@@ -94,9 +123,171 @@ import DashboardLayout from "../../layouts/DashboardLayout.astro";
     </div>
   </div>
 
-  <div class="flex justify-end">
+  <!-- Automation Settings -->
+  <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+    <h2 class="text-lg font-semibold mb-4 text-[#3D0C11]">
+      Automation Settings
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h3 class="text-md font-medium mb-2 text-[#D80032]">
+          Response Automation
+        </h3>
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="auto-response"
+              checked
+              class="mr-2 accent-[#D80032]"
+            />
+            <label for="auto-response" class="text-sm text-[#3D0C11]"
+              >Enable automated responses</label
+            >
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="after-hours"
+              checked
+              class="mr-2 accent-[#D80032]"
+            />
+            <label for="after-hours" class="text-sm text-[#3D0C11]"
+              >24/7 support (after hours)</label
+            >
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="learning"
+              checked
+              class="mr-2 accent-[#D80032]"
+            />
+            <label for="learning" class="text-sm text-[#3D0C11]"
+              >Continuous learning from interactions</label
+            >
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-[#3D0C11] mb-1"
+              >Response Time</label
+            >
+            <select
+              class="w-full p-2 border border-[#F78CA2] rounded focus:outline-none focus:ring-2 focus:ring-[#D80032] focus:border-transparent"
+            >
+              <option>Instant (0-2 seconds)</option>
+              <option>Quick (3-5 seconds)</option>
+              <option>Natural (5-8 seconds)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-md font-medium mb-2 text-[#D80032]">
+          Customer Query Management
+        </h3>
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="auto-categorize"
+              checked
+              class="mr-2 accent-[#D80032]"
+            />
+            <label for="auto-categorize" class="text-sm text-[#3D0C11]"
+              >Auto-categorize inquiries</label
+            >
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="sentiment"
+              checked
+              class="mr-2 accent-[#D80032]"
+            />
+            <label for="sentiment" class="text-sm text-[#3D0C11]"
+              >Sentiment analysis</label
+            >
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="priority"
+              checked
+              class="mr-2 accent-[#D80032]"
+            />
+            <label for="priority" class="text-sm text-[#3D0C11]"
+              >Auto-prioritize urgent issues</label
+            >
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-[#3D0C11] mb-1"
+              >Data Collection</label
+            >
+            <select
+              class="w-full p-2 border border-[#F78CA2] rounded focus:outline-none focus:ring-2 focus:ring-[#D80032] focus:border-transparent"
+            >
+              <option>Essential Only</option>
+              <option>Comprehensive</option>
+              <option>Minimal</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analytics Preview -->
+  <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-semibold text-[#3D0C11]">Performance Overview</h2>
+      <a href="#" class="text-[#D80032] hover:text-[#3D0C11] text-sm"
+        >View Detailed Analytics →</a
+      >
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-[#F9DEC9] p-4 rounded-lg">
+        <p class="text-sm text-[#3D0C11]">Resolution Rate</p>
+        <p class="text-2xl font-bold text-[#D80032]">87%</p>
+        <p class="text-xs text-[#3D0C11]">+5% from last week</p>
+      </div>
+
+      <div class="bg-[#F9DEC9] p-4 rounded-lg">
+        <p class="text-sm text-[#3D0C11]">Average Response Time</p>
+        <p class="text-2xl font-bold text-[#D80032]">2.4s</p>
+        <p class="text-xs text-[#3D0C11]">-0.3s from last week</p>
+      </div>
+
+      <div class="bg-[#F9DEC9] p-4 rounded-lg">
+        <p class="text-sm text-[#3D0C11]">Customer Satisfaction</p>
+        <p class="text-2xl font-bold text-[#D80032]">4.8/5</p>
+        <p class="text-xs text-[#3D0C11]">+0.2 from last week</p>
+      </div>
+
+      <div class="bg-[#F9DEC9] p-4 rounded-lg">
+        <p class="text-sm text-[#3D0C11]">Interactions Today</p>
+        <p class="text-2xl font-bold text-[#D80032]">248</p>
+        <p class="text-xs text-[#3D0C11]">+15% from yesterday</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-end space-x-3">
     <button
-      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+      class="border border-[#D80032] text-[#D80032] px-4 py-2 rounded hover:bg-[#F9DEC9] transition-colors"
+    >
+      Test Chatbot
+    </button>
+    <button
+      class="bg-[#D80032] text-white px-4 py-2 rounded hover:bg-[#3D0C11] transition-colors"
     >
       Save Changes
     </button>

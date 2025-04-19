@@ -234,7 +234,7 @@ export default function EmailMarketingDashboard() {
       <div className="flex justify-end">
         <button
           onClick={handleCreateCampaign}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+          className="bg-maroondark text-white px-4 py-2 rounded hover:bg-maroondark transition-colors"
         >
           Create New Campaign
         </button>

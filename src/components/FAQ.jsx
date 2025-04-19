@@ -3,34 +3,34 @@ import { useState, useEffect, useRef } from "react";
 export default function FAQ() {
   const faqs = [
     {
-      question: "How do I get started?",
+      question: "How does it help my business?",
       answer:
-        "Getting started is easy! Simply sign up for an account, complete your profile, and follow the onboarding process. Our intuitive setup wizard will guide you through the initial configuration steps.",
+        "Our AI-powered marketing agent uses advanced algorithms to automate tasks like social media management, email marketing, customer support, and competitor analysis saving time and boosting results with data-driven decisions.",
     },
     {
-      question: "Is there a free trial?",
+      question: "Can I customize campaigns based on my business goals?",
       answer:
-        "Yes, we offer a 14-day free trial on all our plans. No credit card is required to start your trial. You can upgrade to a paid plan at any time during or after your trial.",
+        "Absolutely! You can define specific objectives like increasing sales, engagement, or leads, and the platform will adapt strategies, content, and analytics to meet your goals.",
     },
     {
-      question: "Can I cancel my subscription?",
+      question: "How does social media automation work?",
       answer:
-        "Yes, you can cancel your subscription at any time. If you cancel, you'll continue to have access to the service until the end of your current billing period.",
+        "Our platform schedules and publishes content, tracks real-time trends, and engages your audience intelligently helping you stay active and relevant across all platforms without manual effort.",
     },
     {
-      question: "Do you offer support?",
+      question: "Will the AI handle customer support too? ",
       answer:
-        "Absolutely! We provide 24/7 support via email and live chat. Our dedicated support team is always ready to help you with any questions or issues you might have.",
+        "Yes, our built-in AI chatbot offers 24/7 support, answers common queries, and guides visitors enhancing user experience while freeing up your team.",
     },
     {
-      question: "Is my data secure?",
+      question: "How does the platform help with email marketing?",
       answer:
-        "Security is our top priority. We use industry-standard encryption and security protocols to protect your data. All information is stored on secure servers with regular backups.",
+        "We use AI to analyze user behavior and segment your audience, sending highly personalized emails that improve open rates, engagement, and conversions.",
     },
     {
-      question: "Can I integrate with other tools?",
+      question: "Can I monitor what my competitors are doing?",
       answer:
-        "Yes, our platform integrates with many popular tools and services. We have built-in integrations for CRM, marketing, analytics, and project management tools to streamline your workflow.",
+        "Definitely. Our competitor analysis tool tracks your rivals campaigns, social presence, and market strategies so you can identify gaps, trends, and new opportunities in real time.",
     },
   ];
 

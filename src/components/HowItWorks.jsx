@@ -32,17 +32,16 @@ export default function HowItWorks() {
     {
       number: "1",
       title:
-        "Gather everyone into your virtual conference using your existing meeting tool (eg. Zoom or Skype).",
+        "We start with what matters to you, Whether it’s more sales, followers, or engagement.",
     },
     {
       number: "2",
-      title:
-        "Pick a Brightful meeting game to host. No signup or download required.",
+      title: "Our platform automates, analyzes, and optimizes your campaigns.",
     },
     {
       number: "3",
       title:
-        "Share the invitation to your team and you're good to go. Enjoy the game!",
+        "Gain valuable insights, monitor performance, and watch your marketing efforts deliver real impact.",
     },
   ];
 
@@ -107,14 +106,12 @@ export default function HowItWorks() {
                 <div className="bg-white shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={how1.src}
-                      alt="Video conference screen"
+                      src={how3.src}
+                      alt="Goal-Oriented Strategy"
                       className="mx-auto"
                       style={{ width: "130px" }}
                     />
-                    <p className="mt-4 font-medium">
-                      Your video conferencing tool
-                    </p>
+                    <p className="mt-4 font-medium">Goal-Oriented Strategy</p>
                   </div>
                 </div>
               </div>
@@ -146,11 +143,13 @@ export default function HowItWorks() {
                   <div>
                     <img
                       src={how2.src}
-                      alt="Phone with game interface"
+                      alt="Smart Automation & Optimization"
                       className="mx-auto"
                       style={{ width: "130px" }}
                     />
-                    <p className="mt-4 font-medium">Brightful Meeting Games</p>
+                    <p className="mt-4 font-medium">
+                      Smart Automation & Optimization
+                    </p>
                   </div>
                 </div>
               </div>
@@ -181,13 +180,13 @@ export default function HowItWorks() {
                 <div className="bg-maroon3 shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={how3.src}
-                      alt="People collaborating"
+                      src={how1.src}
+                      alt=" Actionable Insights Dashboard"
                       className="mx-auto"
                       style={{ width: "130px" }}
                     />
                     <p className="mt-4 font-medium">
-                      Everyone's having a great time!
+                      Actionable Insights Dashboard
                     </p>
                   </div>
                 </div>
@@ -208,14 +207,12 @@ export default function HowItWorks() {
                 <div className="bg-white shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={how1.src}
-                      alt="Video conference screen"
+                      src={how3.src}
+                      alt="Goal-Oriented Strategy"
                       className="mx-auto"
                       style={{ width: "130px" }}
                     />
-                    <p className="mt-4 font-medium">
-                      Your video conferencing tool
-                    </p>
+                    <p className="mt-4 font-medium">Goal-Oriented Strategy</p>
                   </div>
                 </div>
               </div>
@@ -247,11 +244,13 @@ export default function HowItWorks() {
                   <div>
                     <img
                       src={how2.src}
-                      alt="Phone with game interface"
+                      alt="Smart Automation & Optimization"
                       className="mx-auto"
                       style={{ width: "130px" }}
                     />
-                    <p className="mt-4 font-medium">Brightful Meeting Games</p>
+                    <p className="mt-4 font-medium">
+                      Smart Automation & Optimization
+                    </p>
                   </div>
                 </div>
               </div>
@@ -282,13 +281,13 @@ export default function HowItWorks() {
                 <div className="bg-maroon3 shadow-md rounded-md p-4 w-48 h-48 flex items-center justify-center mx-auto hover:shadow-lg transition-shadow duration-300">
                   <div>
                     <img
-                      src={how3.src}
-                      alt="People collaborating"
+                      src={how1.src}
+                      alt=" Actionable Insights Dashboard"
                       className="mx-auto"
                       style={{ width: "130px" }}
                     />
                     <p className="mt-4 font-medium">
-                      Everyone's having a great time!
+                      Actionable Insights Dashboard
                     </p>
                   </div>
                 </div>
