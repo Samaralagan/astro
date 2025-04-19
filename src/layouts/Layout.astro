@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import favicon from "../assets/favicon.png";
 import ChatwootWidget from "../components/ChatwootWidget";
+import CookieConsent from "../components/CookieConsent";
 const { title = "Default Title" } = Astro.props;
 ---
 
@@ -319,5 +320,7 @@ const { title = "Default Title" } = Astro.props;
       });
     </script>
     <ChatwootWidget client:load />
+
+    <CookieConsent client:load />
   </body>
 </html>

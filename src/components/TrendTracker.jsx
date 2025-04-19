@@ -3,7 +3,8 @@ import { useState } from "react";
 export default function TrendTracker() {
   const [timeframe, setTimeframe] = useState("today");
 
-  const trends = [
+  // Data for today's trends
+  const todayTrends = [
     {
       id: 1,
       keyword: "#AIinMarketing",
@@ -34,14 +35,53 @@ export default function TrendTracker() {
     },
   ];
 
+  // Data for weekly trends (different metrics)
+  const weeklyTrends = [
+    {
+      id: 1,
+      keyword: "#AIinMarketing",
+      volume: "142.8K",
+      growth: "+85%",
+      relevance: "High",
+    },
+    {
+      id: 2,
+      keyword: "#SustainableBusiness",
+      volume: "98.2K",
+      growth: "+120%",
+      relevance: "High",
+    },
+    {
+      id: 3,
+      keyword: "Digital Transformation",
+      volume: "87.5K",
+      growth: "+31%",
+      relevance: "Medium",
+    },
+    {
+      id: 4,
+      keyword: "Customer Experience",
+      volume: "64.3K",
+      growth: "+42%",
+      relevance: "High",
+    },
+  ];
+
+  // Choose which dataset to display based on the selected timeframe
+  const trends = timeframe === "today" ? todayTrends : weeklyTrends;
+
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
+    <div className="bg-white rounded-lg shadow-md p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold">Trending Topics</h2>
-        <div className="flex bg-gray-100 rounded-lg p-1">
+        <h2 className="text-lg font-semibold text-[#3D0C11]">
+          Trending Topics
+        </h2>
+        <div className="flex bg-[#F78CA2] bg-opacity-20 rounded-lg p-1">
           <button
             className={`px-3 py-1 rounded-md text-sm ${
-              timeframe === "today" ? "bg-white shadow-sm" : "text-gray-600"
+              timeframe === "today"
+                ? "bg-white shadow-sm text-[#3D0C11]"
+                : "text-[#3D0C11]"
             }`}
             onClick={() => setTimeframe("today")}
           >
@@ -49,7 +89,9 @@ export default function TrendTracker() {
           </button>
           <button
             className={`px-3 py-1 rounded-md text-sm ${
-              timeframe === "week" ? "bg-white shadow-sm" : "text-gray-600"
+              timeframe === "week"
+                ? "bg-white shadow-sm text-[#3D0C11]"
+                : "text-[#3D0C11]"
             }`}
             onClick={() => setTimeframe("week")}
           >
@@ -62,25 +104,25 @@ export default function TrendTracker() {
         {trends.map((trend) => (
           <div
             key={trend.id}
-            className="border border-gray-100 rounded-lg p-4 hover:bg-gray-50 transition-colors"
+            className="border border-[#F78CA2] border-opacity-30 bg-white rounded-lg p-4 hover:bg-[#F9DEC9] transition-colors"
           >
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="font-medium">{trend.keyword}</h3>
-                <p className="text-sm text-gray-500 mt-1">
+                <h3 className="font-medium text-[#3D0C11]">{trend.keyword}</h3>
+                <p className="text-sm text-[#3D0C11] opacity-70 mt-1">
                   {trend.volume} mentions
                 </p>
               </div>
               <div className="text-right">
-                <span className="text-green-500 font-medium">
+                <span className="text-[#D80032] font-medium">
                   {trend.growth}
                 </span>
                 <p className="text-xs mt-1">
                   <span
                     className={`px-2 py-0.5 rounded-full ${
                       trend.relevance === "High"
-                        ? "bg-green-100 text-green-700"
-                        : "bg-yellow-100 text-yellow-700"
+                        ? "bg-[#D80032] bg-opacity-10 text-[#D80032]"
+                        : "bg-[#F78CA2] bg-opacity-30 text-[#3D0C11]"
                     }`}
                   >
                     {trend.relevance} Relevance
@@ -92,7 +134,7 @@ export default function TrendTracker() {
         ))}
       </div>
 
-      <button className="mt-4 text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+      <button className="mt-4 text-[#D80032] hover:text-[#3D0C11] text-sm font-medium flex items-center">
         Explore all trends
         <svg
           xmlns="http://www.w3.org/2000/svg"

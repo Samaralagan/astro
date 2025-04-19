@@ -38,14 +38,29 @@ export default function ScheduledPosts() {
     },
   ];
 
+  // Sample calendar data structure
+  const calendarDays = [
+    { day: "Mon", date: 15, posts: 1 },
+    { day: "Tue", date: 16, posts: 0 },
+    { day: "Wed", date: 17, posts: 1 },
+    { day: "Thu", date: 18, posts: 0 },
+    { day: "Fri", date: 19, posts: 1 },
+    { day: "Sat", date: 20, posts: 1 },
+    { day: "Sun", date: 21, posts: 1 },
+  ];
+
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
+    <div className="bg-white rounded-lg shadow-md p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold">Scheduled Posts</h2>
-        <div className="flex bg-gray-100 rounded-lg p-1">
+        <h2 className="text-lg font-semibold text-[#3D0C11]">
+          Scheduled Posts
+        </h2>
+        <div className="flex bg-[#F78CA2] bg-opacity-20 rounded-lg p-1">
           <button
             className={`px-3 py-1 rounded-md ${
-              view === "list" ? "bg-white shadow-sm" : "text-gray-600"
+              view === "list"
+                ? "bg-white shadow-sm text-[#3D0C11]"
+                : "text-[#3D0C11]"
             }`}
             onClick={() => setView("list")}
           >
@@ -66,7 +81,9 @@ export default function ScheduledPosts() {
           </button>
           <button
             className={`px-3 py-1 rounded-md ${
-              view === "calendar" ? "bg-white shadow-sm" : "text-gray-600"
+              view === "calendar"
+                ? "bg-white shadow-sm text-[#3D0C11]"
+                : "text-[#3D0C11]"
             }`}
             onClick={() => setView("calendar")}
           >
@@ -88,42 +105,94 @@ export default function ScheduledPosts() {
         </div>
       </div>
 
-      <div className="space-y-3">
-        {scheduledPosts.map((post) => (
-          <div
-            key={post.id}
-            className="border border-gray-100 rounded-lg p-4 hover:bg-gray-50 transition-colors"
-          >
-            <div className="flex justify-between">
-              <div>
-                <div className="flex items-center">
-                  <h3 className="font-medium">{post.title}</h3>
-                  {post.aiEnhanced && (
-                    <span className="ml-2 bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full">
-                      AI Enhanced
-                    </span>
-                  )}
+      {view === "list" ? (
+        // List View
+        <div className="space-y-3">
+          {scheduledPosts.map((post) => (
+            <div
+              key={post.id}
+              className="border border-[#F78CA2] border-opacity-30 bg-white rounded-lg p-4 hover:bg-[#F9DEC9] transition-colors"
+            >
+              <div className="flex justify-between">
+                <div>
+                  <div className="flex items-center">
+                    <h3 className="font-medium text-[#3D0C11]">{post.title}</h3>
+                    {post.aiEnhanced && (
+                      <span className="ml-2 bg-[#F78CA2] bg-opacity-20 text-[#D80032] text-xs px-2 py-0.5 rounded-full">
+                        AI Enhanced
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-[#3D0C11] opacity-70 mt-1">
+                    {post.platform}
+                  </p>
                 </div>
-                <p className="text-sm text-gray-500 mt-1">{post.platform}</p>
-              </div>
-              <div className="text-right">
-                <p className="text-sm font-medium">{post.date}</p>
-                <span
-                  className={`inline-block mt-1 text-xs px-2 py-0.5 rounded-full ${
-                    post.status === "scheduled"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-gray-100 text-gray-700"
-                  }`}
-                >
-                  {post.status === "scheduled" ? "Scheduled" : "Draft"}
-                </span>
+                <div className="text-right">
+                  <p className="text-sm font-medium text-[#3D0C11]">
+                    {post.date}
+                  </p>
+                  <span
+                    className={`inline-block mt-1 text-xs px-2 py-0.5 rounded-full ${
+                      post.status === "scheduled"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-[#F78CA2] bg-opacity-30 text-[#3D0C11]"
+                    }`}
+                  >
+                    {post.status === "scheduled" ? "Scheduled" : "Draft"}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        // Calendar View
+        <div className="bg-white rounded-lg border border-[#F78CA2] border-opacity-30 overflow-hidden">
+          <div className="grid grid-cols-7 gap-0">
+            {calendarDays.map((day, index) => (
+              <div
+                key={index}
+                className="border-r border-b border-[#F78CA2] border-opacity-20 p-3 last:border-r-0"
+              >
+                <p className="text-xs text-[#3D0C11] opacity-70 text-center">
+                  {day.day}
+                </p>
+                <p className="text-center font-medium text-[#3D0C11] my-1">
+                  {day.date}
+                </p>
 
-      <button className="mt-4 text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                {day.posts > 0 ? (
+                  <div
+                    className="bg-[#D80032] rounded-full h-2 w-2 mx-auto"
+                    title={`${day.posts} post(s)`}
+                  ></div>
+                ) : (
+                  <div className="h-2"></div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="p-4 border-t border-[#F78CA2] border-opacity-20">
+            <h3 className="font-medium text-[#3D0C11] mb-2">Upcoming Posts</h3>
+            <div className="space-y-2">
+              {scheduledPosts.slice(0, 2).map((post) => (
+                <div
+                  key={post.id}
+                  className="flex justify-between items-center py-1"
+                >
+                  <p className="text-sm text-[#3D0C11]">{post.title}</p>
+                  <p className="text-xs text-[#3D0C11] opacity-70">
+                    {post.date}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <button className="mt-4 text-[#D80032] hover:text-[#3D0C11] text-sm font-medium flex items-center">
         View all scheduled posts
         <svg
           xmlns="http://www.w3.org/2000/svg"

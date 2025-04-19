@@ -15,12 +15,20 @@ export default function Partners() {
 
   // Partner data with image imports
   const partners = [
-    { img: par1.src, link: "https://partner1.com", name: "Partner 1" },
-    { img: par2.src, link: "https://partner2.com", name: "Partner 2" },
-    { img: par3.src, link: "https://partner3.com", name: "Partner 3" },
-    { img: par4.src, link: "https://partner4.com", name: "Partner 4" },
-    { img: par5.src, link: "https://partner5.com", name: "Partner 5" },
-    { img: par6.src, link: "https://partner6.com", name: "Partner 6" },
+    { img: par1.src, link: "https://zapier.com/", name: "Zapier" },
+    {
+      img: par2.src,
+      link: "https://www.activecampaign.com/",
+      name: "Active campaign",
+    },
+    { img: par3.src, link: "https://www.chatwoot.com/", name: "chat woot" },
+    { img: par4.src, link: "https://www.semrush.com/", name: "semrush" },
+    { img: par5.src, link: "https://www.canva.com/", name: "canva" },
+    {
+      img: par6.src,
+      link: "https://openai.com/index/chatgpt/",
+      name: "Chatgpt",
+    },
   ];
 
   // Increased orbit radius to create more space between logos
