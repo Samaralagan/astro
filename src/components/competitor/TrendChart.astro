@@ -1,0 +1,91 @@
+---
+// We'll use client-side JavaScript to render the chart
+---
+
+<div class="relative">
+  <div id="market-trend-chart" class="h-64"></div>
+  <div class="absolute top-0 right-0">
+    <select
+      id="time-period"
+      class="text-sm border border-gray-300 rounded p-1 bg-white"
+    >
+      <option value="7d">Last 7 days</option>
+      <option value="30d" selected>Last 30 days</option>
+      <option value="90d">Last 90 days</option>
+      <option value="1y">Last year</option>
+    </select>
+  </div>
+</div>
+
+<script>
+  // This script would normally use a library like Chart.js
+  // Here's a placeholder that simulates the functionality
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const chartContainer = document.getElementById("market-trend-chart");
+
+    if (chartContainer) {
+      renderChartPlaceholder(chartContainer);
+    }
+
+    function renderChartPlaceholder(container) {
+      container.innerHTML = `
+          <div class="flex items-end h-full w-full pt-5 pb-5 px-2">
+            <div class="relative h-full w-full flex items-end justify-between">
+              <!-- Simulated chart bars -->
+              <div class="w-1/12 mx-1">
+                <div class="bg-[#D80032] h-1/2 rounded-t"></div>
+                <div class="text-xs text-center mt-2 text-gray-500">Your Co.</div>
+              </div>
+              <div class="w-1/12 mx-1">
+                <div class="bg-[#F78CA2] h-3/5 rounded-t"></div>
+                <div class="text-xs text-center mt-2 text-gray-500">TechCorp</div>
+              </div>
+              <div class="w-1/12 mx-1">
+                <div class="bg-[#D80032] opacity-70 h-2/5 rounded-t"></div>
+                <div class="text-xs text-center mt-2 text-gray-500">GlobalSol</div>
+              </div>
+              <div class="w-1/12 mx-1">
+                <div class="bg-[#F78CA2] h-1/3 rounded-t"></div>
+                <div class="text-xs text-center mt-2 text-gray-500">InnoTech</div>
+              </div>
+              <div class="w-1/12 mx-1">
+                <div class="bg-[#D80032] opacity-80 h-1/4 rounded-t"></div>
+                <div class="text-xs text-center mt-2 text-gray-500">DigitalAd</div>
+              </div>
+              <div class="w-1/12 mx-1">
+                <div class="bg-[#F78CA2] h-1/5 rounded-t"></div>
+                <div class="text-xs text-center mt-2 text-gray-500">FutureSys</div>
+              </div>
+              
+              <!-- Horizontal grid lines -->
+              <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                <div class="border-t border-gray-200 w-full"></div>
+                <div class="border-t border-gray-200 w-full"></div>
+                <div class="border-t border-gray-200 w-full"></div>
+                <div class="border-t border-gray-200 w-full"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex justify-between text-xs text-gray-500 px-4 mt-2">
+            <div>25%</div>
+            <div>20%</div>
+            <div>15%</div>
+            <div>10%</div>
+            <div>5%</div>
+            <div>0%</div>
+          </div>
+        `;
+    }
+
+    // Add event listener for time period selector
+    const timePeriodSelector = document.getElementById("time-period");
+    if (timePeriodSelector) {
+      timePeriodSelector.addEventListener("change", () => {
+        // In a real app, this would fetch new data and update the chart
+        console.log("Time period changed to:", timePeriodSelector.value);
+      });
+    }
+  });
+</script>
