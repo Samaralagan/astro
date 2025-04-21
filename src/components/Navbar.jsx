@@ -545,7 +545,7 @@ export default function Navbar() {
           </ul>
           <div className="mt-5 pt-2 flex justify-center">
             <a
-              href="/dashboard"
+              href="/Signin"
               className="p-2 text-[#D80032] hover:text-[#D80032] hover:bg-[#F78CA2]/20 rounded-md transition-colors font-bold"
               title="Signin"
               onMouseEnter={() => setActiveIcon("getStarted")}
