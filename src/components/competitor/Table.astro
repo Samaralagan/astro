@@ -1,4 +1,8 @@
 ---
+import CompetitorReport from "./CompetitorReport";
+import ReportActions from "./ReportActions";
+
+// Define competitors data at the component level
 const competitors = [
   {
     name: "TechCorp Inc.",
@@ -56,6 +60,35 @@ const getScoreColor = (score) => {
 };
 ---
 
+<script>
+  // Client-side script to handle button click
+  document.addEventListener("DOMContentLoaded", () => {
+    const analysisButton = document.getElementById("runAnalysisBtn");
+    const reportContainer = document.getElementById("reportContainer");
+    const actionsContainer = document.getElementById("reportActionsContainer");
+
+    if (analysisButton) {
+      analysisButton.addEventListener("click", () => {
+        // Toggle report visibility
+        if (reportContainer && actionsContainer) {
+          if (reportContainer.classList.contains("hidden")) {
+            reportContainer.classList.remove("hidden");
+            actionsContainer.classList.remove("hidden");
+            analysisButton.querySelector("span").textContent =
+              "Hide AI Analysis";
+          } else {
+            reportContainer.classList.add("hidden");
+            actionsContainer.classList.add("hidden");
+            analysisButton.querySelector("span").textContent =
+              "Run AI Analysis";
+          }
+        }
+      });
+    }
+  });
+</script>
+
+{/* Component Markup */}
 <div class="overflow-x-auto">
   <table class="min-w-full bg-white">
     <thead class="bg-[#F9DEC9] text-[#3D0C11]">
@@ -97,6 +130,7 @@ const getScoreColor = (score) => {
 
 <div class="mt-4">
   <button
+    id="runAnalysisBtn"
     class="text-[#D80032] hover:text-[#3D0C11] font-medium flex items-center"
   >
     <span>Run AI Analysis</span>
@@ -115,4 +149,14 @@ const getScoreColor = (score) => {
       ></path>
     </svg>
   </button>
+</div>
+
+{/* AI Report Container - Hidden by default */}
+<div id="reportContainer" class="mt-6 hidden">
+  <CompetitorReport client:load />
+</div>
+
+{/* Report Actions - Hidden by default */}
+<div id="reportActionsContainer" class="hidden">
+  <ReportActions client:load />
 </div>

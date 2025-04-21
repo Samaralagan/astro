@@ -16,18 +16,38 @@ export default function CreatePostModal() {
   const [currentStep, setCurrentStep] = useState(1); // 1: compose, 2: schedule, 3: platforms
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [suggestedFormattedTime, setSuggestedFormattedTime] = useState("");
 
-  // Initialize with current date/time + 1 hour
+  // Initialize with current date/time + 1 hour and set suggested time
   useEffect(() => {
+    // Set initial scheduled time (current time + 1 hour)
     const now = new Date();
     now.setHours(now.getHours() + 1);
     now.setMinutes(0);
-
     const formattedDateTime = now.toISOString().slice(0, 16);
     setScheduledTime(formattedDateTime);
 
-    // Set suggested optimal time based on audience engagement data
-    setSuggestedTime("2023-09-27T14:00"); // Wednesday at 2PM (example)
+    // Set suggested optimal time as tomorrow at 2PM (exactly 14:00)
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(14);
+    tomorrow.setMinutes(0);
+    tomorrow.setSeconds(0);
+    tomorrow.setMilliseconds(0);
+
+    // Create ISO string but ensure time is exactly 14:00 (2PM)
+    // First create date part in YYYY-MM-DD format
+    const year = tomorrow.getFullYear();
+    const month = String(tomorrow.getMonth() + 1).padStart(2, "0");
+    const day = String(tomorrow.getDate()).padStart(2, "0");
+
+    // Create time part with fixed 14:00 (2PM)
+    const formattedSuggestedTime = `${year}-${month}-${day}T14:00`;
+    setSuggestedTime(formattedSuggestedTime);
+
+    // Format for display in the UI
+    const displayDay = tomorrow.toLocaleString("en-US", { weekday: "long" });
+    setSuggestedFormattedTime(`${displayDay} at 2:00 PM`);
 
     // Listen for open modal events
     document.addEventListener("openCreatePostModal", handleOpenModal);
@@ -58,7 +78,7 @@ export default function CreatePostModal() {
 
       // Set optimal time if that was the suggestion
       if (event.detail.suggestion.type === "Optimal Time") {
-        setScheduledTime("2023-09-27T14:00"); // Wednesday at 2PM
+        setScheduledTime(suggestedTime);
       }
     }
   };
@@ -108,9 +128,10 @@ export default function CreatePostModal() {
     setPostContent(postContent + " " + hashtag);
   };
 
-  // Use the suggested optimal time
+  // Use the suggested optimal time - ensure we use the exact same datetime string
   const useOptimalTime = () => {
     setScheduledTime(suggestedTime);
+    console.log("Setting scheduled time to:", suggestedTime);
   };
 
   // Navigate to next step
@@ -150,7 +171,10 @@ export default function CreatePostModal() {
       Object.values(selectedPlatforms).filter(Boolean).length;
     const platformText = platformCount === 1 ? "platform" : "platforms";
 
-    const formattedDate = new Date(scheduledTime).toLocaleString("en-US", {
+    // Parse the scheduled date for display
+    const scheduledDate = new Date(scheduledTime);
+
+    const formattedDate = scheduledDate.toLocaleString("en-US", {
       weekday: "long",
       month: "short",
       day: "numeric",
@@ -329,7 +353,7 @@ export default function CreatePostModal() {
                     AI-Recommended Time
                   </p>
                   <p className="text-sm text-[#3D0C11] opacity-80">
-                    Wednesday at 2:00 PM
+                    {suggestedFormattedTime}
                   </p>
                   <p className="text-xs text-[#3D0C11] opacity-60 mt-1">
                     Your audience is most active during this time
