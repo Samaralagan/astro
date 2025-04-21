@@ -143,7 +143,7 @@ export default function CampaignModal({
           {isEditable && (
             <button
               onClick={onSave}
-              className="px-4 py-2 bg-maroondark text-white rounded hover:bg-maroondark"
+              className="px-4 py-2 bg-[#D80032] text-white rounded hover:bg-maroondark"
             >
               Save Changes
             </button>

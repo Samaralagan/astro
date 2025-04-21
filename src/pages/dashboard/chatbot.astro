@@ -101,15 +101,6 @@ const handleTestChatbot = () => {
   <!-- Analytics Preview -->
   <AnalyticsPreview stats={analyticsData} client:load />
 
-  <div class="flex justify-end space-x-3">
-    <Button variant="secondary" onClick={handleTestChatbot} client:load>
-      Test Chatbot
-    </Button>
-    <Button variant="primary" onClick={handleSaveChanges} client:load>
-      Save Changes
-    </Button>
-  </div>
-
   <script>
     // Client-side JavaScript for interactive functionality
     document.addEventListener("DOMContentLoaded", () => {

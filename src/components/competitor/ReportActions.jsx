@@ -196,7 +196,7 @@ Regards,
         </button>
 
         <button
-          className="flex items-center px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md text-sm transition-colors duration-200"
+          className="flex items-center px-3 py-2 bg-red-600 hover:bg-maroondark text-white rounded-md text-sm transition-colors duration-200"
           onClick={handleShare}
         >
           <Share2 size={16} className="mr-1" />

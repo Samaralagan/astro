@@ -532,7 +532,7 @@ export default function CreatePostModal() {
               <button
                 className={`px-4 py-2 text-white rounded-md transition-colors ${
                   isCurrentStepValid()
-                    ? "bg-[#D80032] hover:bg-opacity-90"
+                    ? "bg-[#D80032] hover:bg-maroondark"
                     : "bg-[#F78CA2] cursor-not-allowed"
                 }`}
                 onClick={goToNextStep}

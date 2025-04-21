@@ -184,7 +184,7 @@ export default function AiSuggestions() {
                   </button>
                 ) : (
                   <button
-                    className="bg-[#D80032] text-white px-3 py-1 rounded-md text-sm hover:bg-opacity-90 transition-colors"
+                    className="bg-[#D80032] hover:bg-maroondark text-white px-3 py-1 rounded-md text-sm hover:bg-opacity-90 transition-colors"
                     onClick={() => handleApply(suggestion.id)}
                   >
                     Apply
