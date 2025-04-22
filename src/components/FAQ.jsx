@@ -36,6 +36,7 @@ export default function FAQ() {
 
   const [openIndex, setOpenIndex] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const sectionRef = useRef(null);
 
   const toggleFAQ = (index) => {
@@ -75,6 +76,22 @@ export default function FAQ() {
     };
   }, []);
 
+  // Auto-cycle through FAQs
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let timer;
+
+    // If no FAQ is open and the section is visible, cycle through FAQs
+    if (openIndex === null) {
+      timer = setTimeout(() => {
+        setOpenIndex(0);
+      }, 1500);
+    }
+
+    return () => clearTimeout(timer);
+  }, [isVisible, openIndex]);
+
   return (
     <section
       id="faq"
@@ -91,14 +108,27 @@ export default function FAQ() {
               : "opacity-0 -translate-y-10"
           }`}
         >
-          <h2
-            className="text-3xl font-bold text-gray-900 bg-clip-text text-transparent"
-            style={{
-              backgroundImage: "linear-gradient(to left, #3D0C11, #D80032)",
-            }}
-          >
-            Frequently Asked Questions
-          </h2>
+          {/* Enhanced heading with underline like in HowItWorks component */}
+          <div className="relative inline-block mb-8">
+            <h2
+              className="text-3xl font-bold bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(to left, #3D0C11, #D80032)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              FREQUENTLY ASKED QUESTIONS
+            </h2>
+            <span
+              className={`absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-900 to-red-500 transform transition-transform duration-700 delay-500 ${
+                isVisible ? "scale-x-100" : "scale-x-0"
+              }`}
+              style={{
+                transformOrigin: "left",
+              }}
+            ></span>
+          </div>
           <p className="mt-4 text-xl text-gray-600">
             Have questions? We're here to help.
           </p>
@@ -118,45 +148,139 @@ export default function FAQ() {
               style={{
                 transitionDelay: `${200 * index}ms`,
               }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <button
-                className="flex w-full justify-between items-center p-4 text-left focus:outline-none"
+                className={`flex w-full justify-between items-center p-4 text-left focus:outline-none transition-colors duration-300 ${
+                  hoveredIndex === index || openIndex === index
+                    ? "bg-red-50"
+                    : ""
+                }`}
                 onClick={() => toggleFAQ(index)}
               >
-                <span className="text-lg font-medium text-gray-900">
+                <span
+                  className={`text-lg font-medium transition-all duration-300 ${
+                    openIndex === index
+                      ? "text-red-600"
+                      : hoveredIndex === index
+                      ? "text-red-500"
+                      : "text-gray-900"
+                  }`}
+                >
                   {faq.question}
                 </span>
-                <svg
-                  className={`w-5 h-5 text-gray-500 transform transition-transform duration-300 ${
-                    openIndex === index ? "rotate-180" : ""
+                <div
+                  className={`relative w-8 h-8 flex items-center justify-center transition-all duration-300 ${
+                    openIndex === index || hoveredIndex === index
+                      ? "bg-red-100 rounded-full"
+                      : ""
                   }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
+                  <svg
+                    className={`w-5 h-5 transition-all duration-300 ${
+                      openIndex === index
+                        ? "text-red-600 rotate-180"
+                        : hoveredIndex === index
+                        ? "text-red-500"
+                        : "text-gray-500"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
               </button>
               <div
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                className={`transition-all duration-500 ease-in-out overflow-hidden ${
                   openIndex === index
                     ? "max-h-96 opacity-100"
                     : "max-h-0 opacity-0"
                 }`}
               >
                 <div className="px-4 pb-4">
-                  <p className="text-gray-600">{faq.answer}</p>
+                  <p className="text-gray-600 pt-2 border-t border-gray-100">
+                    {faq.answer}
+                  </p>
+
+                  {/* Adding a subtle feedback option */}
+                  <div className="mt-3 pt-2 flex justify-end items-center text-sm text-gray-400">
+                    <span>Was this helpful?</span>
+                    <button className="ml-2 p-1 hover:text-green-500 transition-colors duration-300">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                      </svg>
+                    </button>
+                    <button className="ml-2 p-1 hover:text-red-500 transition-colors duration-300">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path>
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Progress indicators similar to HowItWorks */}
+        <div className="flex justify-center mt-8">
+          {faqs.map((_, index) => (
+            <button
+              key={`indicator-${index}`}
+              className={`w-3 h-3 rounded-full mx-1 transition-all duration-300 ${
+                openIndex === index
+                  ? "bg-red-600 w-8"
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+              onClick={() => toggleFAQ(index)}
+              aria-label={`FAQ ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
+
+      {/* Adding subtle animations */}
+      <style jsx>{`
+        @keyframes pulse {
+          0%,
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.1);
+            opacity: 0.8;
+          }
+        }
+      `}</style>
     </section>
   );
 }
