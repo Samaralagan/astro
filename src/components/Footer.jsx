@@ -353,19 +353,19 @@ export default function Footer() {
             <div className="flex items-center mb-3">
               <div className="mr-2">{getIcon("mail")}</div>
               <a
-                href="mailto:hi@avo.app"
+                href="mailto:info@todaymarketings.com"
                 className="text-gray-300 hover:text-white transition duration-150"
               >
-                hi@avo.app
+                info@todaymarketings.com
               </a>
             </div>
             <div className="flex items-center mb-3">
               <div className="mr-2">{getIcon("phone")}</div>
               <a
-                href="tel:+1234567890"
+                href="tel:0263111913"
                 className="text-gray-300 hover:text-white transition duration-150"
               >
-                +1 (234) 567-890
+                0263111913
               </a>
             </div>
           </div>

@@ -17,6 +17,20 @@ import Layout from "../layouts/Layout.astro";
             </p>
           </div>
 
+          <!-- Demo Credentials Notice -->
+          <div
+            class="mb-6 p-3 bg-[#F9DEC9]/50 border border-[#D80032]/30 rounded-lg text-center"
+          >
+            <p class="text-sm font-medium text-[#3D0C11]">Demo Credentials:</p>
+            <p class="text-sm text-[#3D0C11]/80">
+              Email: <span class="font-medium text-[#D80032]"
+                >todaymarketingadmin@gmail.com</span>
+            </p>
+            <p class="text-sm text-[#3D0C11]/80">
+              Password: <span class="font-medium text-[#D80032]">12345678</span>
+            </p>
+          </div>
+
           <form class="space-y-6" id="signin-form">
             <div class="space-y-4">
               <div class="input-group">
@@ -148,6 +162,23 @@ import Layout from "../layouts/Layout.astro";
             <h2 class="text-3xl font-extrabold text-[#3D0C11]">Join Us</h2>
             <p class="mt-2 text-sm text-[#3D0C11]/80">
               Create a new account to get started
+            </p>
+          </div>
+
+          <!-- Demo Credentials Notice -->
+          <div
+            class="mb-6 p-3 bg-[#F9DEC9]/50 border border-[#D80032]/30 rounded-lg text-center"
+          >
+            <p class="text-sm font-medium text-[#3D0C11]">
+              After creating an account, you can use these demo admin
+              credentials:
+            </p>
+            <p class="text-sm text-[#3D0C11]/80">
+              Email: <span class="font-medium text-[#D80032]"
+                >todaymarketingadmin@gmail.com</span>
+            </p>
+            <p class="text-sm text-[#3D0C11]/80">
+              Password: <span class="font-medium text-[#D80032]">12345678</span>
             </p>
           </div>
 
@@ -504,6 +535,13 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // Admin credentials
+    const ADMIN_EMAIL = "todaymarketingadmin@gmail.com";
+    const ADMIN_PASSWORD = "12345678";
+
+    // Dashboard URL
+    const DASHBOARD_URL = "/dashboard"; // Update this to your actual dashboard URL
+
     // Elements
     const signinCard = document.getElementById("signin-card");
     const signupCard = document.getElementById("signup-card");
@@ -643,18 +681,33 @@ import Layout from "../layouts/Layout.astro";
       // Show loading spinner
       signinSpinner.classList.remove("hidden");
 
+      // Get input values
+      const email = document.getElementById("signin-email").value;
+      const password = document.getElementById("signin-password").value;
+
       // Simulate API call with timeout
       setTimeout(() => {
-        const email = document.getElementById("signin-email").value;
-
         // Hide spinner
         signinSpinner.classList.add("hidden");
 
-        // Show success message
-        successTitle.textContent = "Welcome back!";
-        successText.textContent = `You have successfully signed in as ${email}.`;
-        successMessage.classList.remove("hidden");
-      }, 1500);
+        // Check if credentials match admin credentials
+        if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+          console.log("Admin login successful, redirecting to dashboard...");
+
+          // Store authentication state in local storage
+          localStorage.setItem("isAuthenticated", "true");
+          localStorage.setItem("userRole", "admin");
+          localStorage.setItem("userEmail", email);
+
+          // Redirect to dashboard
+          window.location.href = DASHBOARD_URL;
+        } else {
+          // Show error message for invalid credentials
+          errorText.textContent =
+            "Invalid email or password. Please try again.";
+          errorMessage.classList.remove("hidden");
+        }
+      }, 1000);
     });
 
     signupForm?.addEventListener("submit", (e) => {
@@ -681,6 +734,8 @@ import Layout from "../layouts/Layout.astro";
 
         // Hide spinner
         signupSpinner.classList.add("hidden");
+
+        // 80% chance of success,
 
         // 80% chance of success, 20% chance of error for demo purposes
         if (Math.random() > 0.2) {

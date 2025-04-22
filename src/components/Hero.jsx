@@ -229,7 +229,7 @@ export default function Hero() {
               {/* Integrated HomeButton */}
               <div className="flex justify-start items-center">
                 <a
-                  href="/dashboard"
+                  href="/Signin"
                   className="flex items-stretch no-underline transition-all duration-300 ease-in-out relative"
                   style={{
                     filter: `drop-shadow(0 ${4 + glowIntensity * 3}px ${

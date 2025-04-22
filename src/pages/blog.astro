@@ -1,10 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// Modified blog posts to include HTML content with hyperlinks
+// Modified blog posts to include HTML content with hyperlinks and meta information
 const blogPosts = [
-  
-  
   {
     title: "The Future of Remote Work",
     excerpt:
@@ -14,6 +12,10 @@ const blogPosts = [
     category: "Industry Trends",
     image: "/placeholder3",
     content: "This is the full content of the blog post about <a href='/remote-work' class='text-[#D80032] hover:underline'>remote work</a>. It would be much longer in a real implementation. Learn about the latest <a href='/technology' class='text-[#D80032] hover:underline'>technology</a> trends.",
+    // Added meta information
+    metaTitle: "The Future of Remote Work: Technology Trends 2025",
+    metaDescription: "Discover how emerging technologies are transforming remote work environments and learn strategies to adapt to the changing workplace landscape.",
+    metaKeywords: "remote work, workplace technology, digital transformation, remote collaboration, future of work, workforce trends 2025",
   },
   {
     title: "Customer Success Story: How XYZ Company Increased Revenue by 200%",
@@ -24,6 +26,10 @@ const blogPosts = [
     category: "Case Studies",
     image: "/placeholder4",
     content: "This is the full content of the blog post. It would be much longer in a real implementation. Read more about our <a href='/clients' class='text-[#D80032] hover:underline'>clients</a> and their success stories with our <a href='/platform' class='text-[#D80032] hover:underline'>platform</a>.",
+    // Added meta information
+    metaTitle: "XYZ Case Study: 200% Revenue Growth with Our Platform",
+    metaDescription: "Explore how XYZ Company leveraged our platform to revolutionize their business operations and achieve a remarkable 200% increase in revenue.",
+    metaKeywords: "case study, revenue growth, business transformation, XYZ Company, success story, platform implementation",
   },
   {
     title: "New Features: Q1 2025 Update",
@@ -34,8 +40,11 @@ const blogPosts = [
     category: "Product Updates",
     image: "/placeholder5",
     content: "This is the full content of the blog post. It would be much longer in a real implementation. Check out our newest <a href='/features' class='text-[#D80032] hover:underline'>features</a> and <a href='/updates' class='text-[#D80032] hover:underline'>updates</a> to improve your workflow.",
+    // Added meta information
+    metaTitle: "Q1 2025 Product Update: New Features and Enhancements",
+    metaDescription: "Get the details on our latest platform release, featuring powerful new capabilities designed to streamline your workflow and boost productivity.",
+    metaKeywords: "product update, new features, platform enhancements, workflow improvement, Q1 2025 release, software update",
   },
-  
   {
     title: "Advanced Platform Configuration Techniques",
     excerpt:
@@ -45,6 +54,10 @@ const blogPosts = [
     category: "Tutorials",
     image: "/placeholder7",
     content: "This is the full content of the blog post. It would be much longer in a real implementation. Dive deeper into <a href='/expert-tips' class='text-[#D80032] hover:underline'>expert tips</a> and <a href='/configuration' class='text-[#D80032] hover:underline'>configuration</a> options.",
+    // Added meta information
+    metaTitle: "Advanced Configuration Guide: Expert Platform Optimization",
+    metaDescription: "Master advanced platform configuration with our comprehensive guide to optimization techniques that will elevate your workflow efficiency.",
+    metaKeywords: "platform configuration, advanced techniques, expert tips, optimization, workflow efficiency, technical guide",
   },
   {
     title: "How to Integrate with Popular Third-Party Tools",
@@ -55,6 +68,10 @@ const blogPosts = [
     category: "Product Updates",
     image: "/placeholder8",
     content: "This is the full content of the blog post. It would be much longer in a real implementation. Learn more about our <a href='/integrations' class='text-[#D80032] hover:underline'>integrations</a> with popular <a href='/third-party-tools' class='text-[#D80032] hover:underline'>third-party tools</a>.",
+    // Added meta information
+    metaTitle: "Complete Guide to Third-Party Tool Integration",
+    metaDescription: "Learn how to seamlessly connect our platform with your existing tools and applications to create a unified workflow ecosystem for your team.",
+    metaKeywords: "third-party integration, tool connectivity, software integration, workflow optimization, platform compatibility, integration guide",
   },
 ];
 
@@ -71,9 +88,34 @@ const postCounts = topics.reduce((acc, topic) => {
   acc[topic] = blogPosts.filter((post) => post.category === topic).length;
   return acc;
 }, {});
+
+// Define default meta information for the blog page
+const defaultMeta = {
+  title: "Company Blog - Latest Industry News and Updates",
+  description: "Stay updated with the latest trends, case studies, tutorials and product updates in our official company blog.",
+  keywords: "company blog, industry news, tutorials, case studies, product updates, technology insights"
+};
 ---
 
-<Layout title="Blog">
+<Layout title={defaultMeta.title}>
+  <!-- Add SEO Meta Tags for Blog Index Page -->
+  <meta name="description" content={defaultMeta.description} slot="head" />
+  <meta name="keywords" content={defaultMeta.keywords} slot="head" />
+  
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content={defaultMeta.title} slot="head" />
+  <meta property="og:description" content={defaultMeta.description} slot="head" />
+  <meta property="og:type" content="website" slot="head" />
+  <meta property="og:url" content={Astro.url.href} slot="head" />
+  
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image" slot="head" />
+  <meta name="twitter:title" content={defaultMeta.title} slot="head" />
+  <meta name="twitter:description" content={defaultMeta.description} slot="head" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href={Astro.url.href} slot="head" />
+
   <!-- Main container with white background and margin-top -->
   <div class="bg-white text-gray-800 min-h-screen pt-16">
     <!-- Added pt-16 for margin top -->
@@ -98,6 +140,9 @@ const postCounts = topics.reduce((acc, topic) => {
                   data-date={post.date}
                   data-content={post.content}
                   data-excerpt={post.excerpt}
+                  data-meta-title={post.metaTitle}
+                  data-meta-description={post.metaDescription}
+                  data-meta-keywords={post.metaKeywords}
                 >
                   <div class="aspect-w-16 aspect-h-9">
                     <div class="w-full h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
@@ -226,6 +271,24 @@ const postCounts = topics.reduce((acc, topic) => {
           <span class="mx-2">•</span>
           <span id="modal-author"></span>
         </div>
+        <!-- Added meta information section in modal -->
+        <div class="mb-6 p-4 bg-gray-100 rounded-lg border border-gray-200">
+          <h3 class="text-lg font-medium text-[#3D0C11] mb-2">SEO Metadata</h3>
+          <div class="grid grid-cols-1 gap-3">
+            <div>
+              <p class="text-sm font-medium text-gray-700">Meta Title:</p>
+              <p id="modal-meta-title" class="text-sm text-gray-600"></p>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-700">Meta Description:</p>
+              <p id="modal-meta-description" class="text-sm text-gray-600"></p>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-700">Meta Keywords:</p>
+              <p id="modal-meta-keywords" class="text-sm text-gray-600"></p>
+            </div>
+          </div>
+        </div>
         <div class="prose max-w-none">
           <div id="modal-content" class="text-gray-700"></div>
         </div>
@@ -236,6 +299,9 @@ const postCounts = topics.reduce((acc, topic) => {
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // Set default meta tags on page load
+    setDefaultMetaTags();
+    
     // Get all filter buttons
     const filterButtons = document.querySelectorAll(".topic-filter");
     const allButton = document.getElementById("filter-all");
@@ -261,6 +327,21 @@ const postCounts = topics.reduce((acc, topic) => {
     const modalAuthor = document.getElementById("modal-author");
     const modalContent = document.getElementById("modal-content");
     const closeModal = document.getElementById("close-modal");
+    
+    // Added modal meta elements
+    const modalMetaTitle = document.getElementById("modal-meta-title");
+    const modalMetaDescription = document.getElementById("modal-meta-description");
+    const modalMetaKeywords = document.getElementById("modal-meta-keywords");
+    
+    // Function to set default meta tags
+    function setDefaultMetaTags() {
+      const defaultTitle = "Company Blog - Latest Industry News and Updates";
+      const defaultDescription = "Stay updated with the latest trends, case studies, tutorials and product updates in our official company blog.";
+      const defaultKeywords = "company blog, industry news, tutorials, case studies, product updates, technology insights";
+      
+      document.title = defaultTitle;
+      updateMetaTags(defaultTitle, defaultDescription, defaultKeywords);
+    }
     
     // Prevent links in blog excerpts from triggering modal
     document.querySelectorAll(".blog-excerpt a").forEach(link => {
@@ -290,14 +371,35 @@ const postCounts = topics.reduce((acc, topic) => {
         const author = this.getAttribute("data-author");
         const content = this.getAttribute("data-content");
         
+        // Get meta data attributes
+        const metaTitle = this.getAttribute("data-meta-title");
+        const metaDescription = this.getAttribute("data-meta-description");
+        const metaKeywords = this.getAttribute("data-meta-keywords");
+        
         // Populate modal with content
         modalTitle.textContent = title;
         modalDate.textContent = date;
         modalCategory.textContent = category;
         modalAuthor.textContent = author;
         
+        // Populate meta information
+        modalMetaTitle.textContent = metaTitle;
+        modalMetaDescription.textContent = metaDescription;
+        modalMetaKeywords.textContent = metaKeywords;
+        
         // Set HTML content instead of text content to render links
         modalContent.innerHTML = content;
+        
+        // Set page title to match the blog post
+        document.title = metaTitle || title;
+        
+        // Update meta tags in the document head
+        updateMetaTags(metaTitle, metaDescription, metaKeywords);
+        
+        // Add a virtual URL for the blog post - this will appear in the browser address bar
+        const slug = title.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-');
+        const newUrl = `${window.location.origin}${window.location.pathname}?post=${slug}`;
+        window.history.pushState({ post: slug }, metaTitle || title, newUrl);
         
         // Show modal
         modal.classList.remove("hidden");
@@ -306,11 +408,95 @@ const postCounts = topics.reduce((acc, topic) => {
         document.body.style.overflow = "hidden";
       });
     });
+    
+    // Function to update meta tags in the document head
+    function updateMetaTags(title, description, keywords) {
+      // Update or create meta description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.setAttribute('content', description || '');
+      
+      // Update or create meta keywords
+      let metaKeys = document.querySelector('meta[name="keywords"]');
+      if (!metaKeys) {
+        metaKeys = document.createElement('meta');
+        metaKeys.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeys);
+      }
+      metaKeys.setAttribute('content', keywords || '');
+      
+      // Update Open Graph meta tags
+      updateOpenGraphTags(title, description);
+      
+      // Update Twitter card meta tags
+      updateTwitterTags(title, description);
+    }
+    
+    // Function to update Open Graph tags
+    function updateOpenGraphTags(title, description) {
+      // OG Title
+      let ogTitle = document.querySelector('meta[property="og:title"]');
+      if (!ogTitle) {
+        ogTitle = document.createElement('meta');
+        ogTitle.setAttribute('property', 'og:title');
+        document.head.appendChild(ogTitle);
+      }
+      ogTitle.setAttribute('content', title || '');
+      
+      // OG Description
+      let ogDesc = document.querySelector('meta[property="og:description"]');
+      if (!ogDesc) {
+        ogDesc = document.createElement('meta');
+        ogDesc.setAttribute('property', 'og:description');
+        document.head.appendChild(ogDesc);
+      }
+      ogDesc.setAttribute('content', description || '');
+      
+      // OG URL
+      let ogUrl = document.querySelector('meta[property="og:url"]');
+      if (!ogUrl) {
+        ogUrl = document.createElement('meta');
+        ogUrl.setAttribute('property', 'og:url');
+        document.head.appendChild(ogUrl);
+      }
+      ogUrl.setAttribute('content', window.location.href);
+    }
+    
+    // Function to update Twitter card meta tags
+    function updateTwitterTags(title, description) {
+      // Twitter Title
+      let twitterTitle = document.querySelector('meta[name="twitter:title"]');
+      if (!twitterTitle) {
+        twitterTitle = document.createElement('meta');
+        twitterTitle.setAttribute('name', 'twitter:title');
+        document.head.appendChild(twitterTitle);
+      }
+      twitterTitle.setAttribute('content', title || '');
+      
+      // Twitter Description
+      let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+      if (!twitterDesc) {
+        twitterDesc = document.createElement('meta');
+        twitterDesc.setAttribute('name', 'twitter:description');
+        document.head.appendChild(twitterDesc);
+      }
+      twitterDesc.setAttribute('content', description || '');
+    }
 
     // Close modal when clicking the close button
     closeModal.addEventListener("click", function() {
       modal.classList.add("hidden");
       document.body.style.overflow = "auto";
+      
+      // Reset page title and meta tags
+      setDefaultMetaTags();
+      
+      // Restore the original URL without the query parameter
+      window.history.pushState({}, document.title, window.location.pathname);
     });
 
     // Close modal when clicking outside the modal content
@@ -318,6 +504,21 @@ const postCounts = topics.reduce((acc, topic) => {
       if (e.target === modal) {
         modal.classList.add("hidden");
         document.body.style.overflow = "auto";
+        
+        // Reset page title and meta tags
+        setDefaultMetaTags();
+        
+        // Restore the original URL without the query parameter
+        window.history.pushState({}, document.title, window.location.pathname);
+      }
+    });
+    
+    // Handle browser back button
+    window.addEventListener('popstate', function(e) {
+      if (modal && !modal.classList.contains('hidden')) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = "auto";
+        setDefaultMetaTags();
       }
     });
 
@@ -408,8 +609,31 @@ const postCounts = topics.reduce((acc, topic) => {
             loadMoreButton.style.display = "none";
           }
         }
+        
+        // Reset page title and meta tags when filtering
+        setDefaultMetaTags();
       });
     });
+    
+    // Check if URL contains a post parameter and open the corresponding post
+    const urlParams = new URLSearchParams(window.location.search);
+    const postSlug = urlParams.get('post');
+    
+    if (postSlug) {
+      // Try to find the post with a matching slug
+      const posts = Array.from(blogPosts);
+      for (let i = 0; i < posts.length; i++) {
+        const post = posts[i];
+        const title = post.getAttribute("data-title");
+        const slug = title.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-');
+        
+        if (slug === postSlug) {
+          // Simulate click on this post to open the modal
+          post.click();
+          break;
+        }
+      }
+    }
 
     // Initialize with all button active and only first 4 posts visible
     if (allButton) {

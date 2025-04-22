@@ -148,16 +148,18 @@ export default function PricingSection() {
                       "linear-gradient(to right, #3D0C11, #D80032)",
                   }}
                 >
-                  Choose Your Perfect Plan
+                  Flexible Plans for Every Business
                 </h2>
                 {/* Animated gradient underline */}
                 <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-red-700 via-red-500 to-red-700 rounded-full animate-pulse"></div>
               </div>
 
               <p className="text-lg text-gray-600 transition-all duration-300 hover:text-gray-800">
-                We offer flexible pricing options to meet your needs. Whether
-                you're just starting out or looking for advanced features, we
-                have a plan that's right for you.
+                We believe in making marketing accessible to everyone. Our
+                diverse pricing options ensure that you can find a plan that
+                fits your business size and objectives. Explore our offerings
+                and choose the right level of support and features to elevate
+                your marketing strategy!
               </p>
               <div className="mt-6 hidden lg:block">
                 <button
@@ -219,9 +221,11 @@ export default function PricingSection() {
                   </div>
                   {/* Flat text overlay */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
-                    <h3 className="text-2xl font-bold text-white">Basic</h3>
+                    <h3 className="text-2xl font-bold text-white">
+                      Starter Plan
+                    </h3>
                     <div className="text-white mt-2">
-                      <span className="text-3xl font-bold">$2.99</span>
+                      <span className="text-3xl font-bold">$99</span>
                       <span className="text-sm ml-1">per month</span>
                     </div>
                     {/* Interactive badge */}
@@ -236,31 +240,31 @@ export default function PricingSection() {
                   <ul className="space-y-4">
                     <li className="flex items-center">
                       <FeatureIcon included={true} />
-                      <span className="ml-3 text-gray-700">Basic Features</span>
-                    </li>
-                    <li className="flex items-center">
-                      <FeatureIcon included={false} />
                       <span className="ml-3 text-gray-700">
-                        Priority Support
+                        Campaign Optimization
                       </span>
                     </li>
                     <li className="flex items-center">
                       <FeatureIcon included={false} />
                       <span className="ml-3 text-gray-700">
-                        Advanced Analytics
+                        Basic Customer Targeting
                       </span>
                     </li>
                     <li className="flex items-center">
                       <FeatureIcon included={false} />
                       <span className="ml-3 text-gray-700">
-                        Custom Integrations
+                        Social Media Management (up to 3 platforms)
                       </span>
                     </li>
                     <li className="flex items-center">
                       <FeatureIcon included={false} />
                       <span className="ml-3 text-gray-700">
-                        Data Export Options
+                        Monthly Performance Reporting
                       </span>
+                    </li>
+                    <li className="flex items-center">
+                      <FeatureIcon included={false} />
+                      <span className="ml-3 text-gray-700">Email Support</span>
                     </li>
                   </ul>
 
@@ -332,9 +336,11 @@ export default function PricingSection() {
                   </div>
                   {/* Flat text overlay */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
-                    <h3 className="text-2xl font-bold text-white">Standard</h3>
+                    <h3 className="text-2xl font-bold text-white">
+                      Growth Plan
+                    </h3>
                     <div className="text-white mt-2">
-                      <span className="text-3xl font-bold">$5.99</span>
+                      <span className="text-3xl font-bold">$199</span>
                       <span className="text-sm ml-1">per month</span>
                     </div>
                     {/* Interactive badge */}
@@ -349,30 +355,32 @@ export default function PricingSection() {
                   <ul className="space-y-4">
                     <li className="flex items-center">
                       <FeatureIcon included={true} />
-                      <span className="ml-3 text-gray-700">Basic Features</span>
-                    </li>
-                    <li className="flex items-center">
-                      <FeatureIcon included={true} />
                       <span className="ml-3 text-gray-700">
-                        Priority Support
-                      </span>
-                    </li>
-                    <li className="flex items-center">
-                      <FeatureIcon included={false} />
-                      <span className="ml-3 text-gray-700">
-                        Advanced Analytics
-                      </span>
-                    </li>
-                    <li className="flex items-center">
-                      <FeatureIcon included={false} />
-                      <span className="ml-3 text-gray-700">
-                        Custom Integrations
+                        Advanced Customer Targeting
                       </span>
                     </li>
                     <li className="flex items-center">
                       <FeatureIcon included={true} />
                       <span className="ml-3 text-gray-700">
-                        Data Export Options
+                        Personalized Email Marketing
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <FeatureIcon included={false} />
+                      <span className="ml-3 text-gray-700">
+                        Real-Time Marketing Analytics
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <FeatureIcon included={false} />
+                      <span className="ml-3 text-gray-700">
+                        Priority Email Support
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <FeatureIcon included={true} />
+                      <span className="ml-3 text-gray-700">
+                        Smart Social Media Scheduling
                       </span>
                     </li>
                   </ul>
@@ -444,9 +452,11 @@ export default function PricingSection() {
                   </div>
                   {/* Flat text overlay */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
-                    <h3 className="text-2xl font-bold text-white">Premium</h3>
+                    <h3 className="text-2xl font-bold text-white">
+                      Professional Plan
+                    </h3>
                     <div className="text-white mt-2">
-                      <span className="text-3xl font-bold">$9.99</span>
+                      <span className="text-3xl font-bold">$299</span>
                       <span className="text-sm ml-1">per month</span>
                     </div>
                     {/* Interactive badge */}
@@ -461,30 +471,32 @@ export default function PricingSection() {
                   <ul className="space-y-4">
                     <li className="flex items-center">
                       <FeatureIcon included={true} />
-                      <span className="ml-3 text-gray-700">Basic Features</span>
-                    </li>
-                    <li className="flex items-center">
-                      <FeatureIcon included={true} />
                       <span className="ml-3 text-gray-700">
-                        Priority Support
+                        Chatbot Automation for 24/7 support
                       </span>
                     </li>
                     <li className="flex items-center">
                       <FeatureIcon included={true} />
                       <span className="ml-3 text-gray-700">
-                        Advanced Analytics
+                        Advanced Competitor Analysis
                       </span>
                     </li>
                     <li className="flex items-center">
                       <FeatureIcon included={true} />
                       <span className="ml-3 text-gray-700">
-                        Custom Integrations
+                        Dedicated Account Manager
                       </span>
                     </li>
                     <li className="flex items-center">
                       <FeatureIcon included={true} />
                       <span className="ml-3 text-gray-700">
-                        Data Export Options
+                        Phone & Email Support
+                      </span>
+                    </li>
+                    <li className="flex items-center">
+                      <FeatureIcon included={true} />
+                      <span className="ml-3 text-gray-700">
+                        Custom AI Strategy Sessions
                       </span>
                     </li>
                   </ul>
