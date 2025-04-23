@@ -55,10 +55,10 @@ export default function Partners() {
     },
     {
       img: par6.src,
-      link: "https://openai.com/index/chatgpt/",
-      name: "ChatGPT",
+      link: "https://groq.com/",
+      name: "Groq",
       description:
-        "AI-powered language model for advanced conversational capabilities.",
+        "Ultra-fast, AI-powered language model delivering real-time conversational intelligence.",
     },
   ];
 
