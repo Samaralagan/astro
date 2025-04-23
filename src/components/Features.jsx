@@ -124,9 +124,10 @@ export default function Features() {
                 ></span>
               </h2>
               <p className="mt-6 md:mt-8 text-gray-600 text-sm md:text-base">
-                Dignissim suspendisse in est ante in nibh mauris. Varius quam
-                quisque id diam vel quam elementum pulvinar etiam. Nunc pulvinar
-                sapien et ligula ullamcorper malesuada proin.
+                We’re here to make your marketing easier and more effective.
+                Whether you're just starting out or ready to scale, we’ve got
+                the tools and support to help your brand grow online—with less
+                stress and more impact.
               </p>
             </div>
           </div>

@@ -681,7 +681,7 @@ export default function Hero() {
                           "transform 0.3s ease, text-shadow 0.3s ease",
                       }}
                     >
-                      AI Content
+                      Try AI Templates
                     </span>
                   </div>
 

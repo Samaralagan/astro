@@ -3,6 +3,8 @@
 import "../styles/global.css"; // Make sure this exists for Tailwind to work
 import logo from "../assets/logo.svg";
 import favicon from "../assets/favicon.png";
+import NotificationPopup from "../components/NotificationPopup";
+
 interface Props {
   title: string;
   currentPage?: string;
@@ -11,7 +13,7 @@ interface Props {
 const { title, currentPage = "overview" } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" style={{ scrollbarWidth: "none" }}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,12 +49,12 @@ const { title, currentPage = "overview" } = Astro.props;
           </div>
         </div>
 
-        <nav class="mt-4">
+        <nav class="mt-4" style={{ justifyItems: "flex-start" }}>
           <a
             href="/dashboard"
-            class={`flex items-center py-3 ${currentPage === "overview" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
+            class={`flex items-center py-3 w-full ${currentPage === "overview" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
-            <div class="w-16 flex items-center justify-center">
+            <div class="w-16 flex items-center justify-center flex-shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -75,9 +77,9 @@ const { title, currentPage = "overview" } = Astro.props;
 
           <a
             href="/dashboard/EmailMarketing"
-            class={`flex items-center py-3 ${currentPage === "EmailMarketing" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
+            class={`flex items-center py-3 w-full ${currentPage === "EmailMarketing" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
-            <div class="w-16 flex items-center justify-center">
+            <div class="w-16 flex items-center justify-center flex-shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -100,9 +102,9 @@ const { title, currentPage = "overview" } = Astro.props;
 
           <a
             href="/dashboard/SocialMedia"
-            class={`flex items-center py-3 ${currentPage === "SocialMedia" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
+            class={`flex items-center py-3 w-full ${currentPage === "SocialMedia" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
-            <div class="w-16 flex items-center justify-center">
+            <div class="w-16 flex items-center justify-center flex-shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -125,9 +127,9 @@ const { title, currentPage = "overview" } = Astro.props;
 
           <a
             href="/dashboard/CompetitorAnalysis"
-            class={`flex items-center py-3 ${currentPage === "CompetitorAnalysis" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
+            class={`flex items-center py-3 w-full ${currentPage === "CompetitorAnalysis" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
-            <div class="w-16 flex items-center justify-center">
+            <div class="w-16 flex items-center justify-center flex-shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -150,9 +152,9 @@ const { title, currentPage = "overview" } = Astro.props;
 
           <a
             href="/dashboard/chatbot"
-            class={`flex items-center py-3 ${currentPage === "chatbot" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
+            class={`flex items-center py-3 w-full ${currentPage === "chatbot" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
-            <div class="w-16 flex items-center justify-center">
+            <div class="w-16 flex items-center justify-center flex-shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -174,9 +176,9 @@ const { title, currentPage = "overview" } = Astro.props;
 
           <a
             href="/dashboard/settings"
-            class={`flex items-center py-3 ${currentPage === "settings" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
+            class={`flex items-center py-3 w-full ${currentPage === "settings" ? "bg-[#F9DEC9] text-[#D80032]" : "text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032]"}`}
           >
-            <div class="w-16 flex items-center justify-center">
+            <div class="w-16 flex items-center justify-center flex-shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -205,9 +207,9 @@ const { title, currentPage = "overview" } = Astro.props;
           <!-- Logout option (added) -->
           <a
             href="/"
-            class="flex items-center py-3 text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032] mt-auto"
+            class="flex items-center py-3 w-full text-[#3D0C11] hover:bg-[#F9DEC9] hover:text-[#D80032] mt-auto"
           >
-            <div class="w-16 flex items-center justify-center">
+            <div class="w-16 flex items-center justify-center flex-shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -310,37 +312,31 @@ const { title, currentPage = "overview" } = Astro.props;
                 ></path>
               </svg>
             </button>
+
+            {
+              /* We need to wrap NotificationPopup in a div with the same layout structure as other header icons */
+            }
+            <div class="flex items-center">
+              <NotificationPopup client:load />
+            </div>
+
             <button class="text-[#3D0C11] hover:text-[#D80032]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 lg:h-6 lg:w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                ></path>
-              </svg>
-            </button>
-            <button class="text-[#3D0C11] hover:text-[#D80032]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 lg:h-6 lg:w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
+              <a href="/dashboard/settings">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 lg:h-6 lg:w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </a>
             </button>
           </div>
         </header>
