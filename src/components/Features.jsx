@@ -124,10 +124,11 @@ export default function Features() {
                 ></span>
               </h2>
               <p className="mt-6 md:mt-8 text-gray-600 text-sm md:text-base">
-                We’re here to make your marketing easier and more effective.
-                Whether you're just starting out or ready to scale, we’ve got
-                the tools and support to help your brand grow online—with less
-                stress and more impact.
+                We help you grow smarter with AI-driven tools that simplify
+                social media management, personalize email campaigns, automate
+                customer support, and give you a competitive edge with real-time
+                market insights all designed to boost engagement and drive
+                results.
               </p>
             </div>
           </div>

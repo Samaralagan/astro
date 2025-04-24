@@ -8,9 +8,28 @@ import Partners from "../components/Partners.jsx";
 import FAQ from "../components/FAQ.jsx";
 import PricingSection from "../components/PricingSection.jsx";
 import AIROISimulator from "../components/AIROISimulator";
+// SEO metadata for the homepage
+const seoData = {
+  title: "All-in-One AI Marketing Platform",
+  description:
+    "Automate social media, personalize email campaigns, offer 24/7 chatbot support, and track competitors all with Today Marketings' AI-powered platform built to grow your business smarter and faster.",
+  keywords:
+    "AI marketing platform, social media automation, email marketing AI, AI chatbot support, marketing automation tools, AI competitor analysis, digital marketing automation, personalized campaigns, marketing AI dashboard",
+  canonical: "https://todaymarketings.com/",
+  image: "../assets/favicon.png",
+  ogType: "website",
+};
 ---
 
-<Layout title="Home">
+<Layout
+  title="Home"
+  title={seoData.title}
+  description={seoData.description}
+  keywords={seoData.keywords}
+  canonical={seoData.canonical}
+  image={seoData.image}
+  ogType={seoData.ogType}
+>
   <div class="overflow-x-hidden w-full">
     <Hero client:load />
     <Features client:load />

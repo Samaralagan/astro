@@ -4,4 +4,5 @@
 /* Additional global styles can go here */
 body {
     @apply antialiased;
+    @apply font-rajdhani;
   }

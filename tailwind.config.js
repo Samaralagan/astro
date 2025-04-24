@@ -14,6 +14,9 @@ export default {
         ser3: "#F78CA2",
         ser4: "#F9DEC9",
       },
+      fontFamily: {
+        rajdhani: ["Rajdhani", "sans-serif"],
+      },
     },
   },
   plugins: [],

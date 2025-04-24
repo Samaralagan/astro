@@ -825,7 +825,7 @@ export default function Hero() {
           display: inline-block;
           overflow: hidden;
           min-width: 250px;
-          height: 1.2em;
+          height: 1em;
           position: relative;
           vertical-align: baseline;
         }

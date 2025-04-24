@@ -1,16 +1,24 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
-import node from "@astrojs/node"; // Add this import
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  //   integrations: [react()],
-  //   output: "server",
-  //   adapter: node({
-  //     mode: "standalone", // Creates a standalone Node.js server
-  //   }),
-  //   experimental: {
-  //     session: true, // Add this line to enable sessions
-  //   },
-  // });
-  integrations: [react()],
+  site: "https://yourdomain.com", // Essential for sitemap & SEO
+  integrations: [
+    react(),
+    sitemap(), // Enables automatic sitemap generation
+  ],
+  vite: {
+    define: {
+      // Expose only safe environment variables
+      "import.meta.env.PUBLIC_API_BASE": JSON.stringify(
+        process.env.PUBLIC_API_BASE
+      ),
+    },
+    server: {
+      fs: {
+        strict: true, // Prevents file system access outside root
+      },
+    },
+  },
 });

@@ -298,7 +298,9 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-gray-300 mb-4">
-              Make the right data-driven decisions that move your business.
+              Today Marketings is an all-in-one AI marketing platform that helps
+              businesses grow by automating social media, personalizing emails,
+              and delivering smarter, data-driven marketing campaigns.
             </p>
           </div>
 

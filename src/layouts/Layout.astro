@@ -5,7 +5,15 @@ import Footer from "../components/Footer.jsx";
 import favicon from "../assets/favicon.png";
 import ChatwootWidget from "../components/ChatwootWidget";
 import CookieConsent from "../components/CookieConsent";
-const { title = "Default Title" } = Astro.props;
+// Define the SEO props interface with default values
+const {
+  title = "Default Title",
+  description = "Today Marketings - Your marketing partner for growth and success",
+  canonical,
+  image = "/default-og-image.jpg",
+  keywords = "marketing, digital marketing, today marketings",
+  ogType = "website",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -15,10 +23,18 @@ const { title = "Default Title" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | Today Marketings</title>
     <link rel="icon" type="image/svg+xml" href={favicon.src} />
+    <!-- Primary SEO Tags -->
+    <title>{title} | Today Marketings</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <!-- Font Awesome for social icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
     />
   </head>
   <body class="min-h-screen flex flex-col bg-white">

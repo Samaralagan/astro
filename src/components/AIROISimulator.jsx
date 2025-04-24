@@ -478,7 +478,7 @@ export default function AIContentGenerator() {
             Transform your marketing efforts with AI-powered content that
             captivates your audience. Our tool uses advanced artificial
             intelligence to create engaging social posts and marketing emails
-            tailored to your specific business needs.
+            customized to your specific business needs.
           </p>
 
           <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4">
