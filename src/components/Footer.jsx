@@ -376,7 +376,7 @@ export default function Footer() {
         {/* Copyright line */}
         <div className="border-t border-opacity-20 border-gray-300 mt-8 pt-6 text-center text-gray-400">
           <p>
-            &copy; {new Date().getFullYear()} Avo Analytics. All rights
+            &copy; {new Date().getFullYear()} Todaymarketings.com. All rights
             reserved.
           </p>
         </div>
