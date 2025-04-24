@@ -447,6 +447,33 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </div>
     </div>
+    <!-- Full Page Loading Animation (AI-Inspired) -->
+    <div
+      id="page-loading"
+      class="fixed inset-0 flex flex-col items-center justify-center bg-[#F9DEC9] z-50 hidden"
+    >
+      <!-- AI-inspired loader animation -->
+      <div class="ai-loader mb-6">
+        <div class="ai-nodes-container">
+          <div class="ai-node node-1"></div>
+          <div class="ai-node node-2"></div>
+          <div class="ai-node node-3"></div>
+          <div class="ai-node node-4"></div>
+          <div class="ai-node node-5"></div>
+          <div class="ai-node node-6"></div>
+          <div class="ai-node node-7"></div>
+        </div>
+        <div class="ai-brain-center"></div>
+      </div>
+      <div class="text-xl font-medium text-[#3D0C11]">
+        Connecting to dashboard
+      </div>
+      <div class="loading-text text-sm text-[#3D0C11]/70 mt-2">
+        <span class="dot-1">.</span>
+        <span class="dot-2">.</span>
+        <span class="dot-3">.</span>
+      </div>
+    </div>
   </div>
 </Layout>
 
@@ -532,6 +559,188 @@ import Layout from "../layouts/Layout.astro";
 
   .slide-out {
     animation: slideOut 0.3s forwards;
+  }
+
+  /* AI Loading Animation Styles */
+  @keyframes fadeInLoading {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  #page-loading {
+    animation: fadeInLoading 0.3s ease-out;
+  }
+
+  /* AI Brain Network Animation */
+  .ai-loader {
+    position: relative;
+    width: 120px;
+    height: 120px;
+  }
+
+  .ai-brain-center {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(216, 0, 50, 0.9);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(216, 0, 50, 0.5);
+    z-index: 5;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+
+  .ai-nodes-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: rotate 12s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .ai-node {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #d80032;
+    border-radius: 50%;
+    animation: nodeFloat 3s infinite;
+  }
+
+  @keyframes nodeFloat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .ai-node::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgba(216, 0, 50, 0.8),
+      rgba(216, 0, 50, 0)
+    );
+    transform-origin: left center;
+  }
+
+  .node-1 {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 0s;
+  }
+  .node-2 {
+    top: 15%;
+    right: 15%;
+    animation-delay: -0.4s;
+  }
+  .node-3 {
+    bottom: 15%;
+    right: 15%;
+    animation-delay: -0.8s;
+  }
+  .node-4 {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: -1.2s;
+  }
+  .node-5 {
+    bottom: 15%;
+    left: 15%;
+    animation-delay: -1.6s;
+  }
+  .node-6 {
+    top: 15%;
+    left: 15%;
+    animation-delay: -2s;
+  }
+  .node-7 {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    animation-delay: -2.4s;
+  }
+
+  /* Animated loading dots */
+  .loading-text {
+    display: inline-block;
+  }
+
+  .loading-text span {
+    display: inline-block;
+    font-size: 24px;
+    opacity: 0;
+    animation: loadingDots 1.4s infinite;
+  }
+
+  .dot-1 {
+    animation-delay: 0s;
+  }
+  .dot-2 {
+    animation-delay: 0.2s;
+  }
+  .dot-3 {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes loadingDots {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    25% {
+      opacity: 1;
+      transform: translateY(-5px);
+    }
+    50% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(0);
+    }
   }
 </style>
 
@@ -701,8 +910,15 @@ import Layout from "../layouts/Layout.astro";
           localStorage.setItem("userRole", "admin");
           localStorage.setItem("userEmail", email);
 
-          // Redirect to dashboard
-          window.location.href = DASHBOARD_URL;
+          // Show full page AI loading animation before redirect
+          const pageLoading = document.getElementById("page-loading");
+          pageLoading.classList.remove("hidden");
+
+          // Add some simulated AI processing feel with a slightly longer delay
+          setTimeout(() => {
+            // Redirect to dashboard
+            window.location.href = DASHBOARD_URL;
+          }, 2200); // 2.2 seconds delay for more dramatic AI animation effect
         } else {
           // Show error message for invalid credentials
           errorText.textContent =
