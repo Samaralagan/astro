@@ -867,7 +867,7 @@ export default function Hero() {
           }
         }
       `}</style>
-      <SplashCursor client:load />
+      {/* <SplashCursor client:load /> */}
     </section>
   );
 }
