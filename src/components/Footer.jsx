@@ -207,6 +207,23 @@ export default function Footer() {
             />
           </svg>
         );
+      case "arrow-right":
+        return (
+          <svg
+            className="w-4 h-4 ml-1 transition-transform duration-200 transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg>
+        );
       default:
         return null;
     }
@@ -288,86 +305,101 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Middle section with links */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-8 border-t border-opacity-20 border-gray-300">
-          {/* Logo and company description */}
-          <div className="col-span-1">
+        {/* Middle section with links - MODIFIED GRID LAYOUT */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 py-8 border-t border-opacity-20 border-gray-300">
+          {/* Logo and company description - INCREASED WIDTH AND JUSTIFIED TEXT */}
+          <div className="col-span-1 md:col-span-6">
             <div className="flex-shrink-0 mb-6">
               <a href="/" className="text-white">
                 <img src={logodark.src} alt="Logo" />
               </a>
             </div>
-            <p className="text-gray-300 mb-4">
+            <p className="text-gray-300 mb-4 text-justify">
               Today Marketings is an all-in-one AI marketing platform that helps
               businesses grow by automating social media, personalizing emails,
               and delivering smarter, data-driven marketing campaigns.
             </p>
           </div>
 
-          {/* Navigation Links - Matching Navbar */}
-          <div>
+          {/* Navigation Links - REDUCED WIDTH AND ADDED ARROW HOVER EFFECT */}
+          <div className="md:col-span-2">
             <h3 className="text-gray-200 font-medium mb-4">Navigation</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {links.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className={`flex items-center text-sm transition-colors ${
+                    className={`group flex items-center text-sm transition-colors ${
                       isActive(link.href)
                         ? "text-[#f04da1] font-bold"
                         : "text-gray-300 hover:text-white transition duration-150"
                     }`}
                   >
                     {getIcon(link.icon)}
-                    {link.name}
+                    <span>{link.name}</span>
+                    <span className="nav-arrow opacity-0 group-hover:opacity-100 transition-all duration-200 transform group-hover:translate-x-1">
+                      {getIcon("arrow-right")}
+                    </span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Legal links */}
-          <div>
+          {/* Legal links - REDUCED WIDTH AND ADDED ARROW HOVER EFFECT */}
+          <div className="md:col-span-2">
             <h3 className="text-gray-200 font-medium mb-4">Legal</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               <li>
                 <a
                   href="/terms"
-                  className="text-gray-300 hover:text-white transition duration-150"
+                  className="group flex items-center text-sm text-gray-300 hover:text-white transition duration-150"
                 >
-                  Terms and Conditions
+                  <span>Terms and Conditions</span>
+                  <span className="nav-arrow opacity-0 group-hover:opacity-100 transition-all duration-200 transform group-hover:translate-x-1 ml-1">
+                    {getIcon("arrow-right")}
+                  </span>
                 </a>
               </li>
               <li>
                 <a
                   href="/Privacypolicy"
-                  className="text-gray-300 hover:text-white transition duration-150"
+                  className="group flex items-center text-sm text-gray-300 hover:text-white transition duration-150"
                 >
-                  Privacy Policy
+                  <span>Privacy Policy</span>
+                  <span className="nav-arrow opacity-0 group-hover:opacity-100 transition-all duration-200 transform group-hover:translate-x-1 ml-1">
+                    {getIcon("arrow-right")}
+                  </span>
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Contact section with added phone number */}
-          <div>
+          {/* Contact section - REDUCED WIDTH */}
+          <div className="md:col-span-2">
             <h3 className="text-gray-200 font-medium mb-4">Let's chat!</h3>
-            <div className="flex items-center mb-3">
+            <div className="flex items-center mb-2">
               <div className="mr-2">{getIcon("mail")}</div>
               <a
                 href="mailto:info@todaymarketings.com"
-                className="text-gray-300 hover:text-white transition duration-150"
+                className="group flex items-center text-sm text-gray-300 hover:text-white transition duration-150"
               >
-                info@todaymarketings.com
+                <span>info@todaymarketings.com</span>
+                <span className="nav-arrow opacity-0 group-hover:opacity-100 transition-all duration-200 transform group-hover:translate-x-1 ml-1">
+                  {getIcon("arrow-right")}
+                </span>
               </a>
             </div>
-            <div className="flex items-center mb-3">
+            <div className="flex items-center mb-2">
               <div className="mr-2">{getIcon("phone")}</div>
               <a
                 href="tel:0263111913"
-                className="text-gray-300 hover:text-white transition duration-150"
+                className="group flex items-center text-sm text-gray-300 hover:text-white transition duration-150"
               >
-                0263111913
+                <span>0263111913</span>
+                <span className="nav-arrow opacity-0 group-hover:opacity-100 transition-all duration-200 transform group-hover:translate-x-1 ml-1">
+                  {getIcon("arrow-right")}
+                </span>
               </a>
             </div>
           </div>

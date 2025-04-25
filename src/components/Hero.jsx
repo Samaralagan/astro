@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 // import heroimage from "../assets/heroimage.jpg";
 import heroimage from "../assets/heroimage.svg";
+import SplashCursor from "../components/SplashCursor.jsx";
 
 export default function Hero() {
   const words = ["Solutions", "Campaigns"];
@@ -207,7 +208,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-40 items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight gradient-text">
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight gradient-text">
               All-in-One AI Marketing Platform for{" "}
               <span className="word-animation-wrapper">
                 <span className="word-animation-container">
@@ -866,6 +867,7 @@ export default function Hero() {
           }
         }
       `}</style>
+      <SplashCursor client:load />
     </section>
   );
 }

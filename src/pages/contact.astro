@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 const seoData = {
   title: "Contact Us",
   description:
-    "Ready to elevate your marketing strategy with AI? Connect with the experts at Today Marketings for data-driven solutions, personalized support, and results that matter. Let’s grow your brand together.",
+    "Ready to elevate your marketing strategy with AI? Connect with the experts at Today Marketings for data-driven solutions, personalized support, and results that matter. Let's grow your brand together.",
   keywords:
     "AI marketing consultation, contact Today Marketings, speak with marketing experts, AI-driven marketing support, digital strategy team, data-driven marketing help, marketing agency contact, AI-powered growth solutions.",
   canonical: "https://todaymarketings.com/",
@@ -179,14 +179,14 @@ const seoData = {
               <input
                 type="text"
                 id="fullName"
-                name="fullName"
+                name="from_name"
                 placeholder="Full Name"
                 class="w-full p-2 rounded text-gray-900"
                 required
               />
               <div
                 class="text-red-400 text-xs mt-1 hidden error-message"
-                id="nameError"
+                id="fullNameError"
               >
                 Please enter your name
               </div>
@@ -331,6 +331,50 @@ const seoData = {
     </div>
   </div>
 
+  <!-- Error Message Toast Notification -->
+  <div id="errorModal" class="fixed bottom-8 right-8 z-50 hidden">
+    <div
+      class="bg-gradient-to-r from-[#8B0000] to-[#FF0000] text-white p-4 rounded-lg shadow-lg max-w-sm animate-fade-in"
+    >
+      <div class="flex items-start">
+        <div class="flex-shrink-0 pt-0.5">
+          <svg
+            class="h-6 w-6 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            ></path>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm font-medium">Error!</p>
+          <p class="mt-1 text-xs opacity-90" id="errorModalText">
+            There was a problem sending your message. Please try again later.
+          </p>
+        </div>
+        <div class="ml-4 flex-shrink-0 flex">
+          <button
+            id="closeErrorModal"
+            class="inline-flex text-white focus:outline-none"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Add this CSS for the fade-in animation -->
   <style>
     @keyframes fadeIn {
@@ -354,13 +398,22 @@ const seoData = {
 </Layout>
 
 <script>
-  // Form validation and Contact Icon interaction
+  // Import EmailJS
+  import emailjs from "@emailjs/browser";
+
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contactForm");
     const successModal = document.getElementById("successModal");
+    const errorModal = document.getElementById("errorModal");
     const closeModalBtn = document.getElementById("closeModal");
+    const closeErrorModalBtn = document.getElementById("closeErrorModal");
     const contactIcons = document.querySelectorAll(".contact-icon");
     const contactContents = document.querySelectorAll(".contact-content");
+    const submitBtn = document.getElementById("submitBtn");
+    const errorModalText = document.getElementById("errorModalText");
+
+    // Initialize EmailJS with your public key
+    emailjs.init(import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY);
 
     // Set phone as default active contact method on page load
     showContactDetails("phone");
@@ -430,6 +483,24 @@ const seoData = {
       }
     }
 
+    // Show notification
+    function showNotification(type, message = null) {
+      if (type === "success") {
+        successModal.classList.remove("hidden");
+        setTimeout(() => {
+          successModal.classList.add("hidden");
+        }, 5000);
+      } else if (type === "error") {
+        if (message) {
+          errorModalText.textContent = message;
+        }
+        errorModal.classList.remove("hidden");
+        setTimeout(() => {
+          errorModal.classList.add("hidden");
+        }, 5000);
+      }
+    }
+
     // Form submission handler
     form.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -483,27 +554,64 @@ const seoData = {
         clearError("message");
       }
 
-      // If form is valid, submit it
+      // If form is valid, submit it with EmailJS
       if (isValid) {
-        // Here you would typically send the data to your server
-        // For this example, we'll just show the success notification
+        // Update button state to indicate sending
+        submitBtn.disabled = true;
+        const originalButtonHTML = submitBtn.innerHTML;
+        submitBtn.innerHTML = "<span>SENDING...</span>";
 
-        // Show success notification with animation
-        successModal.classList.remove("hidden");
+        // Prepare template parameters
+        const templateParams = {
+          from_name: fullName,
+          email: email,
+          phone: phone || "Not provided",
+          location:
+            document.getElementById("location").value.trim() || "Not provided",
+          message: message,
+          time: new Date().toLocaleString(),
+        };
 
-        // Hide notification after 5 seconds
-        setTimeout(() => {
-          successModal.classList.add("hidden");
-        }, 5000);
+        // Send email using EmailJS
+        emailjs
+          .send(
+            import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+            import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
+            templateParams
+          )
+          .then(function (response) {
+            console.log("SUCCESS!", response.status, response.text);
 
-        // Reset form
-        form.reset();
+            // Show success notification
+            showNotification("success");
+
+            // Reset form
+            form.reset();
+          })
+          .catch(function (error) {
+            console.log("FAILED...", error);
+
+            // Show error notification
+            showNotification(
+              "error",
+              "There was a problem sending your message. Please try again later."
+            );
+          })
+          .finally(function () {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalButtonHTML;
+          });
       }
     });
 
     // Close notification when clicking the close button
     closeModalBtn.addEventListener("click", function () {
       successModal.classList.add("hidden");
+    });
+
+    closeErrorModalBtn.addEventListener("click", function () {
+      errorModal.classList.add("hidden");
     });
 
     // Real-time validation for individual fields
