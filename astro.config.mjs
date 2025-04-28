@@ -14,6 +14,16 @@ export default defineConfig({
       "import.meta.env.PUBLIC_API_BASE": JSON.stringify(
         process.env.PUBLIC_API_BASE
       ),
+      // Add these EmailJS environment variables
+      "import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY": JSON.stringify(
+        process.env.PUBLIC_EMAILJS_PUBLIC_KEY
+      ),
+      "import.meta.env.PUBLIC_EMAILJS_SERVICE_ID": JSON.stringify(
+        process.env.PUBLIC_EMAILJS_SERVICE_ID
+      ),
+      "import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID": JSON.stringify(
+        process.env.PUBLIC_EMAILJS_TEMPLATE_ID
+      ),
     },
     server: {
       fs: {

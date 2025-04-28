@@ -170,7 +170,13 @@ const seoData = {
 
       <!-- Right Column - Contact Form -->
       <div class="bg-[#3D0C11] rounded-lg p-8 text-white mt-12 md:mt-0">
-        <form id="contactForm" class="needs-validation" novalidate>
+        <!-- Important: Direct form submission without JS interference -->
+        <form
+          id="contactForm"
+          action="https://formbold.com/s/3Vyw0"
+          method="POST"
+          enctype="multipart/form-data"
+        >
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label for="fullName" class="block text-sm font-medium mb-2"
@@ -179,17 +185,11 @@ const seoData = {
               <input
                 type="text"
                 id="fullName"
-                name="from_name"
+                name="fullName"
                 placeholder="Full Name"
                 class="w-full p-2 rounded text-gray-900"
                 required
               />
-              <div
-                class="text-red-400 text-xs mt-1 hidden error-message"
-                id="fullNameError"
-              >
-                Please enter your name
-              </div>
             </div>
             <div>
               <label for="email" class="block text-sm font-medium mb-2"
@@ -203,12 +203,6 @@ const seoData = {
                 class="w-full p-2 rounded text-gray-900"
                 required
               />
-              <div
-                class="text-red-400 text-xs mt-1 hidden error-message"
-                id="emailError"
-              >
-                Please enter a valid email address
-              </div>
             </div>
           </div>
 
@@ -224,22 +218,16 @@ const seoData = {
                 placeholder="Phone Number"
                 class="w-full p-2 rounded text-gray-900"
               />
-              <div
-                class="text-red-400 text-xs mt-1 hidden error-message"
-                id="phoneError"
-              >
-                Please enter a valid phone number
-              </div>
             </div>
             <div>
-              <label for="location" class="block text-sm font-medium mb-2"
-                >Location</label
+              <label for="subject" class="block text-sm font-medium mb-2"
+                >Subject</label
               >
               <input
                 type="text"
-                id="location"
-                name="location"
-                placeholder="Location"
+                id="subject"
+                name="subject"
+                placeholder="Subject"
                 class="w-full p-2 rounded text-gray-900"
               />
             </div>
@@ -257,12 +245,6 @@ const seoData = {
               placeholder="Leave your message here"
               class="w-full p-2 rounded text-gray-900"
               required></textarea>
-            <div
-              class="text-red-400 text-xs mt-1 hidden error-message"
-              id="messageError"
-            >
-              Please tell us about your project
-            </div>
           </div>
 
           <button
@@ -331,50 +313,6 @@ const seoData = {
     </div>
   </div>
 
-  <!-- Error Message Toast Notification -->
-  <div id="errorModal" class="fixed bottom-8 right-8 z-50 hidden">
-    <div
-      class="bg-gradient-to-r from-[#8B0000] to-[#FF0000] text-white p-4 rounded-lg shadow-lg max-w-sm animate-fade-in"
-    >
-      <div class="flex items-start">
-        <div class="flex-shrink-0 pt-0.5">
-          <svg
-            class="h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-            ></path>
-          </svg>
-        </div>
-        <div class="ml-3">
-          <p class="text-sm font-medium">Error!</p>
-          <p class="mt-1 text-xs opacity-90" id="errorModalText">
-            There was a problem sending your message. Please try again later.
-          </p>
-        </div>
-        <div class="ml-4 flex-shrink-0 flex">
-          <button
-            id="closeErrorModal"
-            class="inline-flex text-white focus:outline-none"
-          >
-            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Add this CSS for the fade-in animation -->
   <style>
     @keyframes fadeIn {
@@ -398,22 +336,11 @@ const seoData = {
 </Layout>
 
 <script>
-  // Import EmailJS
-  import emailjs from "@emailjs/browser";
-
+  // Contact Icon interaction only - form validation removed to ensure direct submission
   document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contactForm");
-    const successModal = document.getElementById("successModal");
-    const errorModal = document.getElementById("errorModal");
-    const closeModalBtn = document.getElementById("closeModal");
-    const closeErrorModalBtn = document.getElementById("closeErrorModal");
     const contactIcons = document.querySelectorAll(".contact-icon");
     const contactContents = document.querySelectorAll(".contact-content");
-    const submitBtn = document.getElementById("submitBtn");
-    const errorModalText = document.getElementById("errorModalText");
-
-    // Initialize EmailJS with your public key
-    emailjs.init(import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY);
+    const closeModalBtn = document.getElementById("closeModal");
 
     // Set phone as default active contact method on page load
     showContactDetails("phone");
@@ -449,187 +376,23 @@ const seoData = {
       });
     }
 
-    // International phone number validation using regex
-    // Accepts various formats including country codes
-    function isValidPhone(phone) {
-      if (!phone) return true; // Phone is optional
-      const phoneRegex =
-        /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,4}[-\s.]?[0-9]{1,9}$/;
-      return phoneRegex.test(phone);
-    }
-
-    // Email validation
-    function isValidEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
-
-    // Show error message
-    function showError(field, message) {
-      const errorElement = document.getElementById(`${field}Error`);
-      if (errorElement) {
-        errorElement.textContent = message;
-        errorElement.classList.remove("hidden");
-        document.getElementById(field).classList.add("border-red-500");
-      }
-    }
-
-    // Clear error message
-    function clearError(field) {
-      const errorElement = document.getElementById(`${field}Error`);
-      if (errorElement) {
-        errorElement.classList.add("hidden");
-        document.getElementById(field).classList.remove("border-red-500");
-      }
-    }
-
-    // Show notification
-    function showNotification(type, message = null) {
-      if (type === "success") {
-        successModal.classList.remove("hidden");
-        setTimeout(() => {
-          successModal.classList.add("hidden");
-        }, 5000);
-      } else if (type === "error") {
-        if (message) {
-          errorModalText.textContent = message;
-        }
-        errorModal.classList.remove("hidden");
-        setTimeout(() => {
-          errorModal.classList.add("hidden");
-        }, 5000);
-      }
-    }
-
-    // Form submission handler
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      let isValid = true;
-
-      // Reset all errors
-      document
-        .querySelectorAll(".error-message")
-        .forEach((el) => el.classList.add("hidden"));
-      document
-        .querySelectorAll("input, textarea")
-        .forEach((el) => el.classList.remove("border-red-500"));
-
-      // Validate name (required)
-      const fullName = document.getElementById("fullName").value.trim();
-      if (!fullName) {
-        isValid = false;
-        showError("fullName", "Please enter your name");
-      } else {
-        clearError("fullName");
-      }
-
-      // Validate email (required and format)
-      const email = document.getElementById("email").value.trim();
-      if (!email) {
-        isValid = false;
-        showError("email", "Please enter your email address");
-      } else if (!isValidEmail(email)) {
-        isValid = false;
-        showError("email", "Please enter a valid email address");
-      } else {
-        clearError("email");
-      }
-
-      // Validate phone (optional but valid if provided)
-      const phone = document.getElementById("phone").value.trim();
-      if (phone && !isValidPhone(phone)) {
-        isValid = false;
-        showError("phone", "Please enter a valid phone number");
-      } else {
-        clearError("phone");
-      }
-
-      // Validate message (required)
-      const message = document.getElementById("message").value.trim();
-      if (!message) {
-        isValid = false;
-        showError("message", "Please tell us about your project");
-      } else {
-        clearError("message");
-      }
-
-      // If form is valid, submit it with EmailJS
-      if (isValid) {
-        // Update button state to indicate sending
-        submitBtn.disabled = true;
-        const originalButtonHTML = submitBtn.innerHTML;
-        submitBtn.innerHTML = "<span>SENDING...</span>";
-
-        // Prepare template parameters
-        const templateParams = {
-          from_name: fullName,
-          email: email,
-          phone: phone || "Not provided",
-          location:
-            document.getElementById("location").value.trim() || "Not provided",
-          message: message,
-          time: new Date().toLocaleString(),
-        };
-
-        // Send email using EmailJS
-        emailjs
-          .send(
-            import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
-            import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
-            templateParams
-          )
-          .then(function (response) {
-            console.log("SUCCESS!", response.status, response.text);
-
-            // Show success notification
-            showNotification("success");
-
-            // Reset form
-            form.reset();
-          })
-          .catch(function (error) {
-            console.log("FAILED...", error);
-
-            // Show error notification
-            showNotification(
-              "error",
-              "There was a problem sending your message. Please try again later."
-            );
-          })
-          .finally(function () {
-            // Reset button state
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalButtonHTML;
-          });
-      }
-    });
-
     // Close notification when clicking the close button
-    closeModalBtn.addEventListener("click", function () {
-      successModal.classList.add("hidden");
-    });
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener("click", function () {
+        document.getElementById("successModal").classList.add("hidden");
+      });
+    }
 
-    closeErrorModalBtn.addEventListener("click", function () {
-      errorModal.classList.add("hidden");
-    });
+    // Add success parameter check to show success message when redirected back
+    window.addEventListener("load", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has("success") && urlParams.get("success") === "true") {
+        document.getElementById("successModal").classList.remove("hidden");
 
-    // Real-time validation for individual fields
-    document.getElementById("email").addEventListener("blur", function () {
-      const email = this.value.trim();
-      if (email && !isValidEmail(email)) {
-        showError("email", "Please enter a valid email address");
-      } else {
-        clearError("email");
-      }
-    });
-
-    document.getElementById("phone").addEventListener("blur", function () {
-      const phone = this.value.trim();
-      if (phone && !isValidPhone(phone)) {
-        showError("phone", "Please enter a valid phone number");
-      } else {
-        clearError("phone");
+        // Hide after 5 seconds
+        setTimeout(() => {
+          document.getElementById("successModal").classList.add("hidden");
+        }, 5000);
       }
     });
   });
